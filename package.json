@@ -1,0 +1,31 @@
+{
+  "name": "node-hue-prstbt",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "prestart": "cp node_modules/normalize.css/normalize.css public/stylesheets/normalize.css",
+    "start": "node ./src/bin/www",
+    "remote": "./scripts/remote-serveo.sh"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.0",
+    "node-sass-middleware": "0.11.0",
+    "normalize.css": "^8.0.1",
+    "open": "^6.4.0",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
+    "dotenv": "^8.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

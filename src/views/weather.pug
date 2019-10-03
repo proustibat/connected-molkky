@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h2 #{weather.timezone} #{weather.latitude} #{weather.longitude}
+  ul(class='collection')
+    each val, keys in weather.currently
+      li(class='collection-item')= keys + ': ' + val
