@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -5,7 +6,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 
-const routes = require('./routes/_');
+const pagesRoutes = require('./routes/_');
+const apiRoutes = require('./routes/api/_');
 
 const app = express();
 
@@ -27,8 +29,17 @@ app.use(sassMiddleware({
 }));
 app.use(express.static('public'));
 
-for (const path in routes) {
-  app.use(`/${path !== 'index' ? path : ''}`, routes[path]);
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+// pages routes
+for (const path in pagesRoutes) {
+  app.use(`/${path !== 'index' ? path : ''}`, pagesRoutes[path]);
+}
+
+// api routes
+for (const key in apiRoutes) {
+  app.use(`/api/${key}`, apiRoutes[key]);
 }
 
 // catch 404 and forward to error handler
