@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 
-const indexRouter = require('./routes/index');
-const weatherRouter = require('./routes/weather');
+const routes = require('./routes/_');
 
 const app = express();
 
@@ -28,8 +27,9 @@ app.use(sassMiddleware({
 }));
 app.use(express.static('public'));
 
-app.use('/', indexRouter);
-app.use('/weather', weatherRouter);
+for (const path in routes) {
+  app.use(`/${path !== 'index' ? path : ''}`, routes[path]);
+}
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
