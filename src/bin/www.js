@@ -6,8 +6,8 @@
 import '@babel/polyfill';
 import debugRenderer from 'debug';
 import http from 'http';
-import open from 'open';
 import browserSync from 'browser-sync';
+import get from 'lodash/get';
 import app from '../app';
 import {PORT, NODE_ENV} from '../config';
 
@@ -82,15 +82,25 @@ class Server {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
-    if(NODE_ENV === 'development') {
+
+    if(NODE_ENV === 'development' && get(process, 'env.TARGET') !== 'production') {
       const bs = browserSync.create();
       const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
       bs.init({
-        files: ['./src/scss/**/*.scss', './src/views/**/*.pug', './src/**/*.js'],
+        files: [
+          // './src/scss/**/*.scss',
+          // './src/views/**/*.pug'
+          // './src/bin/**/*.js',
+          // './src/routes/**/*.js',
+          // './src/app.js',
+          // './src/config.js'
+        ],
         open: false,
         port: 3000,
         proxy: 'localhost:' + this.port,
-        ignore: ['node_modules'],
+        ignore: [
+          'node_modules'
+        ],
         reloadDelay: 10,
         reloadOnRestart: true,
         logConnections: true,

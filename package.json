@@ -3,16 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "clean": "rimraf ./dist ./public/stylesheets/normalize.css ./public/stylesheets/style.css ./public/stylesheets/style.css.map",
+    "clean": "rimraf ./dist ./public/stylesheets/normalize.css ./public/stylesheets/style.css ./public/stylesheets/style.css.map ./public/javascript/*.min.js",
     "copy-normalize": "copyfiles --flat node_modules/normalize.css/normalize.css public/stylesheets",
     "copy-views": "copyfiles --flat ./src/views/*.pug ./dist/views",
     "copy-scss": "copyfiles --flat ./src/scss/*.scss ./dist/scss",
     "predev": "npm run clean && npm run copy-normalize",
     "dev": "nodemon --inspect --exec 'babel-node' ./src/bin/www",
     "prebuild": "npm run clean && npm run copy-normalize && npm run copy-views && npm run copy-scss",
-    "build": "babel src --out-dir dist",
-    "start": "node dist/bin/www",
-    "remote": "./scripts/remote-serveo.sh"
+    "build": "cross-env TARGET=production babel src --out-dir dist && webpack --mode production",
+    "start": "cross-env TARGET=production  node dist/bin/www",
+    "remote": "./scripts/remote-serveo.sh",
+    "front": "webpack --mode development --watch --progress"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
@@ -28,18 +29,25 @@
     "node-sass-middleware": "0.11.0",
     "normalize.css": "^8.0.1",
     "open": "^6.4.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/node": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-regenerator": "^7.4.5",
     "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
     "browser-sync-reuse-tab": "^1.0.3",
     "child_process": "^1.0.2",
     "copyfiles": "^2.1.1",
+    "cross-env": "^6.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "dotenv": "^8.1.0",
     "nodemon": "^1.19.3",

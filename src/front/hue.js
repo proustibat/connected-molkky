@@ -1,11 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
     const discoverConnect = document.querySelector('[data-action="discover"]');
 
     discoverConnect.addEventListener('click', async () => {
         discoverConnect.classList.add('disabled');
         await fetch('/api/hue/discover', {method: 'GET'})
-            .then((response) => {
+            .then(response => {
                 if(response.ok) {
+                    console.log('YEAH!');
                     return response.json();
                 }
                 else {

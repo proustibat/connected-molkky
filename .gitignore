@@ -6,3 +6,4 @@ public/stylesheets/normalize.css
 public/stylesheets/style.css
 public/stylesheets/*.map
 dist
+public/javascript/*.min.js
