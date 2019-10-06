@@ -1,10 +1,11 @@
-const express = require('express');
-const get = require('lodash/get');
-const hasIn = require('lodash/hasIn');
-const omit = require('lodash/omit');
-const router = express.Router();
+import express from 'express';
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
+import omit from 'lodash/omit';
+import nodeHueApi from 'node-hue-api';
 
-const v3 = require('node-hue-api').v3;
+const router = express.Router();
+const v3 = nodeHueApi.v3;
 const discovery = v3.discovery;
 const hueApi = v3.api;
 const appName = 'node-hue-prstbt';

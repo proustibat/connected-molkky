@@ -1,5 +1,4 @@
-const express = require('express');
-const fetch = require('node-fetch');
+import express from 'express';
 const router = express.Router();
 
 /* GET hue page. */

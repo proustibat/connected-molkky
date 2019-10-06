@@ -3,11 +3,15 @@
 /**
  * Module dependencies.
  */
-const debug = require('debug')('node-hue-prstbt:server');
-const http = require('http');
-const open = require('open');
-const app = require('../app');
-const {PORT, NODE_ENV} = require('../config');
+import '@babel/polyfill';
+import debugRenderer from 'debug';
+import http from 'http';
+import open from 'open';
+import browserSync from 'browser-sync';
+import app from '../app';
+import {PORT, NODE_ENV} from '../config';
+
+const debug = debugRenderer('node-hue-prstbt:server');
 
 class Server {
   constructor() {
@@ -79,7 +83,21 @@ class Server {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
     if(NODE_ENV === 'development') {
-      await open(`http://localhost:${this.port}`);
+      const bs = browserSync.create();
+      const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
+      bs.init({
+        files: ['./src/scss/**/*.scss', './src/views/**/*.pug', './src/**/*.js'],
+        open: false,
+        port: 3000,
+        proxy: 'localhost:' + this.port,
+        ignore: ['node_modules'],
+        reloadDelay: 10,
+        reloadOnRestart: true,
+        logConnections: true,
+        logPrefix: 'node-hue-prstbt',
+        logLevel: 'debug'
+      }, browserSyncReuseTab);
+
     }
   };
 }

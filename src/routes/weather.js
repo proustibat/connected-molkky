@@ -1,7 +1,8 @@
-const express = require('express');
-const fetch = require('node-fetch');
+import express from 'express';
+import fetch from 'node-fetch';
+import {DARKSKY_SECRET} from '../config';
+
 const router = express.Router();
-const {DARKSKY_SECRET} = require('../config');
 
 const getWeather = async () => {
     const config = {

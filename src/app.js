@@ -1,13 +1,12 @@
-const bodyParser = require('body-parser');
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const sassMiddleware = require('node-sass-middleware');
-
-const pagesRoutes = require('./routes/_');
-const apiRoutes = require('./routes/api/_');
+import bodyParser from 'body-parser';
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import sassMiddleware from 'node-sass-middleware';
+import pagesRoutes from './routes/_';
+import apiRoutes from './routes/api/_';
 
 const app = express();
 
