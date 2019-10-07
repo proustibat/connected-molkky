@@ -39,18 +39,21 @@ router.post('/connect', async(req, res) => {
     };
     let user;
 
+    console.log(req.body);
+
     const ipaddress = get(req, 'body.ipaddress', null);
     if(!ipaddress) {
-        const error = 'ipAddress param missing';
-        console.error(error);
-        res.status(400).send(error).end();
+        const message = 'Bad Request: ipAddress param missing';
+        res.writeHead(400, message, {'content-type' : 'text/plain'});
+        res.end(message);
     }
     else {
         // Create an unauthenticated instance of the Hue API
         const unauthenticatedApi = await hueApi.create(ipaddress)
             .catch(err => {
                 const error = formatError(err);
-                res.status(400).send(error).end();
+                res.writeHead(400, error, {'content-type' : 'text/plain'});
+                res.end(error);
             });
 
         if(unauthenticatedApi) {
@@ -72,7 +75,8 @@ router.post('/connect', async(req, res) => {
                     })
                     .catch(err => {
                         const error = formatError(err);
-                        res.status(400).send(error).end();
+                        res.writeHead(400, error, {'content-type' : 'text/plain'});
+                        res.end(error);
                     });
             }
 
@@ -88,7 +92,8 @@ router.post('/connect', async(req, res) => {
                     })
                     .catch(err => {
                         const error = formatError(err);
-                        res.status(400).send(error).end();
+                        res.writeHead(400, error, {'content-type' : 'text/plain'});
+                        res.end(error);
                     });
             }
         }
@@ -125,9 +130,10 @@ router.get('/lights', async (req, res) => {
     const username = get(req, 'query.username', null);
     const ipaddress = get(req, 'query.ipaddress', null);
     if(!username || !ipaddress) {
-        const error = 'Params missing: needs username and ipaddress';
-        console.error(error);
-        res.status(400).send(error).end();
+        const message = 'Params missing: needs username and ipaddress';
+        console.error(message);
+        res.writeHead(400, message, {'content-type' : 'text/plain'});
+        res.end(message);
     }
     else {
         await hueApi.create(ipaddress, username)
@@ -138,15 +144,16 @@ router.get('/lights', async (req, res) => {
                         .map(light => light._rawData)
                         .map(_rawData => omit(_rawData, [
                             'swupdate', 'capabilities', 'config', 'swversion',
-                            'swconfigid', 'manufacturername', 'productid', 'modelid',
-                            'type', 'productname'
+                            'swconfigid', 'manufacturername', 'modelid',
+                            'type', 'productname', 'productid'
                         ]))
                     )
                     .end();
             })
             .catch(err => {
                 const error = `Error when getting lights: ${err}`;
-                res.status(400).send(error).end();
+                res.writeHead(400, error, {'content-type' : 'text/plain'});
+                res.end(error);
             });
     }
 });
@@ -156,9 +163,10 @@ router.get('/rooms', async (req, res) => {
     const username = get(req, 'query.username', null);
     const ipaddress = get(req, 'query.ipaddress', null);
     if(!username || !ipaddress) {
-        const error = 'Params missing: needs username and ipaddress';
-        console.error(error);
-        res.status(400).send(error).end();
+        const message = 'Bad Request: Params missing (needs username and ipaddress)';
+        console.error(message);
+        res.writeHead(400, message, {'content-type' : 'text/plain'});
+        res.end(message);
     }
     else {
         await hueApi.create(ipaddress, username)
@@ -167,15 +175,17 @@ router.get('/rooms', async (req, res) => {
                 res
                     .json(groups
                         .filter(group => get(group, 'type') === 'Room')
-                        .map(group => omit(group._rawData, [
+                        .map(group =>
+                            omit(group._rawData, [
                             'sensors', 'class', 'recycle', 'type'
-                        ]))
-                    )
+                            ])
+                        ))
                     .end();
             })
             .catch(err => {
                 const error = `Error when getting rooms: ${err}`;
-                res.status(400).send(error).end();
+                res.writeHead(400, error, {'content-type' : 'text/plain'});
+                res.end(error);
             });
     }
 });

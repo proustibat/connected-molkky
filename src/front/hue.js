@@ -1,23 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const discoverConnect = document.querySelector('[data-action="discover"]');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Hue from './pages/Hue';
 
-    discoverConnect.addEventListener('click', async () => {
-        discoverConnect.classList.add('disabled');
-        await fetch('/api/hue/discover', {method: 'GET'})
-            .then(response => {
-                if(response.ok) {
-                    return response.json();
-                }
-                else {
-                    throw(`Error: ${status}`);
-                }
-            })
-            .then(data => {
-                window.alert(data.ipaddress);
-            })
-            .catch(err => {
-                console.error(err);
-            });
-        discoverConnect.classList.remove('disabled');
-    });
-});
+const app = document.getElementById( 'root' );
+
+ReactDOM.hydrate( <Hue {...window.__INITIAL_PROPS__} />, app );

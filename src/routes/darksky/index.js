@@ -1,6 +1,5 @@
 import express from 'express';
 import React from 'react';
-import {renderToString} from 'react-dom/server';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import renderTemplate from '../../renderTemplate';
@@ -20,7 +19,7 @@ router.get('/', async (req, res) => {
             summary: get(weather, 'currently.summary')
         };
         res.writeHead( 200, { "Content-Type": "text/html" } );
-        res.end( renderTemplate( renderToString(<DarkSky {...data} />),  data, 'darksky') );
+        res.end(renderTemplate(<DarkSky {...data} />, 'darksky'));
     }
 });
 
