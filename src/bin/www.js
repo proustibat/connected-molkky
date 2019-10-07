@@ -3,20 +3,19 @@
 /**
  * Module dependencies.
  */
-import '@babel/polyfill';
 import debugRenderer from 'debug';
 import http from 'http';
 import browserSync from 'browser-sync';
 import get from 'lodash/get';
 import app from '../app';
-import {PORT, NODE_ENV} from '../config';
+import {SERVER_PORT, BS_PORT, NODE_ENV} from '../config';
 
 const debug = debugRenderer('node-hue-prstbt:server');
 
 class Server {
   constructor() {
     // Get port from environment and store in Express.
-    this.port = this.normalizePort(PORT || '3000');
+    this.port = this.normalizePort(SERVER_PORT || '8080');
 
     // Create HTTP server.
     this.server = http.createServer(app);
@@ -96,7 +95,7 @@ class Server {
           // './src/config.js'
         ],
         open: false,
-        port: 3000,
+        port: BS_PORT || 3000,
         proxy: 'localhost:' + this.port,
         ignore: [
           'node_modules'

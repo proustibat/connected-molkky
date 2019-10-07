@@ -1,5 +1,5 @@
 const path = require('path');
-
+const {BS_PORT} = require('./src/config');
 module.exports = {
     entry: {
         index: ['@babel/polyfill', './src/front/index.js'],
@@ -12,7 +12,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/': {
-                target: 'http://localhost:3000', // this is the browsersync proxy
+                target: 'http://localhost:' + BS_PORT,
                 secure: false
             }
         },
