@@ -1,12 +1,31 @@
 body {}
 a.waves-effect {
   display: block;
-  margin: 0 0 1rem 0;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4, h5, h6 {
+  font-size: 1rem;
 }
 
 h1, h2, h3 {
   border-left: 1rem solid;
-  padding-left: 0.5rem;
   display: flex;
   align-items: center;
+  word-break: break-word;
+  padding: 0 1rem;
+  :first-child {
+    margin: 0 1rem 0 0;
+  }
 }
