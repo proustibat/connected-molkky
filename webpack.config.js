@@ -3,7 +3,8 @@ const {BS_PORT} = require('./src/config');
 module.exports = {
     entry: {
         index: ['@babel/polyfill', './src/front/index.js'],
-        hue: ['@babel/polyfill', './src/front/hue.js']
+        hue: ['@babel/polyfill', './src/front/hue.js'],
+        darksky: ['@babel/polyfill', './src/front/darksky.js'],
     },
     output: {
         path: path.join(__dirname, 'public', 'javascript'),

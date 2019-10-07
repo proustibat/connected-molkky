@@ -87,7 +87,7 @@ class Server {
       const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
       bs.init({
         files: [
-          // './src/scss/**/*.scss',
+          './src/scss/**/*.scss',
           // './src/views/**/*.pug'
           // './src/bin/**/*.js',
           // './src/routes/**/*.js',

@@ -1,6 +1,6 @@
 import serialize from 'serialize-javascript';
 
-const renderTemplate = (reactDom, data, file) => `
+const renderTemplate = (reactDom, dataToRehydrate, clientJSFilename) => `
         <!DOCTYPE html>
         <html>
         <head>
@@ -14,8 +14,8 @@ const renderTemplate = (reactDom, data, file) => `
         
         <body>
             <div id="root">${ reactDom }</div>
-            <script>window.__INITIAL_PROPS__ = ${serialize(data)}</script></body>
-            <script src="./javascript/${file}.min.js"></script>
+            <script>window.__INITIAL_PROPS__ = ${serialize(dataToRehydrate)}</script></body>
+            <script src="./javascript/${clientJSFilename}.min.js"></script>
         </body>
         </html>
     `;
