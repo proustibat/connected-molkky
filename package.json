@@ -57,7 +57,9 @@
     "nodemon": "^1.19.3",
     "prop-types": "^15.7.2",
     "rimraf": "^3.0.0",
-    "sys": "0.0.1"
+    "sys": "0.0.1",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
   },
   "config": {
     "commitizen": {
