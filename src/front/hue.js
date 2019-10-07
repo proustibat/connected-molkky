@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetch('/api/hue/discover', {method: 'GET'})
             .then(response => {
                 if(response.ok) {
-                    console.log('YEAH!');
                     return response.json();
                 }
                 else {
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .then(data => {
-                console.log(data);
+                window.alert(data.ipaddress);
             })
             .catch(err => {
                 console.error(err);

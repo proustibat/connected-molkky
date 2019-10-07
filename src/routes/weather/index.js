@@ -1,6 +1,6 @@
 import express from 'express';
 import fetch from 'node-fetch';
-import {DARKSKY_SECRET} from '../config';
+import {DARKSKY_SECRET} from '../../config';
 
 const router = express.Router();
 

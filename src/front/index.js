@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Layout from './components/Layout';
+import Home from './pages/Home';
 
-const app = document.getElementById( 'app' );
+const app = document.getElementById( 'root' );
 
-ReactDOM.hydrate( <Layout />, app );
+ReactDOM.hydrate( <Home {...window.__INITIAL_PROPS__} />, app );

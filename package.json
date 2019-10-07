@@ -32,7 +32,8 @@
     "pug": "2.0.0-beta11",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "regenerator-runtime": "^0.13.3"
+    "regenerator-runtime": "^0.13.3",
+    "serialize-javascript": "^2.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",

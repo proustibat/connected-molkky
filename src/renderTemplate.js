@@ -1,4 +1,6 @@
-const renderTemplate = (reactDom, data) => `
+import serialize from 'serialize-javascript';
+
+const renderTemplate = (reactDom, data, file) => `
         <!DOCTYPE html>
         <html>
         <head>
@@ -11,8 +13,9 @@ const renderTemplate = (reactDom, data) => `
         </head>
         
         <body>
-            <div id="app">${ reactDom }</div>
-            <script src="./javascript/index.min.js"></script>
+            <div id="root">${ reactDom }</div>
+            <script>window.__INITIAL_PROPS__ = ${serialize(data)}</script></body>
+            <script src="./javascript/${file}.min.js"></script>
         </body>
         </html>
     `;
