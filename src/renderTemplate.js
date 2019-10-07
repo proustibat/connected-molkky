@@ -9,6 +9,7 @@ const renderTemplate = (reactDom, dataToRehydrate, clientJSFilename) => `
             <title>React SSR</title>
             <link rel="stylesheet" href="/stylesheets/normalize.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
             <link rel="stylesheet" href="/stylesheets/style.css" />
         </head>
         

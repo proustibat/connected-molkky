@@ -1,5 +1,12 @@
 body {}
 a.waves-effect {
   display: block;
-  margin: 1rem;
+  margin: 0 0 1rem 0;
+}
+
+h1, h2, h3 {
+  border-left: 1rem solid;
+  padding-left: 0.5rem;
+  display: flex;
+  align-items: center;
 }

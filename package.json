@@ -32,6 +32,7 @@
     "pug": "2.0.0-beta11",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-skycons": "git+https://github.com/proustibat/react-skycons.git#fix/window-and-lifecycle",
     "regenerator-runtime": "^0.13.3",
     "serialize-javascript": "^2.1.0"
   },
@@ -42,6 +43,7 @@
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-throw-expressions": "^7.2.0",
     "@babel/plugin-transform-regenerator": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
@@ -53,6 +55,7 @@
     "cz-conventional-changelog": "^3.0.2",
     "dotenv": "^8.1.0",
     "nodemon": "^1.19.3",
+    "prop-types": "^15.7.2",
     "rimraf": "^3.0.0",
     "sys": "0.0.1"
   },

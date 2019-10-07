@@ -3,6 +3,7 @@
 /**
  * Module dependencies.
  */
+import '@babel/polyfill';
 import debugRenderer from 'debug';
 import http from 'http';
 import browserSync from 'browser-sync';
