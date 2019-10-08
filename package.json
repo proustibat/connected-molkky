@@ -10,10 +10,12 @@
     "predev": "npm run clean && npm run copy-normalize",
     "dev": "nodemon --inspect --exec 'babel-node' ./src/bin/www",
     "prebuild": "npm run clean && npm run copy-normalize && npm run copy-views && npm run copy-scss",
-    "build": "cross-env TARGET=production babel src --out-dir dist && webpack --mode production",
+    "build": "cross-env TARGET=production babel src --out-dir dist --ignore '**/*.test.js' && webpack --mode production",
     "start": "cross-env TARGET=production  node dist/bin/www",
     "remote": "./scripts/remote-serveo.sh",
-    "front": "webpack --mode development --watch --progress"
+    "front": "webpack --mode development --watch --progress",
+    "test:front": "jest --coverage",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
@@ -22,6 +24,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "jest-enzyme": "^7.1.1",
     "lodash": "^4.17.15",
     "materialize-css": "^1.0.0-rc.2",
     "morgan": "~1.9.1",
@@ -47,6 +50,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "browser-sync": "^2.26.7",
     "browser-sync-reuse-tab": "^1.0.3",
@@ -55,6 +59,11 @@
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "dotenv": "^8.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.2",
+    "glob": "^7.1.4",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "prop-types": "^15.7.2",
     "rimraf": "^3.0.0",
@@ -71,6 +80,31 @@
     "watch": [
       "./src/"
     ],
+    "ignore": [
+      "**/*.test.js",
+      "fixtures/**/*.js"
+    ],
     "verbose": false
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "./src/setupTests.js"
+    ],
+    "verbose": true,
+    "collectCoverage": true,
+    "transform": {
+      ".*": "./node_modules/babel-jest"
+    },
+    "collectCoverageFrom": [
+      "./src/front/**/*.js"
+    ],
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
+    "clearMocks": true
   }
 }

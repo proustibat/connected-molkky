@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import kebabCase from 'lodash/kebabCase';
-import DarkSkyIcon from '../components/DarkSkyIcon';
+import DarkSkyIcon from '../../components/DarkSkyIcon';
+import List from '../../components/List';
 
 const DarkSky = ({timezone, latitude, longitude, currently, icon, summary, time}) => (
     <div className="section no-pad-bot">
@@ -10,13 +10,11 @@ const DarkSky = ({timezone, latitude, longitude, currently, icon, summary, time}
             <h2><span>{summary}</span><DarkSkyIcon icon={icon} /></h2>
             <h3><i className="material-icons small">location_on</i><span>{latitude}, {longitude}</span></h3>
             <p>({time.toString()})</p>
-            <ul className="collection">
-                {
-                    Object
-                        .entries(currently)
-                        .map(info => <li key={kebabCase(info[0])} className="collection-item">{info[0]}: {info[1]}</li>)
-                }
-            </ul>
+            <List elements={
+                Object
+                    .entries(currently)
+                    .map(info => `${info[0]}: ${info[1]}`)
+            } />
         </div>
     </div>
 );

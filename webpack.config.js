@@ -1,11 +1,12 @@
 const path = require('path');
+const glob = require('glob');
 const {BS_PORT} = require('./src/config');
 module.exports = {
-    entry: {
-        index: ['@babel/polyfill', './src/front/index.js'],
-        hue: ['@babel/polyfill', './src/front/hue.js'],
-        darksky: ['@babel/polyfill', './src/front/darksky.js'],
-    },
+    entry: glob.sync('./src/front/*.js').reduce((acc, path) => {
+        const entry = path.replace('./src/front/', '').replace('.js', '');
+        acc[entry] = ['@babel/polyfill', path];
+        return acc;
+    }, {}),
     output: {
         path: path.join(__dirname, 'public', 'javascript'),
         filename: "[name].min.js"

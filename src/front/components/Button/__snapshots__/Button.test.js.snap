@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render the component correctly when it is disabled 1`] = `
+<button
+  className="waves-effect waves-light btn btn-large disabled"
+  onClick={[Function]}
+>
+  click me
+</button>
+`;
+
+exports[`Button should render the component correctly when it is enabled 1`] = `
+<button
+  className="waves-effect waves-light btn btn-large "
+  onClick={[Function]}
+>
+  click me
+</button>
+`;

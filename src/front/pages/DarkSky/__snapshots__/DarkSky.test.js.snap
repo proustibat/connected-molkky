@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page DarkSky should render the page correctly 1`] = `
+<div
+  className="section no-pad-bot"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      <i
+        className="material-icons medium"
+      >
+        language
+      </i>
+      <span>
+        Europe/Paris
+      </span>
+    </h1>
+    <h2>
+      <span>
+        Ciel Nuageux
+      </span>
+      <DarkSkyIcon
+        autoplay={true}
+        color="black"
+        icon="partly-cloudy-day"
+      />
+    </h2>
+    <h3>
+      <i
+        className="material-icons small"
+      >
+        location_on
+      </i>
+      <span>
+        48.8534
+        , 
+        2.3488
+      </span>
+    </h3>
+    <p>
+      (
+      Mon Jan 19 1970 05:15:53 GMT+0100 (Central European Standard Time)
+      )
+    </p>
+    <List
+      elements={
+        Array [
+          "precipIntensity: 0.2473",
+          "precipProbability: 0.34",
+          "precipType: rain",
+          "temperature: 15.08",
+          "apparentTemperature: 15.08",
+          "dewPoint: 12.13",
+          "humidity: 0.83",
+          "pressure: 1012.3",
+          "windSpeed: 3.59",
+          "windGust: 8.3",
+          "windBearing: 226",
+          "cloudCover: 0.8",
+          "uvIndex: 0",
+          "visibility: 10.539",
+          "ozone: 249.3",
+        ]
+      }
+    />
+  </div>
+</div>
+`;

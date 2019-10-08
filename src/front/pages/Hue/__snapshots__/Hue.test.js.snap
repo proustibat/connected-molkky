@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Hue should render the page correctly on init 1`] = `
+<div
+  className="section no-pad-bot"
+>
+  <div
+    className="container"
+  >
+    <Button
+      disabled={false}
+      onClick={[Function]}
+    >
+      Scan Philips Hue System
+    </Button>
+  </div>
+</div>
+`;
+
+exports[`Page Hue should render the page correctly with all props and state data 1`] = `
+<div
+  className="section no-pad-bot"
+>
+  <div
+    className="container"
+  >
+    <h1>
+      Hello World!
+    </h1>
+    <Button
+      disabled={false}
+      onClick={[Function]}
+    >
+      Scan Philips Hue System
+    </Button>
+    <p>
+      Bridge IP detected: 
+      192.168.1.10
+    </p>
+    <Button
+      disabled={false}
+      onClick={[Function]}
+    >
+      Connect
+    </Button>
+    <p>
+      Connected to Hue Bridge: 192.168.1.10
+    </p>
+    <p>
+      You're connected as 
+      qwertyuiop
+    </p>
+    <Button
+      disabled={false}
+      onClick={[Function]}
+    >
+      Get information about your home
+    </Button>
+    <List
+      elements={
+        Array [
+          "chambre",
+          "salon",
+          "salle de bain",
+        ]
+      }
+      title="You have 3 rooms:"
+    />
+    <List
+      elements={
+        Array [
+          "bedroom-main",
+          "living-room-main",
+          "bathroom-main",
+        ]
+      }
+      title="You have 3 lights:"
+    />
+  </div>
+</div>
+`;

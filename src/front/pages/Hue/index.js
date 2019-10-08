@@ -1,27 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Button from '../components/Button';
-import LoadingBar from '../components/LoadingBar';
+import Button from '../../components/Button';
+import List from '../../components/List';
+import LoadingBar from '../../components/LoadingBar';
 
 export default class Hue extends React.Component {
     static propTypes = {
-        title: PropTypes.string.isRequired
+        title: PropTypes.string
     };
 
     state = {
         isLoading: false,
         ipaddress: null,
         connectData: null,
+        // connectData: {
+        //     user: {
+        //         username: 'GUn1rnTiYkifD9cAy2d23yFTFZo36ePWzDA4Hgfs'
+        //     }
+        // },
         rooms: [],
         lights: []
     };
-
-    componentDidMount() {
-        if (typeof window !== 'undefined') {
-            require('materialize-css');
-        }
-    }
 
     requestDiscover = async () => {
         this.setState(() => ({isLoading: true}));
@@ -89,40 +89,20 @@ export default class Hue extends React.Component {
         );
     };
 
-    renderRooms = () => {
-        const {rooms} = this.state;
-        return (
-            <>
-                <p>You have {rooms.length} room{`${rooms.length > 0 ? 's' : ''}`}:</p>
-                <ul className="collection">
-                    {rooms.map(room => <li className="collection-item">{room.name}</li>)}
-                </ul>
-            </>
-        );
-    };
-
-    renderLights = () => {
-        const {lights} = this.state;
-        return (
-            <>
-                <p>You have {lights.length} light{`${lights.length > 0 ? 's' : ''}`}:</p>
-                <ul className="collection">
-                    {lights.map(light => <li className="collection-item">{light.name}</li>)}
-                </ul>
-            </>
-        );
-    };
-
     toastError = error => {
-        M && M.toast({html: error, classes: 'red darken-4'});
+        if (typeof window !== 'undefined') {
+            const {M: MaterializeCSS} = window;
+            MaterializeCSS && MaterializeCSS.toast({html: error, classes: 'red darken-4'});
+        }
     };
 
     render() {
+        const {rooms, lights} = this.state;
         return (
             <div className="section no-pad-bot">
                 <div className="container">
                     {this.state.isLoading && <LoadingBar/>}
-                    <h1>{ this.props.title }</h1>
+                    {this.props.title && <h1>{ this.props.title }</h1>}
 
                     <Button onClick={this.requestDiscover} disabled={this.state.isLoading}>Scan Philips Hue System</Button>
 
@@ -138,8 +118,8 @@ export default class Hue extends React.Component {
                     {this.state.connectData && (
                         <>
                             <Button onClick={this.requestInfo} disabled={this.state.isLoading}>Get information about your home</Button>
-                            {this.state.rooms.length > 0 && this.renderRooms()}
-                            {this.state.lights.length > 0 && this.renderLights()}
+                            {this.state.rooms.length > 0 && <List title={`You have ${rooms.length} room${rooms.length > 0 ? 's' : ''}:`} elements={rooms.map(room => room.name)} />}
+                            {this.state.lights.length > 0 && <List title={`You have ${lights.length} light${rooms.length > 0 ? 's' : ''}:`} elements={lights.map(light => light.name)} />}
                         </>
                     )}
                 </div>

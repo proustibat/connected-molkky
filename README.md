@@ -75,17 +75,9 @@ This example assumes you want to create a new page at the url '/hello'.
 
     Note here we add a specific javascript file if the page needs specific scripts. This is optional!
 
-4. Add specific javascript for the new page (optional): 
-  * Create `src/front/hello.js`:
+4. Add specific javascript for the new page (optional) by creating `src/front/hello.js`: 
     ```$xslt
     console.log('hello');
-    ```
-  * Add the js entry to webpack config in `webpack.config.js` (in the entry part):
-    ```$xslt
-    entry: {
-        // ...,
-        hello: ['@babel/polyfill', './src/front/hello.js'],
-    },
     ```
 
 You can run [localhost:3000/hello](http://localhost:3000/hello).
@@ -152,14 +144,6 @@ This example assumes you want to create a new page at the url '/hello'.
     const app = document.getElementById( 'root' );
     
     ReactDOM.hydrate( <Hello {...window.__INITIAL_PROPS__} />, app );
-    ```
-
-5. Add the js entry to webpack config in `webpack.config.js` (in the entry part):
-    ```$xslt
-       entry: {
-           // ...,
-           hello: ['@babel/polyfill', './src/front/hello.js'],
-       },
     ```
 
 You can run [localhost:3000/hello](http://localhost:3000/hello).
