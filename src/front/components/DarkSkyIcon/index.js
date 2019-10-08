@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Skycons from 'react-skycons';
 import invert from 'lodash/invert';
 import {DARK_SKY_ICONS} from '../../utils/constants';
-import style from './style';
+import defaultStyle from './style';
 
-const DarkSkyIcon = ({icon, color, autoplay, iconStyle}) => (
+const DarkSkyIcon = ({icon, color, autoplay, style}) => (
     <Skycons
         color={color}
         icon={invert(DARK_SKY_ICONS)[icon]}
         autoplay={autoplay}
-        style={{...style.icon, ...iconStyle}}
+        style={{...defaultStyle.icon, ...style}}
     />
 );
 

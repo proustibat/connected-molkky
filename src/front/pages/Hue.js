@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
+import Button from '../components/Button';
+import LoadingBar from '../components/LoadingBar';
 
 export default class Hue extends React.Component {
     static propTypes = {
@@ -77,24 +79,6 @@ export default class Hue extends React.Component {
         }));
     };
 
-    renderScanButton = () =><a
-        className={`waves-effect waves-light btn btn-large ${this.state.isLoading && 'disabled'}`}
-        onClick={this.requestDiscover}>
-        Scan Philips Hue System
-    </a>;
-
-    renderConnectButton = () =><a
-        className={`waves-effect waves-light btn btn-large ${this.state.isLoading && 'disabled'}`}
-        onClick={this.requestConnect}>
-        Connect
-    </a>;
-
-    renderInfoButton = () =><a
-        className={`waves-effect waves-light btn btn-large ${this.state.isLoading && 'disabled'}`}
-        onClick={this.requestInfo}>
-        Get information about your home
-    </a>;
-
     renderConnectData = () => {
         const {connectData: {message, user: {username}}} = this.state;
         return (
@@ -116,6 +100,7 @@ export default class Hue extends React.Component {
             </>
         );
     };
+
     renderLights = () => {
         const {lights} = this.state;
         return (
@@ -136,23 +121,23 @@ export default class Hue extends React.Component {
         return (
             <div className="section no-pad-bot">
                 <div className="container">
+                    {this.state.isLoading && <LoadingBar/>}
                     <h1>{ this.props.title }</h1>
-                    {this.state.isLoading && <div className="progress teal darken-4" style={{position: 'fixed', top: 0, left: 0, height: '1rem'}}><div className="indeterminate"/></div>}
 
-                    {this.renderScanButton()}
+                    <Button onClick={this.requestDiscover} disabled={this.state.isLoading}>Scan Philips Hue System</Button>
 
                     {this.state.ipaddress && (
                         <>
                             <p>Bridge IP detected: {this.state.ipaddress}</p>
 
-                            {this.renderConnectButton()}
+                            <Button onClick={this.requestConnect} disabled={this.state.isLoading}>Connect</Button>
                             {this.state.connectData && this.renderConnectData()}
                         </>
                     )}
 
                     {this.state.connectData && (
                         <>
-                            {this.renderInfoButton()}
+                            <Button onClick={this.requestInfo} disabled={this.state.isLoading}>Get information about your home</Button>
                             {this.state.rooms.length > 0 && this.renderRooms()}
                             {this.state.lights.length > 0 && this.renderLights()}
                         </>
