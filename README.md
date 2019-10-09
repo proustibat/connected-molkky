@@ -79,13 +79,19 @@ This example assumes you want to create a new page at the url '/hello'.
     ```$xslt
     console.log('hello');
     ```
+   and adding it to `webpack.config.js` in the entry part:
+   ```$xslt
+    hello: ['./src/front/hello.js']
+   ``` 
+
+Stop and re-run `npm run front` if it was running when creation the file.
 
 You can run [localhost:3000/hello](http://localhost:3000/hello).
 
 ##### With React and SSR
 This example assumes you want to create a new page at the url '/hello'.
 
-1. Create the view in `src/front/pages/Hello` :
+1. Create the view in `src/front/pages/Hello/index.js` :
     ```$xslt
     import React from 'react';
     
@@ -109,20 +115,21 @@ This example assumes you want to create a new page at the url '/hello'.
     ```$xslt
     import express from 'express';
     import React from 'react';
-    import {renderToString} from 'react-dom/server';
     import renderTemplate from '../../renderTemplate';
     import Hello from '../../front/pages/Hello';
     
     const router = express.Router();
     
+    /* GET hue page. */
     router.get('/', (req, res) => {
-        const data = {title: 'hello world!'};
-        res.writeHead( 200, { "Content-Type": "text/html" } );
-        res.end( renderTemplate( renderToString(<Hello {...data} />),  data, 'hello') );
+      const data = {title: 'Hello World'};
+      res.writeHead( 200, { "Content-Type": "text/html" } );
+      res.end(renderTemplate(<Hello {...data} />));
     });
     
     module.exports = router;
     ```
+   Note that `data` will be the props of the component.
 
 3. Add new created route to `src/routes/_.js`: 
     ```$xslt
@@ -135,29 +142,120 @@ This example assumes you want to create a new page at the url '/hello'.
     };
     ```
 
-4. Create the javascript for client in `src/front/hello.js`:
-    ```$xslt
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import Hello from './pages/Hello';
-    
-    const app = document.getElementById( 'root' );
-    
-    ReactDOM.hydrate( <Hello {...window.__INITIAL_PROPS__} />, app );
+4. Declare the javascript file for client in the constructor of the App (`src/front/App.js`):
+   Import your component: 
+   ```$xslt
+   // Import your component
+   import Hello from './pages/Hello';
+   ```
+   In the constructor, add your object to the routeComponentMapper array as follows with the right pathname: 
+   ```$xslt
+    this.routeComponentMapper = [
+        //..., 
+        {
+            isMatching: pathname => pathname === '/hello',
+            component: Hello
+        },
+        {
+            isMatching: () => true,
+            component: null
+        }
+    ];
     ```
+   
+   Note the order of the array is important and also the last object that defines the default behavior.
 
-You can run [localhost:3000/hello](http://localhost:3000/hello).
+
+You can run [localhost:3000/hello](http://localhost:3000/hello) and the button should display an alert when it's clicked.
 
 #### Create a sub route
+
+##### With Pug
+This example assumes a route `/hello` exists, you wanna create `/hello/champion`:
+1. Add the route in `src/routes/hello/index.js`:
+    ```$xslt
+    router.get('/champion', (req, res) => {
+        res.render('champion', {title: 'Hello Champion!'});
+    });
+    ```
+   
+2. Create the view `src/views/champion.pug`:
+    ```$xslt
+    extends layout
+    
+    block content
+      h2 This is my sub route with PUG!
+    block specificJS
+      script(src='/javascript/champion.min.js')
+    ```
+   
+   Note here we add a specific javascript file if the page needs specific scripts. This is optional!
+
+2. Add specific javascript for the new page (optional) by creating `src/front/champion.js`: 
+    ```$xslt
+    console.log('champion');
+    ```
+   and adding it to `webpack.config.js` in the entry part:
+   ```$xslt
+    champion: ['./src/front/champion.js']
+   ``` 
+   
+Stop and re-run `npm run front` if it was running when creation the file.
+
+You can run [localhost:3000/hello/champion](http://localhost:3000/hello/champion).
+
+##### With SSR
 This example assumes a route `/hello` exists, you wanna create `/hello/world`:
 
-Simply add this into `src/routes/hello/index.js`:
-```$xslt
-router.get('/world', (req, res) => {
-    res.send('hello world');
-});
-```
-You can run [localhost:3000/hello/world](http://localhost:3000/hello/world).
+1. Create the view in `./src/front/pages/Hello/World/index.js`:
+    ```$xslt
+    import React from 'react';
+    
+    export default class HelloWorld extends React.Component {
+        onClick = () => {
+            window.alert('hello subpage');
+        };
+        render() {
+            return (
+                <div>
+                    <h1>{ this.props.title }</h1>
+                    <h2>This is my sub page</h2>
+                    <a className="waves-effect waves-light btn-large" onClick={this.onClick} >Click me</a>
+                </div>
+            );
+        }
+    }
+    ```
+   
+2. Add this into `src/routes/hello/index.js` (and import `HelloWorld` component):
+    ```$xslt
+    router.get('/world', (req, res) => {
+        const data = {title: 'Hello World 2'};
+        res.writeHead( 200, { "Content-Type": "text/html" } );
+        res.end(renderTemplate(<HelloWorld {...data} />));
+    });
+    ```
+  
+3. Map route and component in `./src/front/App.js` (and import `HelloWorld` component):
+    ```$xslt
+    ...
+    import HelloWorld from './pages/Hello/World';
+    
+    export default class App {
+        constructor() {
+            this.routeComponentMapper = [
+            ..., {
+                isMatching: pathname => pathname === '/hello/world',
+                component: HelloWorld
+            },
+            ...];
+            return this;
+        }
+        ...
+    }
+    ```
+
+You can run [localhost:3000/hello/world](http://localhost:3000/hello/world) and the button should work.
 
 #### API
 // TODO

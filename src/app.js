@@ -26,7 +26,9 @@ app.use(sassMiddleware({
   prefix: '/stylesheets',
   sourceMap: true
 }));
-app.use(express.static('public'));
+app.use('/javascript', express.static(path.join(__dirname, '..', 'public', 'javascript')));
+app.use('/stylesheets', express.static(path.join(__dirname, '..', 'public', 'stylesheets')));
+app.use('/images', express.static(path.join(__dirname, '..', 'public', 'images')));
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
