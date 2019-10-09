@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Button from '../../components/Button';
 import {ipaddress, connectData, lights, rooms} from '../../../fixtures/hue';
+import List from '../../components/List';
 import Hue from './index';
 
 const roomsEndpoint = `/api/hue/rooms?ipaddress=${ipaddress}&username=${connectData.user.username}`;
@@ -28,7 +29,17 @@ describe('Page Hue', () => {
     });
 
     describe('Given the api requests succeed', () => {
-        let setStateSpy;
+        let component, componentInstance, setStateSpy;
+
+        beforeEach(() => {
+            component = shallow(<Hue title="Hello World!" />);
+            componentInstance = component.instance();
+            setStateSpy = jest.spyOn(componentInstance, 'setState');
+        });
+
+        afterEach(() => {
+           setStateSpy.mockClear();
+        });
 
         afterEach(() => {
             global.fetch.mockRestore();
@@ -42,9 +53,6 @@ describe('Page Hue', () => {
                 ok: true,
                 json: () => Promise.resolve({ipaddress})
             }));
-            const component = shallow(<Hue title="Hello World!" />);
-            const componentInstance = component.instance();
-            setStateSpy = jest.spyOn(componentInstance, 'setState');
 
             // When
             component.find(Button).at(0).simulate('click');
@@ -65,14 +73,11 @@ describe('Page Hue', () => {
 
         it('should handle connect request', done => {
             // Given
+            component.setState({ipaddress});
             global.fetch = jest.fn().mockImplementation(() => Promise.resolve({
                 ok: true,
                 json: () => Promise.resolve(connectData)
             }));
-            const component = shallow(<Hue title="Hello World!" />);
-            component.setState({ipaddress});
-            const componentInstance = component.instance();
-            setStateSpy = jest.spyOn(componentInstance, 'setState');
 
             // When
             component.find(Button).at(1).simulate('click');
@@ -99,14 +104,11 @@ describe('Page Hue', () => {
 
         it('should handle info request', done => {
             // Given
+            component.setState({ipaddress, connectData});
             global.fetch = jest.fn().mockImplementation(endpoint => Promise.resolve({
                 ok: true,
                 json: () => Promise.resolve(endpoint === roomsEndpoint ? rooms : lights)
             }));
-            const component = shallow(<Hue title="Hello World!" />);
-            component.setState({ipaddress, connectData});
-            const componentInstance = component.instance();
-            setStateSpy = jest.spyOn(componentInstance, 'setState');
 
             // When
             component.find(Button).at(2).simulate('click');
@@ -123,16 +125,39 @@ describe('Page Hue', () => {
                 expect(component.state().rooms).toBe(rooms);
                 expect(component.state().lights).toBe(lights);
 
+                expect([component.find(List).at(0).props().title, component.find(List).at(1).props().title]).toMatchSnapshot();
                 done();
             });
         });
 
-        it('should display a message if api returns no light', () => {
-            // TODO
+        it('should render the information lists correctly when there is no element', done => {
+            // Given
+            component.setState({ipaddress, connectData});
+            global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ok: true, json: () => Promise.resolve(null)}));
+
+            // When
+            component.find(Button).at(2).simulate('click');
+
+            // Then
+            setImmediate(() => {
+                expect([component.find(List).at(0).props().title, component.find(List).at(1).props().title]).toMatchSnapshot();
+                done();
+            });
         });
 
-        it('should display a message if api returns no room', () => {
-            // TODO
+        it('should render the information lists correctly when there is only one element', done => {
+            // Given
+            component.setState({ipaddress, connectData});
+            global.fetch = jest.fn().mockImplementation(() => Promise.resolve({ok: true, json: () => Promise.resolve(['single element'])}));
+
+            // When
+            component.find(Button).at(2).simulate('click');
+
+            // Then
+            setImmediate(() => {
+                expect([component.find(List).at(0).props().title, component.find(List).at(1).props().title]).toMatchSnapshot();
+                done();
+            });
         });
     });
 

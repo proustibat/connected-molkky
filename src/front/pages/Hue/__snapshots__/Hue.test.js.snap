@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Page Hue Given the api requests succeed should handle info request 1`] = `
+Array [
+  "You have 3 rooms:",
+  "You have 3 lights:",
+]
+`;
+
+exports[`Page Hue Given the api requests succeed should render the information lists correctly when there is no element 1`] = `
+Array [
+  "You have 0 room",
+  "You have 0 light",
+]
+`;
+
+exports[`Page Hue Given the api requests succeed should render the information lists correctly when there is only one element 1`] = `
+Array [
+  "You have 1 room:",
+  "You have 1 light:",
+]
+`;
+
 exports[`Page Hue should render the page correctly on init 1`] = `
 <div
   className="section no-pad-bot"

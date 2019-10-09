@@ -1,16 +1,20 @@
+const webpack = require('webpack');
 const path = require('path');
-const glob = require('glob');
+const Visualizer = require('webpack-visualizer-plugin');
 const {BS_PORT} = require('./src/config');
 module.exports = {
-    entry: glob.sync('./src/front/*.js').reduce((acc, path) => {
-        const entry = path.replace('./src/front/', '').replace('.js', '');
-        acc[entry] = ['@babel/polyfill', path];
-        return acc;
-    }, {}),
+    entry: {
+        'babel-polyfill': ['@babel/polyfill'],
+        index: ['./src/front/index.js']
+    },
     output: {
         path: path.join(__dirname, 'public', 'javascript'),
         filename: "[name].min.js"
     },
+    resolve: {
+        extensions: ['.js'],
+    },
+    devtool: 'source-map',
     devServer: {
         proxy: {
             '/': {
@@ -20,14 +24,19 @@ module.exports = {
         },
     },
     module: {
+        // noParse: /(node_modules|\.(test.js|spec.js|test.js.snap)$)/,
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(js)?$/,
+                // exclude: /(node_modules|\.(test.js|spec.js|test.js.snap)$)/,
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader"
-                }
-            }
+                },
+            },
         ]
-    }
+    },
+    plugins: [
+        new Visualizer()
+    ]
 };

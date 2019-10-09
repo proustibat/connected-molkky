@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DarkSkyIcon from '../../components/DarkSkyIcon';
 import List from '../../components/List';
+import Home from "../Home";
 
-const DarkSky = ({timezone, latitude, longitude, currently, icon, summary, time}) => (
+const Darksky = ({timezone, latitude, longitude, currently, icon, summary, time}) => (
     <div className="section no-pad-bot">
         <div className="container">
             <h1><i className="material-icons medium">language</i><span>{timezone}</span></h1>
@@ -19,7 +20,7 @@ const DarkSky = ({timezone, latitude, longitude, currently, icon, summary, time}
     </div>
 );
 
-DarkSky.propTypes = {
+Darksky.propTypes = {
     timezone: PropTypes.string.isRequired,
     latitude: PropTypes.number.isRequired,
     longitude: PropTypes.number.isRequired,
@@ -48,4 +49,6 @@ DarkSky.propTypes = {
     })
 };
 
-export default DarkSky;
+Darksky.displayName = 'Darksky';
+
+export default Darksky;

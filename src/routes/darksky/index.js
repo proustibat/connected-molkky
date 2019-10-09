@@ -3,7 +3,7 @@ import React from 'react';
 import get from 'lodash/get';
 import omit from 'lodash/omit';
 import renderTemplate from '../../renderTemplate';
-import DarkSky from '../../front/pages/DarkSky';
+import Darksky from '../../front/pages/Darksky';
 import getWeather from '../../services/getWeather';
 
 const router = express.Router();
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
             summary: get(weather, 'currently.summary')
         };
         res.writeHead( 200, { "Content-Type": "text/html" } );
-        res.end(renderTemplate(<DarkSky {...data} />, 'darksky'));
+        res.end(renderTemplate(<Darksky {...data} />));
     }
 });
 

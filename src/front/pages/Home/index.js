@@ -16,4 +16,6 @@ Home.propTypes = {
     title: PropTypes.string
 };
 
+Home.displayName = 'Home';
+
 export default Home;

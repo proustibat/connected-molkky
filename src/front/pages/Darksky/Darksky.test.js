@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import {initProps} from '../../../fixtures/darksky';
-import DarkSky from './index';
+import Darksky from './index';
 
-describe('Page DarkSky', () => {
+describe('Page Darksky', () => {
     it('should render the page correctly', () => {
         // Given / When
-        const component = shallow(<DarkSky {...initProps} />);
+        const component = shallow(<Darksky {...initProps} />);
 
         // Then
         expect(component).toHaveLength(1);

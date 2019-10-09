@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     const data = {title: 'Philips Hue Remote Controller'};
     res.writeHead( 200, { "Content-Type": "text/html" } );
-    res.end(renderTemplate(<Hue {...data} />, 'hue'));
+    res.end(renderTemplate(<Hue {...data} />));
 });
 
 module.exports = router;

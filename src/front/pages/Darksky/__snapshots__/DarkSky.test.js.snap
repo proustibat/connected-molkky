@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Page DarkSky should render the page correctly 1`] = `
+exports[`Page Darksky should render the page correctly 1`] = `
 <div
   className="section no-pad-bot"
 >

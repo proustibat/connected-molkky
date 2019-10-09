@@ -9,3 +9,7 @@ dist
 public/javascript/*.min.js
 .DS_Store
 coverage
+public/javascript/stats.html
+stats.json
+*.map
+webpack-stats.json

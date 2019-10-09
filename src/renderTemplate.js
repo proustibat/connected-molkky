@@ -1,7 +1,7 @@
 import serialize from 'serialize-javascript';
 import {renderToString} from 'react-dom/server';
 
-const renderTemplate = (Component, clientJSFilename) => `
+const renderTemplate = Component => `
         <!DOCTYPE html>
         <html>
         <head>
@@ -18,7 +18,8 @@ const renderTemplate = (Component, clientJSFilename) => `
             <div id="root">${renderToString(Component)}</div>
             <script>window.__INITIAL_PROPS__ = ${serialize(Component.props || {})}</script></body>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            <script src="./javascript/${clientJSFilename}.min.js"></script>
+            <script src="./javascript/babel-polyfill.min.js"></script>
+            <script src="./javascript/index.min.js"></script>
         </body>
         </html>
     `;

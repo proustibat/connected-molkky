@@ -6,6 +6,7 @@ import List from '../../components/List';
 import LoadingBar from '../../components/LoadingBar';
 
 export default class Hue extends React.Component {
+    static displayName = 'Hue';
     static propTypes = {
         title: PropTypes.string
     };
@@ -14,13 +15,8 @@ export default class Hue extends React.Component {
         isLoading: false,
         ipaddress: null,
         connectData: null,
-        // connectData: {
-        //     user: {
-        //         username: 'GUn1rnTiYkifD9cAy2d23yFTFZo36ePWzDA4Hgfs'
-        //     }
-        // },
-        rooms: [],
-        lights: []
+        rooms: null,
+        lights: null
     };
 
     requestDiscover = async () => {
@@ -90,10 +86,7 @@ export default class Hue extends React.Component {
     };
 
     toastError = error => {
-        if (typeof window !== 'undefined') {
-            const {M: MaterializeCSS} = window;
-            MaterializeCSS && MaterializeCSS.toast({html: error, classes: 'red darken-4'});
-        }
+        get(window, 'M.toast', () => {})({html: error, classes: 'red darken-4'})
     };
 
     render() {
@@ -118,12 +111,12 @@ export default class Hue extends React.Component {
                     {this.state.connectData && (
                         <>
                             <Button onClick={this.requestInfo} disabled={this.state.isLoading}>Get information about your home</Button>
-                            {this.state.rooms.length > 0 && <List title={`You have ${rooms.length} room${rooms.length > 0 ? 's' : ''}:`} elements={rooms.map(room => room.name)} />}
-                            {this.state.lights.length > 0 && <List title={`You have ${lights.length} light${rooms.length > 0 ? 's' : ''}:`} elements={lights.map(light => light.name)} />}
+                            {this.state.rooms && <List title={`You have ${rooms.length} room${rooms.length > 1 ? 's' : ''}${this.state.rooms.length > 0 ? ':' : ''}`} elements={rooms.map(room => room.name)} />}
+                            {this.state.lights && <List title={`You have ${lights.length} light${rooms.length > 1 ? 's' : ''}${this.state.lights.length > 0 ? ':' : ''}`} elements={lights.map(light => light.name)} />}
                         </>
                     )}
                 </div>
             </div>
         );
     }
-}
+};

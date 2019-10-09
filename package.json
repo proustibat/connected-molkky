@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "clean": "rimraf ./dist ./public/stylesheets/normalize.css ./public/stylesheets/style.css ./public/stylesheets/style.css.map ./public/javascript/*.min.js",
+    "clean": "rimraf ./dist ./public/stylesheets/normalize.css ./public/stylesheets/style.css ./public/stylesheets/style.css.map ./public/javascript/*.min.js ./public/javascript/*.js.map",
     "copy-normalize": "copyfiles --flat node_modules/normalize.css/normalize.css public/stylesheets",
     "copy-views": "copyfiles --flat ./src/views/*.pug ./dist/views",
     "copy-scss": "copyfiles --flat ./src/scss/*.scss ./dist/scss",
@@ -15,7 +15,9 @@
     "remote": "./scripts/remote-serveo.sh",
     "front": "webpack --mode development --watch --progress",
     "test:front": "jest --coverage",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "analyze": "source-map-explorer './public/javascript/*.js'",
+    "webpack-visalizer-open": "webpack --json > stats.json && open ./public/javascript/stats.html"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
@@ -38,7 +40,8 @@
     "react-dom": "^16.10.2",
     "react-skycons": "git+https://github.com/proustibat/react-skycons.git#fix/window-and-lifecycle",
     "regenerator-runtime": "^0.13.3",
-    "serialize-javascript": "^2.1.0"
+    "serialize-javascript": "^2.1.0",
+    "source-map-explorer": "^2.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
@@ -62,14 +65,14 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.2",
-    "glob": "^7.1.4",
     "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "prop-types": "^15.7.2",
     "rimraf": "^3.0.0",
     "sys": "0.0.1",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-visualizer-plugin": "^0.1.11"
   },
   "config": {
     "commitizen": {
