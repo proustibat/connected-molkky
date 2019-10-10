@@ -9,14 +9,14 @@ import http from 'http';
 import browserSync from 'browser-sync';
 import get from 'lodash/get';
 import app from '../app';
-import {SERVER_PORT, BS_PORT, NODE_ENV} from '../config';
+import { SERVER_PORT, BS_PORT, NODE_ENV } from '../config';
 
 const debug = debugRenderer('node-hue-prstbt:server');
 
 class Server {
   constructor() {
     // Get port from environment and store in Express.
-    this.port = this.normalizePort(SERVER_PORT || '8080');
+    this.normalizePort(SERVER_PORT || '8080');
 
     // Create HTTP server.
     this.server = http.createServer(app);
@@ -33,18 +33,16 @@ class Server {
   normalizePort(val) {
     const port = parseInt(val, 10);
 
-    if (isNaN(port)) {
+    if (Number.isNaN(port)) {
       // named pipe
-      return val;
+      this.port = val;
     }
 
     if (port >= 0) {
       // port number
-      return port;
+      this.port = port;
     }
-
-    return false;
-  };
+  }
 
   /**
    * Event listener for HTTP server "error" event.
@@ -55,23 +53,23 @@ class Server {
     }
 
     const bind = typeof this.port === 'string'
-        ? 'Pipe ' + this.port
-        : 'Port ' + this.port;
+      ? `Pipe ${this.port}`
+      : `Port ${this.port}`;
 
     // handle specific listen errors with friendly messages
     switch (error.code) {
       case 'EACCES':
-        console.error(bind + ' requires elevated privileges');
+        debug(`${bind} requires elevated privileges`);
         process.exit(1);
         break;
       case 'EADDRINUSE':
-        console.error(bind + ' is already in use');
+        debug(`${bind} is already in use`);
         process.exit(1);
         break;
       default:
         throw error;
     }
-  };
+  }
 
   /**
    * Event listener for HTTP server "listening" event.
@@ -79,12 +77,13 @@ class Server {
   async onListening() {
     const addr = this.server.address();
     const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+      ? `pipe ${addr}`
+      : `port ${addr.port}`;
+    debug(`Listening on ${bind}`);
 
-    if(NODE_ENV === 'development' && get(process, 'env.TARGET') !== 'production') {
+    if (NODE_ENV === 'development' && get(process, 'env.TARGET') !== 'production') {
       const bs = browserSync.create();
+      // eslint-disable-next-line global-require
       const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
       bs.init({
         files: [
@@ -97,20 +96,18 @@ class Server {
         ],
         open: false,
         port: BS_PORT || 3000,
-        proxy: 'localhost:' + this.port,
+        proxy: `localhost:${this.port}`,
         ignore: [
-          'node_modules'
+          'node_modules',
         ],
         reloadDelay: 10,
         reloadOnRestart: true,
         logConnections: true,
         logPrefix: 'node-hue-prstbt',
-        logLevel: 'debug'
+        logLevel: 'debug',
       }, browserSyncReuseTab);
-
     }
-  };
+  }
 }
 
-new Server();
-
+global.server = new Server();

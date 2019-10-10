@@ -24,7 +24,7 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   outputStyle: 'compressed',
   prefix: '/stylesheets',
-  sourceMap: true
+  sourceMap: true,
 }));
 app.use('/javascript', express.static(path.join(__dirname, '..', 'public', 'javascript')));
 app.use('/stylesheets', express.static(path.join(__dirname, '..', 'public', 'stylesheets')));
@@ -34,14 +34,14 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // pages routes
-for (const path in pagesRoutes) {
-  app.use(`/${path !== 'index' ? path : ''}`, pagesRoutes[path]);
-}
+Object.entries(pagesRoutes).forEach((entry) => {
+  app.use(`/${entry[0] !== 'index' ? entry[0] : ''}`, entry[1]);
+});
 
 // api routes
-for (const key in apiRoutes) {
-  app.use(`/api/${key}`, apiRoutes[key]);
-}
+Object.entries(apiRoutes).forEach((entry) => {
+  app.use(`/api/${entry[0]}`, entry[1]);
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

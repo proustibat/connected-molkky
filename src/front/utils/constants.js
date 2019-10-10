@@ -1,4 +1,5 @@
-export const DARK_SKY_ICONS = {
+export default {
+  DARK_SKY_ICONS: {
     CLEAR_DAY: 'clear-day',
     CLEAR_NIGHT: 'clear-night',
     RAIN: 'rain',
@@ -8,7 +9,6 @@ export const DARK_SKY_ICONS = {
     FOG: 'fog',
     CLOUDY: 'cloudy',
     PARTLY_CLOUDY_DAY: 'partly-cloudy-day',
-    PARTLY_CLOUDY_NIGHT: 'partly-cloudy-night'
+    PARTLY_CLOUDY_NIGHT: 'partly-cloudy-night',
+  },
 };
-
-

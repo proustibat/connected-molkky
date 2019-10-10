@@ -7,116 +7,135 @@ import LoadingBar from '../../components/LoadingBar';
 
 export default class Hue extends React.Component {
     static displayName = 'Hue';
+
     static propTypes = {
-        title: PropTypes.string
+      title: PropTypes.string,
     };
 
-    state = {
+    static defaultProps = {
+      title: null,
+    };
+
+    constructor(props) {
+      super(props);
+      this.state = {
         isLoading: false,
         ipaddress: null,
         connectData: null,
         rooms: null,
-        lights: null
-    };
+        lights: null,
+      };
+    }
 
     requestDiscover = async () => {
-        this.setState(() => ({isLoading: true}));
-        const result = await fetch('/api/hue/discover', {method: 'GET'})
-            .then(response => response.ok ? response.json() : Promise.reject(response.statusText))
-            .catch(this.toastError);
+      this.setState(() => ({ isLoading: true }));
+      const result = await fetch('/api/hue/discover', { method: 'GET' })
+        .then((response) => (response.ok ? response.json() : Promise.reject(response.statusText)))
+        .catch(this.toastError);
 
-        this.setState(() => ({
-            isLoading: false,
-            ipaddress: get(result, 'ipaddress')
-        }));
+      this.setState(() => ({
+        isLoading: false,
+        ipaddress: get(result, 'ipaddress'),
+      }));
     };
 
     requestConnect = async () => {
-        this.setState(() => ({isLoading: true}));
-        const connectData = await fetch('/api/hue/connect', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ipaddress:  this.state.ipaddress})
-        })
-            .then(response => response.ok ? response.json() : Promise.reject(response.statusText))
-            .catch(this.toastError);
+      const { ipaddress } = this.state;
+      this.setState(() => ({ isLoading: true }));
+      const connectData = await fetch('/api/hue/connect', {
+        method: 'post',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ipaddress }),
+      })
+        .then((response) => (response.ok ? response.json() : Promise.reject(response.statusText)))
+        .catch(this.toastError);
 
-        this.setState(() => ({
-            isLoading: false,
-            connectData
-        }));
+      this.setState(() => ({
+        isLoading: false,
+        connectData,
+      }));
     };
 
     requestInfo = async () => {
-        this.setState(() => ({isLoading: true}));
+      const { ipaddress, connectData } = this.state;
+      this.setState(() => ({ isLoading: true }));
 
-        const result = await Promise
-            .all([
-                fetch(`/api/hue/rooms?ipaddress=${this.state.ipaddress}&username=${this.state.connectData.user.username}`, {method: 'get'})
-                    .then(response => response.ok ? response.json() : Promise.reject(response.statusText)),
-                fetch(`/api/hue/lights?ipaddress=${this.state.ipaddress}&username=${this.state.connectData.user.username}`, {method: 'get'})
-                    .then(response => response.ok ? response.json() : Promise.reject(response.statusText))
+      const roomsEndpoint = `/api/hue/rooms?ipaddress=${ipaddress}&username=${connectData.user.username}`;
+      const lightsEndpoint = `/api/hue/lights?ipaddress=${ipaddress}&username=${connectData.user.username}`;
 
-            ])
-            .then(response => {
-                return {
-                    rooms: response[0] || [],
-                    lights: response[1] || []
-                };
-            })
-            .catch(this.toastError);
+      const result = await Promise
+        .all([
+          fetch(roomsEndpoint, { method: 'get' }).then((resp) => (resp.ok ? resp.json() : Promise.reject(resp.statusText))),
+          fetch(lightsEndpoint, { method: 'get' }).then((resp) => (resp.ok ? resp.json() : Promise.reject(resp.statusText))),
 
-        this.setState(() => ({
-            isLoading: false,
-            ...result
-        }));
+        ])
+        .then((response) => ({
+          rooms: response[0] || [],
+          lights: response[1] || [],
+        }))
+        .catch(this.toastError);
+
+      this.setState(() => ({
+        isLoading: false,
+        ...result,
+      }));
     };
 
     renderConnectData = () => {
-        const {connectData: {message, user: {username}}} = this.state;
-        return (
-            <>
-                <p>{message}</p>
-                <p>You're connected as {username}</p>
-            </>
-        );
+      const { connectData: { message, user: { username } } } = this.state;
+      return (
+        <>
+          <p>{message}</p>
+          <p>{`You're connected as ${username}`}</p>
+        </>
+      );
     };
 
-    toastError = error => {
-        get(window, 'M.toast', () => {})({html: error, classes: 'red darken-4'})
+    toastError = (error) => {
+      get(window, 'M.toast', () => {})({ html: error, classes: 'red darken-4' });
     };
 
     render() {
-        const {rooms, lights} = this.state;
-        return (
-            <div className="section no-pad-bot">
-                <div className="container">
-                    {this.state.isLoading && <LoadingBar/>}
-                    {this.props.title && <h1>{ this.props.title }</h1>}
+      const { title } = this.props;
+      const {
+        isLoading, rooms, ipaddress, lights, connectData,
+      } = this.state;
+      return (
+        <div className="section no-pad-bot">
+          <div className="container">
+            {isLoading && <LoadingBar />}
+            {title && <h1>{ title }</h1>}
 
-                    <Button onClick={this.requestDiscover} disabled={this.state.isLoading}>Scan Philips Hue System</Button>
+            <Button onClick={this.requestDiscover} disabled={isLoading}>
+                Scan Philips Hue System
+            </Button>
 
-                    {this.state.ipaddress && (
-                        <>
-                            <p>Bridge IP detected: {this.state.ipaddress}</p>
+            {ipaddress && (
+              <>
+                <p>
+Bridge IP detected:
+                  {ipaddress}
+                </p>
 
-                            <Button onClick={this.requestConnect} disabled={this.state.isLoading}>Connect</Button>
-                            {this.state.connectData && this.renderConnectData()}
-                        </>
-                    )}
+                <Button onClick={this.requestConnect} disabled={isLoading}>Connect</Button>
+                {connectData && this.renderConnectData()}
+              </>
+            )}
 
-                    {this.state.connectData && (
-                        <>
-                            <Button onClick={this.requestInfo} disabled={this.state.isLoading}>Get information about your home</Button>
-                            {this.state.rooms && <List title={`You have ${rooms.length} room${rooms.length > 1 ? 's' : ''}${this.state.rooms.length > 0 ? ':' : ''}`} elements={rooms.map(room => room.name)} />}
-                            {this.state.lights && <List title={`You have ${lights.length} light${rooms.length > 1 ? 's' : ''}${this.state.lights.length > 0 ? ':' : ''}`} elements={lights.map(light => light.name)} />}
-                        </>
-                    )}
-                </div>
-            </div>
-        );
+            {connectData && (
+              <>
+                <Button onClick={this.requestInfo} disabled={isLoading}>
+                    Get information about your home
+                </Button>
+                {rooms && <List title={`You have ${rooms.length} room${rooms.length > 1 ? 's' : ''}${rooms.length > 0 ? ':' : ''}`} elements={rooms.map((room) => room.name)} />}
+                {lights && <List title={`You have ${lights.length} light${rooms.length > 1 ? 's' : ''}${lights.length > 0 ? ':' : ''}`} elements={lights.map((light) => light.name)} />}
+              </>
+            )}
+          </div>
+        </div>
+      );
     }
-};
+}

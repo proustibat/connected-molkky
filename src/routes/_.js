@@ -3,7 +3,7 @@ import hue from './hue';
 import darksky from './darksky';
 
 export default {
-    index,
-    hue,
-    darksky
+  index,
+  hue,
+  darksky,
 };

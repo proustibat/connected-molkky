@@ -1,7 +1,7 @@
 import serialize from 'serialize-javascript';
-import {renderToString} from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 
-const renderTemplate = Component => `
+const renderTemplate = (Component) => `
         <!DOCTYPE html>
         <html>
         <head>
