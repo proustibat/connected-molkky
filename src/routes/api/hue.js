@@ -79,7 +79,14 @@ router.post('/connect', middleware.checkConnectToken, async (req, res) => {
 
 
       if (user) {
-        const token = jwt.sign({ user, ipaddress }, SECRET_TOKEN, { expiresIn: '24h' });
+        let token;
+        try {
+          token = await jwt.sign({ user, ipaddress }, SECRET_TOKEN, { expiresIn: '24h' });
+        } catch (e) {
+          const error = formatError(e);
+          res.writeHead(400, error, { 'content-type': 'text/plain' });
+          res.end(error);
+        }
         console.log('CONNECT ', user);
         // Create a new API instance that is authenticated with the user
         await hueApi.create(ipaddress, user.username)
