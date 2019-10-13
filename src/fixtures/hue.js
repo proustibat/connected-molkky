@@ -1,12 +1,8 @@
 export const ipaddress = '192.168.1.10';
 
 export const connectData = {
-  message: 'Connected to Hue Bridge: 192.168.1.10',
-  user: {
-    username: 'qwertyuiop',
-    clientkey: 'asdfghjkl',
-  },
   ipaddress,
+  token: 'u-n-i-t_t-e-s-t_t-o-k-e-n',
 };
 
 export const rooms = [

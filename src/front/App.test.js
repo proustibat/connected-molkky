@@ -52,7 +52,7 @@ describe('App', () => {
 
     // Then
     expect(ReactDOM.hydrate).toHaveBeenCalledTimes(1);
-    expect(ReactDOM.hydrate.mock.calls[0][0].props).toStrictEqual(props);
+    expect(ReactDOM.hydrate.mock.calls[0][0].props).toMatchObject(props);
     expect(ReactDOM.hydrate.mock.calls[0][0].type.displayName).toBe(Home.displayName);
     expect(ReactDOM.hydrate.mock.calls[0][1]).toBe(div);
   });

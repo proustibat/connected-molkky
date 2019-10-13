@@ -25,6 +25,7 @@ exports[`Page Darksky should render the page correctly 1`] = `
         autoplay={true}
         color="black"
         icon="partly-cloudy-day"
+        style={Object {}}
       />
     </h2>
     <h3>
@@ -34,15 +35,11 @@ exports[`Page Darksky should render the page correctly 1`] = `
         location_on
       </i>
       <span>
-        48.8534
-        , 
-        2.3488
+        48.8534, 2.3488
       </span>
     </h3>
     <p>
-      (
-      Mon Jan 19 1970 05:15:53 GMT+0100 (Central European Standard Time)
-      )
+      (Mon Jan 19 1970 05:15:53 GMT+0100 (Central European Standard Time))
     </p>
     <List
       elements={
@@ -64,6 +61,7 @@ exports[`Page Darksky should render the page correctly 1`] = `
           "ozone: 249.3",
         ]
       }
+      title={null}
     />
   </div>
 </div>

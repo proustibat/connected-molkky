@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 import React from 'react';
 import { shallow } from 'enzyme';
 import Button from './index';
@@ -13,10 +14,19 @@ describe('Button', () => {
 
   it('should render the component correctly when it is disabled', () => {
     // Given / When
-    const component = shallow(<Button onClick={() => {}} disabled>click me</Button>);
+    const component = shallow(<Button onClick={() => {}} disabled={true}>click me</Button>);
 
     // Then
     expect(component).toMatchSnapshot();
+  });
+
+  it('should inherit style', () => {
+    // Given / When
+    const style = { color: 'blue', width: 'auto', margin: 0 };
+    const component = shallow(<Button onClick={() => {}} style={style}>click me</Button>);
+
+    // Then
+    expect(component.find('button').props().style).toMatchObject(style);
   });
 
   it('should handle click', () => {

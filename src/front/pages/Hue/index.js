@@ -5,6 +5,8 @@ import Button from '../../components/Button';
 import List from '../../components/List';
 import LoadingBar from '../../components/LoadingBar';
 
+import styles from './styles';
+
 export default class Hue extends React.Component {
     static displayName = 'Hue';
 
@@ -21,10 +23,15 @@ export default class Hue extends React.Component {
       this.state = {
         isLoading: false,
         ipaddress: null,
-        connectData: null,
+        token: null,
         rooms: null,
         lights: null,
+        ipaddressFromStorage: false,
       };
+    }
+
+    componentDidMount() {
+      this.getLocalData();
     }
 
     requestDiscover = async () => {
@@ -36,6 +43,7 @@ export default class Hue extends React.Component {
       this.setState(() => ({
         isLoading: false,
         ipaddress: get(result, 'ipaddress'),
+        ipaddressFromStorage: false,
       }));
     };
 
@@ -53,23 +61,28 @@ export default class Hue extends React.Component {
         .then((response) => (response.ok ? response.json() : Promise.reject(response.statusText)))
         .catch(this.toastError);
 
-      this.setState(() => ({
-        isLoading: false,
-        connectData,
-      }));
+      this.setState(
+        () => ({
+          isLoading: false,
+          ...connectData,
+        }),
+        connectData && this.saveDataLocal,
+      );
     };
 
     requestInfo = async () => {
-      const { ipaddress, connectData } = this.state;
-      this.setState(() => ({ isLoading: true }));
+      const { token } = this.state;
+      this.setState(() => ({ isLoading: true, rooms: null, lights: null }));
 
-      const roomsEndpoint = `/api/hue/rooms?ipaddress=${ipaddress}&username=${connectData.user.username}`;
-      const lightsEndpoint = `/api/hue/lights?ipaddress=${ipaddress}&username=${connectData.user.username}`;
+      const headers = {
+        Accept: 'application/json',
+        Authorization: `Bearer ${token}`,
+      };
 
       const result = await Promise
         .all([
-          fetch(roomsEndpoint, { method: 'get' }).then((resp) => (resp.ok ? resp.json() : Promise.reject(resp.statusText))),
-          fetch(lightsEndpoint, { method: 'get' }).then((resp) => (resp.ok ? resp.json() : Promise.reject(resp.statusText))),
+          fetch('/api/hue/rooms', { method: 'get', headers }).then((resp) => (resp.ok ? resp.json() : Promise.reject(resp.statusText))),
+          fetch('/api/hue/lights', { method: 'get', headers }).then((resp) => (resp.ok ? resp.json() : Promise.reject(resp.statusText))),
 
         ])
         .then((response) => ({
@@ -84,14 +97,26 @@ export default class Hue extends React.Component {
       }));
     };
 
-    renderConnectData = () => {
-      const { connectData: { message, user: { username } } } = this.state;
-      return (
-        <>
-          <p>{message}</p>
-          <p>{`You're connected as ${username}`}</p>
-        </>
-      );
+    saveDataLocal = () => {
+      const { token, ipaddress } = this.state;
+      localStorage.setItem('token', token);
+      localStorage.setItem('ipaddress', ipaddress);
+    };
+
+    getLocalData = () => {
+      const token = localStorage.getItem('token');
+      const ipaddress = localStorage.getItem('ipaddress');
+      if (token && !ipaddress) {
+        localStorage.clear();
+      } else {
+        this.setState(() => ({
+          ...(token && { token }),
+          ...(ipaddress && {
+            ipaddress,
+            ipaddressFromStorage: true,
+          }),
+        }));
+      }
     };
 
     toastError = (error) => {
@@ -101,7 +126,7 @@ export default class Hue extends React.Component {
     render() {
       const { title } = this.props;
       const {
-        isLoading, rooms, ipaddress, lights, connectData,
+        isLoading, rooms, ipaddress, ipaddressFromStorage, lights, token,
       } = this.state;
       return (
         <div className="section no-pad-bot">
@@ -109,23 +134,41 @@ export default class Hue extends React.Component {
             {isLoading && <LoadingBar />}
             {title && <h1>{ title }</h1>}
 
+
+            {!ipaddress && (
             <Button onClick={this.requestDiscover} disabled={isLoading}>
-                Scan Philips Hue System
+                    Scan Philips Hue System
             </Button>
+            )}
 
             {ipaddress && (
               <>
-                <p>
-Bridge IP detected:
-                  {ipaddress}
+                <p style={styles.containerTextWithButton}>
+                  <span style={styles.textBeforeButton}>{`${ipaddressFromStorage ? 'Last Bridge Hue Address' : 'Bridge IP detected'}: ${ipaddress}`}</span>
+                  <Button
+                    onClick={this.requestDiscover}
+                    disabled={isLoading}
+                    size="btn-small"
+                    style={styles.smallButtonInText}
+                  >
+Re-scan
+                  </Button>
                 </p>
-
-                <Button onClick={this.requestConnect} disabled={isLoading}>Connect</Button>
-                {connectData && this.renderConnectData()}
               </>
             )}
 
-            {connectData && (
+            {ipaddress && !token && (
+              <>
+                <Button
+                  onClick={this.requestConnect}
+                  disabled={isLoading}
+                >
+                    Connect
+                </Button>
+              </>
+            )}
+
+            {token && (
               <>
                 <Button onClick={this.requestInfo} disabled={isLoading}>
                     Get information about your home
