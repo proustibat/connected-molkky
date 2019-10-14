@@ -19,11 +19,15 @@
     "analyze": "source-map-explorer './public/javascript/*.js'",
     "webpack-visalizer-open": "webpack --json > stats.json && open ./public/javascript/stats.html",
     "lint": "node_modules/.bin/eslint ./src",
-    "docker-build": "docker build --no-cache -t prstbt/node-hue-prstbt .",
-    "docker-run": "docker run --name node-hue-prstbt  -p 8080:8080 -d prstbt/node-hue-prstbt",
-    "docker-bash": "docker exec -it node-hue-prstbt /bin/bash",
-    "docker-stop": "docker stop node-hue-prstbt",
-    "docker-remove": "docker rm node-hue-prstbt"
+    "docker-build": "docker build --no-cache -f prod.Dockerfile -t prstbt/node-hue-prstbt-prod .",
+    "docker-run": "docker run -p 8080:8080 --name node-hue-prstbt-prod -d prstbt/node-hue-prstbt-prod",
+    "docker-bash": "docker exec -it node-hue-prstbt-prod /bin/bash",
+    "docker-stop": "docker stop node-hue-prstbt-prod",
+    "docker-start": "docker start node-hue-prstbt-prod",
+    "docker-remove-container": "docker rm node-hue-prstbt-prod",
+    "docker-remove-image": "docker rmi prstbt/node-hue-prstbt-prod",
+    "docker-dev-start": "docker-compose up --force-recreate -d",
+    "docker-dev-stop": "docker-compose down"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",

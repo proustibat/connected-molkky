@@ -6,10 +6,8 @@
 import '@babel/polyfill';
 import debugRenderer from 'debug';
 import http from 'http';
-import browserSync from 'browser-sync';
-import get from 'lodash/get';
 import app from '../app';
-import { SERVER_PORT, BS_PORT, NODE_ENV } from '../config';
+import { SERVER_PORT } from '../config';
 
 const debug = debugRenderer('node-hue-prstbt:server');
 
@@ -81,32 +79,41 @@ class Server {
       : `port ${addr.port}`;
     debug(`Listening on ${bind}`);
 
-    if (NODE_ENV === 'development' && get(process, 'env.TARGET') !== 'production') {
-      const bs = browserSync.create();
-      // eslint-disable-next-line global-require
-      const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
-      bs.init({
-        files: [
-          './src/scss/**/*.scss',
-          // './src/views/**/*.pug'
-          // './src/bin/**/*.js',
-          // './src/routes/**/*.js',
-          // './src/app.js',
-          // './src/config.js'
-        ],
-        open: false,
-        port: BS_PORT || 3000,
-        proxy: `localhost:${this.port}`,
-        ignore: [
-          'node_modules',
-        ],
-        reloadDelay: 10,
-        reloadOnRestart: true,
-        logConnections: true,
-        logPrefix: 'node-hue-prstbt',
-        logLevel: 'debug',
-      }, browserSyncReuseTab);
-    }
+    // if (NODE_ENV === 'development' && get(process, 'env.TARGET') !== 'production') {
+    //   const bs = browserSync.create('node-hue-prstbt');
+    //   // eslint-disable-next-line global-require
+    //   // const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
+    //   bs.init({
+    //     // server: true,
+    //     files: [
+    //       './src/scss/**/*.scss',
+    //       // './src/views/**/*.pug'
+    //       // './src/bin/**/*.js',
+    //       // './src/routes/**/*.js',
+    //       // './src/app.js',
+    //       // './src/config.js'
+    //     ],
+    //     open: false,
+    //     port: BS_PORT || 3000,
+    //     proxy: `${
+    //     get(process, 'env.NODE_SOURCE') === 'docker'
+    //     ? 'back'
+    //     : 'localhost'
+    //     }:${this.port}`,
+    //     ignore: [
+    //       'node_modules',
+    //     ],
+    //     reloadDelay: 10,
+    //     reloadOnRestart: true,
+    //     logConnections: true,
+    //     logPrefix: 'node-hue-prstbt',
+    //     logLevel: 'debug',
+    //   }, (data) => {
+    //     console.log('RELOAD ', { data });
+    //     const nodeHuePrstbtBs = browserSync.get('node-hue-prstbt');
+    //     nodeHuePrstbtBs.reload();
+    //   });
+    // }
   }
 }
 

@@ -1,0 +1,20 @@
+version: '2'
+services:
+  back:
+    build: .
+    container_name: back
+    command: npm run dev
+    volumes:
+      - .:/usr/src/node-hue-prstbt
+      - /usr/src/node-hue-prstbt/node_modules
+    ports:
+      - "8888:8888"
+  front:
+    build: .
+    container_name: front
+    command: npm run front
+    volumes:
+      - .:/usr/src/node-hue-prstbt
+      - /usr/src/node-hue-prstbt/node_modules
+    depends_on:
+      - back

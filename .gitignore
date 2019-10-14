@@ -13,4 +13,4 @@ public/javascript/stats.html
 stats.json
 *.map
 webpack-stats.json
-.prod
+.env.prod
