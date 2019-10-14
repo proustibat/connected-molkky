@@ -18,7 +18,12 @@
     "test": "jest --coverage",
     "analyze": "source-map-explorer './public/javascript/*.js'",
     "webpack-visalizer-open": "webpack --json > stats.json && open ./public/javascript/stats.html",
-    "lint": "node_modules/.bin/eslint ./src"
+    "lint": "node_modules/.bin/eslint ./src",
+    "docker-build": "docker build --no-cache -t prstbt/node-hue-prstbt .",
+    "docker-run": "docker run --name node-hue-prstbt  -p 8080:8080 -d prstbt/node-hue-prstbt",
+    "docker-bash": "docker exec -it node-hue-prstbt /bin/bash",
+    "docker-stop": "docker stop node-hue-prstbt",
+    "docker-remove": "docker rm node-hue-prstbt"
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
