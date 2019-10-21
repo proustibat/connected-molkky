@@ -9,7 +9,7 @@ import http from 'http';
 import app from '../app';
 import { SERVER_PORT } from '../config';
 
-const debug = debugRenderer('node-hue-prstbt:server');
+const debug = debugRenderer('node-hue-prstbt');
 
 class Server {
   constructor() {

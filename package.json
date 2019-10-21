@@ -8,7 +8,7 @@
     "copy-views": "copyfiles --flat ./src/views/*.pug ./dist/views",
     "copy-scss": "copyfiles --flat ./src/scss/*.scss ./dist/scss",
     "predev": "npm run clean && npm run copy-normalize",
-    "dev": "nodemon --inspect --exec 'npm run lint -- --fix && babel-node' ./src/bin/www",
+    "dev": "DEBUG=node-hue-prstbt nodemon --inspect --exec 'npm run lint -- --fix && babel-node' ./src/bin/www",
     "prebuild": "npm run clean && npm run copy-normalize && npm run copy-views && npm run copy-scss && npm run lint -- --fix",
     "build": "cross-env TARGET=production babel src --out-dir dist --ignore '**/*.test.js' && webpack --mode production",
     "start": "cross-env TARGET=production  node dist/bin/www",
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
+    "advlib": "^0.1.4",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -53,6 +54,7 @@
     "react-skycons": "git+https://github.com/proustibat/react-skycons.git#fix/window-and-lifecycle",
     "regenerator-runtime": "^0.13.3",
     "serialize-javascript": "^2.1.0",
+    "socket.io": "^2.3.0",
     "source-map-explorer": "^2.1.0"
   },
   "devDependencies": {
