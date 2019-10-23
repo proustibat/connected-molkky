@@ -4,6 +4,7 @@ import find from 'lodash/find';
 import Home from './pages/Home';
 import Hue from './pages/Hue';
 import Darksky from './pages/Darksky';
+import Molkky from './pages/Molkky';
 
 export default class App {
   constructor() {
@@ -16,6 +17,9 @@ export default class App {
     }, {
       isMatching: (pathname) => pathname === '/hue',
       component: Hue,
+    }, {
+      isMatching: (pathname) => pathname === '/molkky',
+      component: Molkky,
     }, {
       isMatching: () => true,
       component: null,

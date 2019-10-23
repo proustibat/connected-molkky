@@ -1,6 +1,7 @@
 import advlib from 'advlib';
 import debugRenderer from 'debug';
 import express from 'express';
+import hasIn from 'lodash/hasIn';
 import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
@@ -11,7 +12,7 @@ const debug = debugRenderer('node-hue-prstbt');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => res.json({ get: 'Hello world' }));
+const lastState = {};
 
 router.post('/', async (req, res) => {
   const { body } = req;
@@ -26,12 +27,28 @@ router.post('/', async (req, res) => {
             && !isNull(skittle.rawData)
             && skittle.rawData.length > 0)
         .map(({ mac, rawData }) => ({ mac, ...advlib.ble.data.process(rawData) }))
+        .filter((skittle) => hasIn(skittle, 'serviceData.uuid')
+            && hasIn(skittle, 'serviceData.data')
+            && hasIn(skittle, 'serviceData.minew'))
         .map(({ serviceData: { uuid, data, minew }, ...rest }) => ({
           uuid, data, ...minew, ...rest,
         }))
-        .map((data) => omit(data, ['data', 'frameType', 'productModel', 'accelerationX', 'accelerationY', 'macAddress', 'flags', 'complete16BitUUIDs', 'uuid']));
+        .map((data) => omit(data, [
+          'data', 'frameType', 'productModel', 'accelerationX', 'accelerationY', 'macAddress', 'flags', 'complete16BitUUIDs', 'uuid',
+        ]));
 
-      debug(skittlesInfo);
+      skittlesInfo.forEach(({ mac, accelerationZ: z, batteryPercent: battery }) => {
+        lastState[mac] = {
+          ...lastState[mac],
+          ...(battery && { battery }),
+          ...(z && {
+            position: z >= 0.9 ? 'UPRIGHT' : 'KNOCKED_OVER',
+            z,
+          }),
+        };
+      });
+      const io = req.app.get('socketio');
+      io.emit('UPDATE', lastState);
     } else {
       debug('No skittle sensors', skittles);
     }

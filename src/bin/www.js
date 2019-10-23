@@ -6,6 +6,7 @@
 import '@babel/polyfill';
 import debugRenderer from 'debug';
 import http from 'http';
+import socketIO from 'socket.io';
 import app from '../app';
 import { SERVER_PORT } from '../config';
 
@@ -18,6 +19,9 @@ class Server {
 
     // Create HTTP server.
     this.server = http.createServer(app);
+
+    const io = socketIO(this.server);
+    app.set('socketio', io);
 
     // Listen on provided port, on all network interfaces.
     this.server.listen(this.port);
