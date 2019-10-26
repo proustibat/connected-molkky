@@ -11,4 +11,15 @@ export default {
     PARTLY_CLOUDY_DAY: 'partly-cloudy-day',
     PARTLY_CLOUDY_NIGHT: 'partly-cloudy-night',
   },
+
+  POSITION: {
+    KNOCKED_OVER: 'KNOCKED_OVER',
+    UPRIGHT: 'UPRIGHT',
+  },
+
+  MESSAGE_TYPE: {
+    INFO: 'info',
+    WARNING: 'warning',
+    ERROR: 'error',
+  },
 };

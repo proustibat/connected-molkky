@@ -1,0 +1,52 @@
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import SVGCircle from '@components/SVGCircle';
+import constants from '@utils/constants';
+
+const { POSITION } = constants;
+
+const Skittle = ({ position, value }) => {
+  const initialColors = {
+    textColor: '#0944ff',
+    strokeColor: '#0944ff',
+    fillColor: '#d7ffff',
+  };
+  const lightColor = '#ebebeb';
+  const darkColor = '#282828';
+
+  const [textColor, setTextColor] = useState(initialColors.textColor);
+  const [strokeColor, setStrokeColor] = useState(initialColors.strokeColor);
+  const [fillColor, setFillColor] = useState(initialColors.fillColor);
+
+  useEffect(() => {
+    if (position) {
+      setTextColor(position === POSITION.UPRIGHT ? darkColor : lightColor);
+      setStrokeColor(position === POSITION.UPRIGHT ? darkColor : lightColor);
+      setFillColor(position === POSITION.UPRIGHT ? lightColor : darkColor);
+    } else {
+      setTextColor(initialColors.textColor);
+      setStrokeColor(initialColors.strokeColor);
+      setFillColor(initialColors.fillColor);
+    }
+  }, [position]);
+
+  return (
+    <SVGCircle
+      text={value}
+      textColor={textColor}
+      strokeColor={strokeColor}
+      fillColor={fillColor}
+    />
+  );
+};
+
+Skittle.propTypes = {
+  position: PropTypes.oneOf(Object.values(POSITION)),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+};
+
+Skittle.defaultProps = {
+  position: null,
+};
+
+export default Skittle;

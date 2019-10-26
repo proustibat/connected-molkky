@@ -4,9 +4,9 @@ import hasIn from 'lodash/hasIn';
 import omit from 'lodash/omit';
 import nodeHueApi from 'node-hue-api';
 import jwt from 'jsonwebtoken';
-import middleware from '../../middleware';
+import middleware from '@root/middleware';
 
-import { SECRET_TOKEN } from '../../config';
+import { SECRET_TOKEN } from '@root/config';
 
 const router = express.Router();
 const { v3 } = nodeHueApi;

@@ -25,7 +25,7 @@ const Molkky = ({ title }) => {
       <tbody>
         {
           Object.entries(skittlesState).map(([mac, { position, battery }]) => (
-            <tr>
+            <tr key={mac}>
               <td>{mac}</td>
               <td>{position}</td>
               <td>{battery}</td>

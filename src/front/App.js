@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import find from 'lodash/find';
-import Home from './pages/Home';
-import Hue from './pages/Hue';
-import Darksky from './pages/Darksky';
-import Molkky from './pages/Molkky';
+import Home from '@pages/Home';
+import Hue from '@pages/Hue';
+import Darksky from '@pages/Darksky';
+import Molkky from '@pages/Molkky';
+import Game from '@pages/Molkky/Game';
 
 export default class App {
   constructor() {
@@ -20,6 +21,9 @@ export default class App {
     }, {
       isMatching: (pathname) => pathname === '/molkky',
       component: Molkky,
+    }, {
+      isMatching: (pathname) => pathname === '/molkky/game',
+      component: Game,
     }, {
       isMatching: () => true,
       component: null,

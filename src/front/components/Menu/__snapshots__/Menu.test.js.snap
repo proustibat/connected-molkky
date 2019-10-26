@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuLinks should render the component correctly: mobile menu link props 1`] = `
+Object {
+  "children": <i
+    className="material-icons"
+  >
+    menu
+  </i>,
+  "className": "sidenav-trigger right",
+  "data-target": "mobile-menu",
+  "href": "/",
+}
+`;
+
+exports[`MenuLinks should render the component correctly: mobile menu props 1`] = `
+Object {
+  "className": "sidenav right",
+  "id": "mobile-menu",
+}
+`;

@@ -6,7 +6,7 @@ import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 import omit from 'lodash/omit';
-import { SKITTLES } from './constants';
+import { SKITTLES } from '@routes/api/constants';
 
 const debug = debugRenderer('node-hue-prstbt');
 

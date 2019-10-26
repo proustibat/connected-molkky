@@ -14,8 +14,8 @@ describe('App', () => {
 
   const props = { bla: 'bli' };
 
-  let getElementByIdSpy; let
-    app;
+  let getElementByIdSpy;
+  let app;
 
   beforeAll(() => {
     // Given

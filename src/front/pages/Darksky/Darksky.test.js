@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { initProps } from '../../../fixtures/darksky';
+import { initProps } from '@fixtures/darksky';
 import Darksky from './index';
 
 describe('Page Darksky', () => {

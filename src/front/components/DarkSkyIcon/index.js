@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Skycons from 'react-skycons';
 import invert from 'lodash/invert';
-import constants from '../../utils/constants';
+import constants from '@utils/constants';
 import defaultStyle from './style';
 
 const { DARK_SKY_ICONS } = constants;

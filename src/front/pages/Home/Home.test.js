@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import Link from '@components/Link';
 import Home from './index';
-import Link from '../../components/Link';
 
 describe('Page Home', () => {
   it('should render the page correctly with a title', () => {
@@ -13,7 +13,7 @@ describe('Page Home', () => {
     expect(component).toHaveLength(1);
     expect(component.find('h1')).toHaveLength(1);
     expect(component.find('h1').text()).toBe(title);
-    expect(component.find(Link)).toHaveLength(2);
+    expect(component.find(Link)).toHaveLength(4);
   });
 
   it('should render the page correctly without a title', () => {
@@ -23,6 +23,6 @@ describe('Page Home', () => {
     // Then
     expect(component).toHaveLength(1);
     expect(component.find('h1')).toHaveLength(0);
-    expect(component.find(Link)).toHaveLength(2);
+    expect(component.find(Link)).toHaveLength(4);
   });
 });

@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
-import renderTemplate from '../../renderTemplate';
-import Hue from '../../front/pages/Hue';
+import Hue from '@pages/Hue';
+import renderTemplate from '@root/renderTemplate';
 
 const router = express.Router();
 

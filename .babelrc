@@ -6,6 +6,22 @@
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-transform-regenerator",
-    "@babel/plugin-proposal-throw-expressions"
+    "@babel/plugin-proposal-throw-expressions",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@pages": "./src/front/pages",
+          "@components": "./src/front/components",
+          "@utils": "./src/front/utils",
+          "@contexts": "./src/front/contexts",
+          "@fixtures": "./src/fixtures",
+          "@services": "./src/services",
+          "@routes": "./src/routes",
+          "@root": "./src"
+        }
+      }
+    ]
   ]
 }

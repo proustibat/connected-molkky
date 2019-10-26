@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { SECRET_TOKEN } from './config';
+import { SECRET_TOKEN } from '@root/config';
 
 // TODO: refactor these methods
 

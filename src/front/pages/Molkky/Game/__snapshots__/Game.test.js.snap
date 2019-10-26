@@ -1,0 +1,782 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Game should get random data on mount 1`] = `
+<Game
+  title="Game"
+>
+  <Menu
+    title="Game"
+  >
+    <div
+      className="navbar-fixed"
+    >
+      <nav>
+        <div
+          className="container nav-wrapper"
+        >
+          <a
+            className="brand-logo left"
+            href="/"
+          >
+            Game
+          </a>
+          <a
+            className="sidenav-trigger right"
+            data-target="mobile-menu"
+            href="/"
+          >
+            <i
+              className="material-icons"
+            >
+              menu
+            </i>
+          </a>
+          <MenuLinks
+            className="right hide-on-med-and-down"
+            id=""
+          >
+            <ul
+              className="right hide-on-med-and-down"
+              id=""
+            >
+              <li>
+                <a
+                  href="/"
+                >
+                  Link 1
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/"
+                >
+                  Link 2
+                </a>
+              </li>
+            </ul>
+          </MenuLinks>
+        </div>
+      </nav>
+      <MenuLinks
+        className="sidenav right"
+        id="mobile-menu"
+      >
+        <ul
+          className="sidenav right"
+          id="mobile-menu"
+        >
+          <li>
+            <a
+              href="/"
+            >
+              Link 1
+            </a>
+          </li>
+          <li>
+            <a
+              href="/"
+            >
+              Link 2
+            </a>
+          </li>
+        </ul>
+      </MenuLinks>
+    </div>
+  </Menu>
+  <div
+    className="section no-pad-bot"
+  >
+    <div
+      className="container"
+    >
+      <PositionChecker>
+        <p
+          className="flow-text"
+        >
+          Be sure pins are placed as follows then start the game
+        </p>
+        <SkittlesDisplay>
+          <div
+            style={
+              Object {
+                "display": "flex",
+                "flexDirection": "column",
+                "marginBottom": "2rem",
+              }
+            }
+          >
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Skittle
+                position={null}
+                value={7}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={7}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      7
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={8}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={8}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      8
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={9}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={9}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      9
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+            </div>
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Skittle
+                position={null}
+                value={5}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={5}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      5
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={11}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={11}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      11
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={12}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={12}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      12
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={6}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={6}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      6
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+            </div>
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Skittle
+                position={null}
+                value={3}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={3}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      3
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={10}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={10}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      10
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={4}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={4}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      4
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+            </div>
+            <div
+              style={
+                Object {
+                  "display": "flex",
+                  "justifyContent": "center",
+                }
+              }
+            >
+              <Skittle
+                position={null}
+                value={1}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={1}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      1
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+              <Skittle
+                position={null}
+                value={2}
+              >
+                <SVGCircle
+                  fillColor="#d7ffff"
+                  height={70}
+                  strokeColor="#0944ff"
+                  strokeWidth={25}
+                  text={2}
+                  textColor="#0944ff"
+                  textStyle={
+                    Object {
+                      "fontSize": 175,
+                    }
+                  }
+                  width={70}
+                >
+                  <svg
+                    height={70}
+                    viewBox="-25 -25 400 400"
+                    width={70}
+                  >
+                    <circle
+                      cx="175"
+                      cy="175"
+                      fill="#d7ffff"
+                      r="175"
+                      stroke="#0944ff"
+                      strokeWidth={25}
+                    />
+                    <text
+                      dominantBaseline="central"
+                      fill="#0944ff"
+                      style={
+                        Object {
+                          "fontSize": 175,
+                        }
+                      }
+                      textAnchor="middle"
+                      x={175}
+                      y={175}
+                    >
+                      2
+                    </text>
+                  </svg>
+                </SVGCircle>
+              </Skittle>
+            </div>
+          </div>
+        </SkittlesDisplay>
+        <Button
+          disabled={true}
+          onClick={[Function]}
+          size="btn-large"
+          style={
+            Object {
+              "marginBottom": "1rem",
+            }
+          }
+        >
+          <button
+            className="waves-effect waves-light z-depth-2 btn btn-large disabled"
+            onClick={[Function]}
+            style={
+              Object {
+                "marginBottom": "1rem",
+              }
+            }
+            type="button"
+          >
+            Start
+          </button>
+        </Button>
+        <MessageIcon
+          type="error"
+        >
+          <p
+            style={
+              Object {
+                "alignItems": "center",
+                "display": "flex",
+              }
+            }
+          >
+            <i
+              className="small material-icons"
+              style={
+                Object {
+                  "color": "#b71c1c",
+                }
+              }
+            >
+              error
+            </i>
+            <span
+              style={
+                Object {
+                  "borderBottom": "1px solid #b71c1c",
+                  "lineHeight": "1rem",
+                }
+              }
+            >
+              Oops! Please move the pins to detect them!
+            </span>
+          </p>
+        </MessageIcon>
+      </PositionChecker>
+    </div>
+  </div>
+</Game>
+`;

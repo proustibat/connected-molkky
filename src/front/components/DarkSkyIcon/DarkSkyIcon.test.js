@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Skycons from 'react-skycons';
+import constants from '@utils/constants';
 import DarkSkyIcon from './index';
-import constants from '../../utils/constants';
 
 const { DARK_SKY_ICONS } = constants;
 

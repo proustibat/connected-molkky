@@ -24,5 +24,12 @@ module.exports = {
             checkContextTypes: true,
             checkChildContextTypes: true,
         }]
+    },
+    settings: {
+        'import/resolver': {
+            webpack: {
+                config: './webpack.config.js'
+            },
+        }
     }
 };

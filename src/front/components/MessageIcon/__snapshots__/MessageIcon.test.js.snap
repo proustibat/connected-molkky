@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageIcon should render the component correctly for error 1`] = `
+<p
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+    }
+  }
+>
+  <i
+    className="small material-icons"
+    style={
+      Object {
+        "color": "#b71c1c",
+      }
+    }
+  >
+    error
+  </i>
+  <span
+    style={
+      Object {
+        "borderBottom": "1px solid #b71c1c",
+        "lineHeight": "1rem",
+      }
+    }
+  >
+    Hello World
+  </span>
+</p>
+`;
+
+exports[`MessageIcon should render the component correctly for info 1`] = `
+<p
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+    }
+  }
+>
+  <i
+    className="small material-icons"
+    style={
+      Object {
+        "color": "#1b5e20",
+      }
+    }
+  >
+    info
+  </i>
+  <span
+    style={
+      Object {
+        "borderBottom": "1px solid #1b5e20",
+        "lineHeight": "1rem",
+      }
+    }
+  >
+    Hello World
+  </span>
+</p>
+`;
+
+exports[`MessageIcon should render the component correctly for warning 1`] = `
+<p
+  style={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+    }
+  }
+>
+  <i
+    className="small material-icons"
+    style={
+      Object {
+        "color": "#e65100",
+      }
+    }
+  >
+    warning
+  </i>
+  <span
+    style={
+      Object {
+        "borderBottom": "1px solid #e65100",
+        "lineHeight": "1rem",
+      }
+    }
+  >
+    Hello World
+  </span>
+</p>
+`;

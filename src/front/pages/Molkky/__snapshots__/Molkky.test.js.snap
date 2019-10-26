@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Molkky should use data from UPDATE socket event 1`] = `
+<div>
+  <div
+    class="section no-pad-bot"
+  >
+    <div
+      class="container"
+    >
+      <h1>
+        Yo
+      </h1>
+      <table
+        class="striped"
+      >
+        <thead>
+          <tr>
+            <th>
+              Mac
+            </th>
+            <th>
+              Position
+            </th>
+            <th>
+              Battery
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              123qwe123
+            </td>
+            <td>
+              UPRIGHT
+            </td>
+            <td>
+              99
+            </td>
+          </tr>
+          <tr>
+            <td>
+              456rty789
+            </td>
+            <td>
+              KNOCKED_OVER
+            </td>
+            <td>
+              43
+            </td>
+          </tr>
+          <tr>
+            <td>
+              102ajd647
+            </td>
+            <td />
+            <td>
+              11
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+`;

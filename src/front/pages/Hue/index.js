@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import Button from '../../components/Button';
-import List from '../../components/List';
-import LoadingBar from '../../components/LoadingBar';
+import Button from '@components/Button';
+import List from '@components/List';
+import LoadingBar from '@components/LoadingBar';
 
 import styles from './styles';
 

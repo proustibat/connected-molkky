@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
-import renderTemplate from '../../renderTemplate';
-import Home from '../../front/pages/Home';
+import Home from '@pages/Home';
+import renderTemplate from '@root/renderTemplate';
 
 const router = express.Router();
 

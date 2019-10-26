@@ -5,8 +5,8 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import sassMiddleware from 'node-sass-middleware';
-import pagesRoutes from './routes/_';
-import apiRoutes from './routes/api/_';
+import pagesRoutes from '@routes/_';
+import apiRoutes from '@routes/api/_';
 
 const app = express();
 

@@ -7,8 +7,8 @@ import '@babel/polyfill';
 import debugRenderer from 'debug';
 import http from 'http';
 import socketIO from 'socket.io';
-import app from '../app';
-import { SERVER_PORT } from '../config';
+import app from '@root/app';
+import { SERVER_PORT } from '@root/config';
 
 const debug = debugRenderer('node-hue-prstbt');
 
