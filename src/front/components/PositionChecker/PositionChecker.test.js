@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import * as DataContextModule from '@contexts/DataContext';
 import SkittlesDisplay from '@components/SkittlesDisplay';
-import Button from '@components/Button';
 import MessageIcon from '@components/MessageIcon';
 import { dataAllUpright, dataWithKnockedOverAndNull } from '@fixtures/molkky';
 import PositionChecker from './index';
@@ -29,8 +28,7 @@ describe('PositionChecker', () => {
     // Then
     expect(wrapper.find('p')).toHaveLength(1);
     expect(wrapper.find(SkittlesDisplay)).toHaveLength(1);
-    expect(wrapper.find(Button)).toHaveLength(1);
-    expect(wrapper.find(Button).props().disabled).toBeFalsy();
+    expect(wrapper.find(MessageIcon)).toHaveLength(0);
   });
 
   it('should render the component correctly when some pins are knocked over and some are null', () => {
@@ -43,8 +41,6 @@ describe('PositionChecker', () => {
     // Then
     expect(wrapper.find('p')).toHaveLength(1);
     expect(wrapper.find(SkittlesDisplay)).toHaveLength(1);
-    expect(wrapper.find(Button)).toHaveLength(1);
-    expect(wrapper.find(Button).props().disabled).toBeTruthy();
     expect(wrapper.find(MessageIcon)).toHaveLength(2);
     const lists = wrapper.find('ul');
     expect(lists).toHaveLength(2);
@@ -62,20 +58,7 @@ describe('PositionChecker', () => {
     const wrapper = shallow(<DataContextProvider><PositionChecker /></DataContextProvider>).dive();
 
     // Then
-    expect(wrapper.find(Button).props().disabled).toBeTruthy();
     expect(wrapper.find(MessageIcon)).toHaveLength(1);
     expect(wrapper.find(MessageIcon).props().type).toBe('error');
-  });
-
-  it('should handle click on start', () => {
-    // Given
-    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue(dataAllUpright);
-    const wrapper = shallow(<DataContextProvider><PositionChecker /></DataContextProvider>).dive();
-
-    // When
-    wrapper.find(Button).simulate('click');
-
-    // Then
-    // TODO
   });
 });

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Game should get random data on mount 1`] = `
-<Game
-  title="Game"
+exports[`StartScreen should get random data on mount 1`] = `
+<StartScreen
+  title="StartScreen"
 >
   <Menu
-    title="Game"
+    title="StartScreen"
   >
     <div
       className="navbar-fixed"
@@ -18,7 +18,7 @@ exports[`Game should get random data on mount 1`] = `
             className="brand-logo left"
             href="/"
           >
-            Game
+            StartScreen
           </a>
           <a
             className="sidenav-trigger right"
@@ -89,7 +89,9 @@ exports[`Game should get random data on mount 1`] = `
     <div
       className="container"
     >
-      <PositionChecker>
+      <PositionChecker
+        onReadyChange={[Function]}
+      >
         <p
           className="flow-text"
         >
@@ -719,29 +721,6 @@ exports[`Game should get random data on mount 1`] = `
             </div>
           </div>
         </SkittlesDisplay>
-        <Button
-          disabled={true}
-          onClick={[Function]}
-          size="btn-large"
-          style={
-            Object {
-              "marginBottom": "1rem",
-            }
-          }
-        >
-          <button
-            className="waves-effect waves-light z-depth-2 btn btn-large disabled"
-            onClick={[Function]}
-            style={
-              Object {
-                "marginBottom": "1rem",
-              }
-            }
-            type="button"
-          >
-            Start
-          </button>
-        </Button>
         <MessageIcon
           type="error"
         >
@@ -776,7 +755,22 @@ exports[`Game should get random data on mount 1`] = `
           </p>
         </MessageIcon>
       </PositionChecker>
+      <Button
+        disabled={true}
+        onClick={[Function]}
+        size="btn-large"
+        style={Object {}}
+      >
+        <button
+          className="waves-effect waves-light z-depth-2 btn btn-large disabled"
+          onClick={[Function]}
+          style={Object {}}
+          type="button"
+        >
+          Play
+        </button>
+      </Button>
     </div>
   </div>
-</Game>
+</StartScreen>
 `;

@@ -1,7 +1,7 @@
 import express from 'express';
 import React from 'react';
 import Molkky from '@pages/Molkky';
-import Game from '@pages/Molkky/Game';
+import StartScreen from '@pages/Molkky/StartScreen';
 import renderTemplate from '@root/renderTemplate';
 
 const router = express.Router();
@@ -14,9 +14,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/game', (req, res) => {
-  const data = { title: 'Molkky Game' };
+  const data = { title: 'Molkky StartScreen' };
   res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.end(renderTemplate(<Game {...data} />));
+  res.end(renderTemplate(<StartScreen {...data} />));
 });
 
 

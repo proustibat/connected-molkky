@@ -5,7 +5,7 @@ import Home from '@pages/Home';
 import Hue from '@pages/Hue';
 import Darksky from '@pages/Darksky';
 import Molkky from '@pages/Molkky';
-import Game from '@pages/Molkky/Game';
+import StartScreen from '@pages/Molkky/StartScreen';
 
 export default class App {
   constructor() {
@@ -23,7 +23,7 @@ export default class App {
       component: Molkky,
     }, {
       isMatching: (pathname) => pathname === '/molkky/game',
-      component: Game,
+      component: StartScreen,
     }, {
       isMatching: () => true,
       component: null,

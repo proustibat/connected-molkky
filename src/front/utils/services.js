@@ -15,3 +15,8 @@ export const getRandomPosition = () => {
   }];
   return conditions.find((condition) => condition.predicate(randomValue)).position;
 };
+
+export const getRandomPositionData = () => Array.from({ length: 12 }, (_, i) => ({
+  value: i + 1,
+  position: getRandomPosition(),
+}));
