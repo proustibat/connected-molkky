@@ -1,6 +1,6 @@
-import express from 'express';
-import React from 'react';
 import Home from '@pages/Home';
+import React from 'react';
+import express from 'express';
 import renderTemplate from '@root/renderTemplate';
 
 const router = express.Router();

@@ -1,9 +1,9 @@
-import express from 'express';
-import React from 'react';
-import get from 'lodash/get';
-import omit from 'lodash/omit';
 import Darksky from '@pages/Darksky';
+import React from 'react';
+import express from 'express';
+import get from 'lodash/get';
 import getWeather from '@services/getWeather';
+import omit from 'lodash/omit';
 import renderTemplate from '@root/renderTemplate';
 
 const router = express.Router();

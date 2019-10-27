@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import constants from '@utils/constants';
 import MessageIcon from './index';
+import React from 'react';
+import constants from '@utils/constants';
+import { shallow } from 'enzyme';
 
 const givenProps = {
   children: 'Hello World',

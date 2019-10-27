@@ -1,11 +1,11 @@
+import {
+  connectData, ipaddress, lights, rooms,
+} from '@fixtures/hue';
+import Button from '@components/Button';
+import Hue from './index';
+import List from '@components/List';
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from '@components/Button';
-import {
-  ipaddress, connectData, lights, rooms,
-} from '@fixtures/hue';
-import List from '@components/List';
-import Hue from './index';
 
 const roomsEndpoint = '/api/hue/rooms';
 const lightsEndpoint = '/api/hue/lights';

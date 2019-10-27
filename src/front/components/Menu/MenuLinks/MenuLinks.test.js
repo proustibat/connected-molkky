@@ -1,6 +1,6 @@
+import MenuLinks from './index';
 import React from 'react';
 import { shallow } from 'enzyme';
-import MenuLinks from './index';
 
 describe('MenuLinks', () => {
   it('should render the component correctly', () => {

@@ -1,10 +1,10 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import Skittle from '@components/Skittle';
 import * as DataContextModule from '@contexts/DataContext';
-import { dataWithKnockedOverAndNull } from '@fixtures/molkky';
-import constants from '@utils/constants';
+import React from 'react';
+import Skittle from '@components/Skittle';
 import SkittlesDisplay from './index';
+import constants from '@utils/constants';
+import { dataWithKnockedOverAndNull } from '@fixtures/molkky';
+import { shallow } from 'enzyme';
 
 const { DataContextProvider } = DataContextModule;
 

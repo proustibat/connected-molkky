@@ -1,6 +1,6 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import SVGCircle from './index';
+import { shallow } from 'enzyme';
 
 
 describe('SVGCircle', () => {

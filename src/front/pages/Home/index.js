@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Link from '@components/Link';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Home = ({ title }) => (
   <div className="section no-pad-bot">

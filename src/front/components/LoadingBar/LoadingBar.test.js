@@ -1,6 +1,6 @@
+import LoadingBar from './index';
 import React from 'react';
 import { shallow } from 'enzyme';
-import LoadingBar from './index';
 
 describe('LoadingBar', () => {
   it('should render the component correctly', () => {

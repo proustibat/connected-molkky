@@ -1,12 +1,12 @@
+import apiRoutes from '@routes/api/_';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import createError from 'http-errors';
 import express from 'express';
-import path from 'path';
-import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import sassMiddleware from 'node-sass-middleware';
 import pagesRoutes from '@routes/_';
-import apiRoutes from '@routes/api/_';
+import path from 'path';
+import sassMiddleware from 'node-sass-middleware';
 
 const app = express();
 

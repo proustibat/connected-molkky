@@ -1,8 +1,8 @@
-import express from 'express';
+import Game from '@pages/Molkky/Game';
+import Molkky from '@pages/Molkky';
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
-import Molkky from '@pages/Molkky';
-import Game from '@pages/Molkky/Game';
+import express from 'express';
 import renderTemplate from '@root/renderTemplate';
 
 const router = express.Router();

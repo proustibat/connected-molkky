@@ -1,7 +1,7 @@
+import { cleanup, render } from '@testing-library/react';
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
-import constants from '@utils/constants';
 import Skittle from './index';
+import constants from '@utils/constants';
 
 
 describe('Skittle', () => {

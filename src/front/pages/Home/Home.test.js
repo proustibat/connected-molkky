@@ -1,7 +1,7 @@
+import Home from './index';
+import Link from '@components/Link';
 import React from 'react';
 import { shallow } from 'enzyme';
-import Link from '@components/Link';
-import Home from './index';
 
 describe('Page Home', () => {
   it('should render the page correctly with a title', () => {

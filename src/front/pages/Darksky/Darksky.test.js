@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
-import { initProps } from '@fixtures/darksky';
 import Darksky from './index';
+import React from 'react';
+import { initProps } from '@fixtures/darksky';
+import { shallow } from 'enzyme';
 
 describe('Page Darksky', () => {
   it('should render the page correctly', () => {

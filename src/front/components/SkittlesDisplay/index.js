@@ -1,9 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash/get';
+import React from 'react';
 import Skittle from '@components/Skittle';
-import { useDataContext } from '@contexts/DataContext';
+import get from 'lodash/get';
 import style from './style';
+import { useDataContext } from '@contexts/DataContext';
 
 const SkittlesDisplay = ({ skittleSize, style: customStyle }) => {
   const data = useDataContext();

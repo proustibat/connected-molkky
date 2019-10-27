@@ -1,14 +1,14 @@
-import { shallow, mount } from 'enzyme';
-import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import Button from '@components/Button';
-import PositionChecker from '@components/PositionChecker';
-import TeamButton from '@components/TeamButton';
-import { DataContextProvider } from '@contexts/DataContext';
-import constants from '@utils/constants';
 import * as services from '@utils/services';
+import { cleanup, fireEvent, render } from '@testing-library/react';
+import { mount, shallow } from 'enzyme';
+import Button from '@components/Button';
+import { DataContextProvider } from '@contexts/DataContext';
+import PositionChecker from '@components/PositionChecker';
+import React from 'react';
 import StartScreen from './index';
+import TeamButton from '@components/TeamButton';
+import { act } from 'react-dom/test-utils';
+import constants from '@utils/constants';
 
 jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: jest.fn() }) }));
 

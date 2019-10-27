@@ -23,7 +23,9 @@ module.exports = {
             forbid: ['any', 'array'],
             checkContextTypes: true,
             checkChildContextTypes: true,
-        }]
+        }],
+        'import/order': ['off'],
+        'sort-imports': ['warn'],
     },
     settings: {
         'import/resolver': {

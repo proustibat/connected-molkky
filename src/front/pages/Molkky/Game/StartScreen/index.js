@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Button from '@components/Button';
+import CatSVG from '@root/front/svg/cat.svg';
+import { DataContextProvider } from '@root/front/contexts/DataContext';
+import DogSVG from '@root/front/svg/dog.svg';
 import PositionChecker from '@components/PositionChecker';
 import TeamButton from '@components/TeamButton';
-import { DataContextProvider } from '@root/front/contexts/DataContext';
-import CatSVG from '@root/front/svg/cat.svg';
-import DogSVG from '@root/front/svg/dog.svg';
 import { getRandomPositionData } from '@utils/services';
+import { useHistory } from 'react-router-dom';
 
 const StartScreen = () => {
   const history = useHistory();
@@ -14,7 +14,6 @@ const StartScreen = () => {
   const [startReady, setStartReady] = useState(false);
   const [refreshDataTimer, setRefreshDataTimer] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState('cat');
-
 
   const createFakeServer = () => {
     // Get random data for skittles
@@ -45,7 +44,6 @@ const StartScreen = () => {
   const onTeamSelect = (team) => {
     setSelectedTeam(team);
   };
-
 
   return (
     <DataContextProvider value={positionData}>

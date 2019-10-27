@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
+import MessageIcon from '@components/MessageIcon';
 import PropTypes from 'prop-types';
+import SkittlesDisplay from '@components/SkittlesDisplay';
+import constants from '@utils/constants';
 import kebabCase from 'lodash/kebabCase';
 import noop from 'lodash/noop';
-import SkittlesDisplay from '@components/SkittlesDisplay';
 import { useDataContext } from '@contexts/DataContext';
-import constants from '@utils/constants';
-import MessageIcon from '@components/MessageIcon';
 
 const PositionChecker = ({ onReadyChange }) => {
   const data = useDataContext();

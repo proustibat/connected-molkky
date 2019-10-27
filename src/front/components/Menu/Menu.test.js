@@ -1,8 +1,8 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { act } from 'react-dom/test-utils';
-import MenuLinks from '@components/Menu/MenuLinks';
+import { mount, shallow } from 'enzyme';
 import Menu from './index';
+import MenuLinks from '@components/Menu/MenuLinks';
+import React from 'react';
+import { act } from 'react-dom/test-utils';
 
 describe('MenuLinks', () => {
   const { M } = global;

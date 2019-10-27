@@ -1,7 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import kebabCase from 'lodash/kebabCase';
+import React from 'react';
 import defaultStyle from './style';
+import kebabCase from 'lodash/kebabCase';
 
 const List = ({ title, elements }) => (
   <ul className="collection">

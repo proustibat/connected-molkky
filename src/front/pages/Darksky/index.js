@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import DarkSkyIcon from '@components/DarkSkyIcon';
 import List from '@components/List';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const Darksky = ({
   timezone, latitude, longitude, currently, icon, summary, time,

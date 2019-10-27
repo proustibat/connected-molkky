@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import MenuLinks from '@components/Menu/MenuLinks';
+import PropTypes from 'prop-types';
 
 const Menu = ({ title }) => {
   useEffect(() => {

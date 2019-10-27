@@ -1,6 +1,6 @@
+import PlayScreen from './index';
 import React from 'react';
 import { shallow } from 'enzyme';
-import PlayScreen from './index';
 
 describe('PlayScreen', () => {
   it('should render the component correctly', () => {

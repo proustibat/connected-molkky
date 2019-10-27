@@ -1,5 +1,5 @@
-import fetch from 'node-fetch';
 import { DARKSKY_SECRET } from '@root/config';
+import fetch from 'node-fetch';
 
 const getWeather = async () => {
   const config = {

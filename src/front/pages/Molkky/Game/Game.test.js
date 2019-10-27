@@ -1,8 +1,8 @@
-import { shallow } from 'enzyme';
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Menu from '@components/Menu';
 import Game from './index';
+import Menu from '@components/Menu';
+import React from 'react';
+import { shallow } from 'enzyme';
 
 describe('Game', () => {
   it('should render the component correctly', () => {

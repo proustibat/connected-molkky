@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-boolean-value */
+import Button from './index';
 import React from 'react';
 import { shallow } from 'enzyme';
-import Button from './index';
 
 describe('Button', () => {
   it('should render the component correctly when it is enabled', () => {
@@ -14,7 +13,7 @@ describe('Button', () => {
 
   it('should render the component correctly when it is disabled', () => {
     // Given / When
-    const component = shallow(<Button onClick={() => {}} disabled={true}>click me</Button>);
+    const component = shallow(<Button onClick={() => {}} disabled>click me</Button>);
 
     // Then
     expect(component).toMatchSnapshot();

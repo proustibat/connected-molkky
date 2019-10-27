@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Menu from '@components/Menu';
-import StartScreen from '@pages/Molkky/Game/StartScreen';
 import PlayScreen from '@pages/Molkky/Game/PlayScreen';
+import PropTypes from 'prop-types';
+import React from 'react';
+import StartScreen from '@pages/Molkky/Game/StartScreen';
 
 const Game = ({ title }) => (
   <div>

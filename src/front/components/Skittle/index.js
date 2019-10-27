@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import SVGCircle from '@components/SVGCircle';
 import constants from '@utils/constants';

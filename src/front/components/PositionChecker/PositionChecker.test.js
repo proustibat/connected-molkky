@@ -1,10 +1,10 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import * as DataContextModule from '@contexts/DataContext';
-import SkittlesDisplay from '@components/SkittlesDisplay';
-import MessageIcon from '@components/MessageIcon';
 import { dataAllUpright, dataWithKnockedOverAndNull } from '@fixtures/molkky';
+import MessageIcon from '@components/MessageIcon';
 import PositionChecker from './index';
+import React from 'react';
+import SkittlesDisplay from '@components/SkittlesDisplay';
+import { shallow } from 'enzyme';
 
 const { DataContextProvider } = DataContextModule;
 

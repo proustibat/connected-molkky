@@ -1,10 +1,10 @@
-import React from 'react';
-import { shallow, mount } from 'enzyme';
-import { render, cleanup } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
-import socketIOClient from 'socket.io-client';
-import { dataFromSocketUPDATE } from '@fixtures/molkky';
+import { cleanup, render } from '@testing-library/react';
+import { mount, shallow } from 'enzyme';
 import Molkky from './index';
+import React from 'react';
+import { act } from 'react-dom/test-utils';
+import { dataFromSocketUPDATE } from '@fixtures/molkky';
+import socketIOClient from 'socket.io-client';
 
 jest.mock('socket.io-client', () => {
   const emit = jest.fn();

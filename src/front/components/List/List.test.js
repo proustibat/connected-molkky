@@ -1,6 +1,6 @@
+import List from './index';
 import React from 'react';
 import { shallow } from 'enzyme';
-import List from './index';
 
 const givenProps = {
   elements: [

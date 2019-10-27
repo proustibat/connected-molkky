@@ -1,8 +1,8 @@
-import { shallow } from 'enzyme';
+import App from './App';
+import Home from './pages/Home';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
-import Home from './pages/Home';
-import App from './App';
+import { shallow } from 'enzyme';
 
 jest.mock('react-dom', () => ({
   hydrate: jest.fn(),

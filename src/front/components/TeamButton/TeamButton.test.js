@@ -1,7 +1,7 @@
-import React from 'react';
-import { shallow } from 'enzyme';
 import CatSvg from '@root/front/svg/cat.svg';
+import React from 'react';
 import TeamButton from './index';
+import { shallow } from 'enzyme';
 
 const givenProps = {
   icon: CatSvg,

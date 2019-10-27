@@ -1,6 +1,6 @@
-import hasIn from 'lodash/hasIn';
-import constants from '@utils/constants';
 import { getRandomPosition, getRandomPositionData } from './services';
+import constants from '@utils/constants';
+import hasIn from 'lodash/hasIn';
 
 describe('utils', () => {
   describe('getRandomPosition', () => {

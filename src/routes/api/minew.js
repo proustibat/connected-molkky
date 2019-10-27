@@ -1,3 +1,4 @@
+import { SKITTLES } from '@routes/api/constants';
 import advlib from 'advlib';
 import debugRenderer from 'debug';
 import express from 'express';
@@ -6,7 +7,6 @@ import isArray from 'lodash/isArray';
 import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 import omit from 'lodash/omit';
-import { SKITTLES } from '@routes/api/constants';
 
 const debug = debugRenderer('node-hue-prstbt');
 

@@ -1,12 +1,11 @@
+import { SECRET_TOKEN } from '@root/config';
 import express from 'express';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
-import omit from 'lodash/omit';
-import nodeHueApi from 'node-hue-api';
 import jwt from 'jsonwebtoken';
 import middleware from '@root/middleware';
-
-import { SECRET_TOKEN } from '@root/config';
+import nodeHueApi from 'node-hue-api';
+import omit from 'lodash/omit';
 
 const router = express.Router();
 const { v3 } = nodeHueApi;
