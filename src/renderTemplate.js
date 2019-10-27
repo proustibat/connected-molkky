@@ -6,7 +6,7 @@ const renderTemplate = (Component) => `
         <html>
         <head>
             <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
             <title>React SSR</title>
             <link rel="stylesheet" href="/stylesheets/normalize.css" />
             <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

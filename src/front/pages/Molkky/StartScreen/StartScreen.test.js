@@ -1,9 +1,11 @@
 import { shallow, mount } from 'enzyme';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import Button from '@components/Button';
 import Menu from '@components/Menu';
 import PositionChecker from '@components/PositionChecker';
+import TeamButton from '@components/TeamButton';
 import { DataContextProvider } from '@contexts/DataContext';
 import constants from '@utils/constants';
 import * as services from '@utils/services';
@@ -16,18 +18,19 @@ const givenProps = {
 
 describe('StartScreen', () => {
   beforeAll(() => {
-    jest.spyOn(services, 'getRandomPositionData');
-    jest.spyOn(services, 'getRandomPosition').mockReturnValue(constants.POSITION.UPRIGHT);
+    jest.spyOn(services, 'getRandomPositionData').mockReturnValue(Array.from({ length: 12 }, (_, i) => ({
+      value: i + 1,
+      position: constants.POSITION.UPRIGHT,
+    })));
   });
 
   afterEach(() => {
     services.getRandomPositionData.mockClear();
-    services.getRandomPosition.mockClear();
+    cleanup();
   });
 
   afterAll(() => {
     services.getRandomPositionData.mockRestore();
-    services.getRandomPosition.mockRestore();
   });
 
   it('should render the component correctly', () => {
@@ -38,7 +41,9 @@ describe('StartScreen', () => {
     expect(component).toHaveLength(1);
     expect(component.find(DataContextProvider)).toHaveLength(1);
     expect(component.find(Menu)).toHaveLength(1);
+    expect(component.find('h1')).toHaveLength(2);
     expect(component.find(PositionChecker)).toHaveLength(1);
+    expect(component.find(TeamButton)).toHaveLength(2);
     expect(component.find(Button)).toHaveLength(1);
     expect(component.find(Button).props().disabled).toBeTruthy();
   });
@@ -60,6 +65,58 @@ describe('StartScreen', () => {
     expect(services.getRandomPositionData).toHaveBeenCalledTimes(3);
     expect(component).toMatchSnapshot();
 
+    jest.clearAllTimers();
+  });
+
+  it('should enable play button', () => {
+    // Given / When
+    jest.useFakeTimers();
+    let component;
+    act(() => {
+      component = render(<StartScreen {...givenProps} />);
+      jest.advanceTimersByTime(3000);
+    });
+
+    // Then
+    expect(component.getByText('Play').classList.contains('disabled')).toBeFalsy();
+    jest.clearAllTimers();
+  });
+
+  it('should handle team selection', () => {
+    // Given
+    jest.useFakeTimers();
+    let component;
+    act(() => {
+      component = render(<StartScreen {...givenProps} />);
+      jest.advanceTimersByTime(3000);
+    });
+
+    // When
+    act(() => {
+      fireEvent.click(component.getByText('Team Dog'));
+    });
+
+    // Then
+    expect(component.getByText('Team Dog').closest('button').classList.contains('z-depth-4')).toBeTruthy();
+    jest.clearAllTimers();
+  });
+
+  it('should handle click on play button', () => {
+    // Given / When
+    jest.useFakeTimers();
+    let component;
+    act(() => {
+      component = render(<StartScreen {...givenProps} />);
+      jest.advanceTimersByTime(3000);
+    });
+
+    // When
+    act(() => {
+      fireEvent.click(component.getByText('Play'));
+    });
+
+    // Then
+    expect(clearInterval).toHaveBeenCalledTimes(1);
     jest.clearAllTimers();
   });
 });

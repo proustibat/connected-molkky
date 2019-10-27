@@ -1,5 +1,6 @@
+import hasIn from 'lodash/hasIn';
 import constants from '@utils/constants';
-import { getRandomPosition } from './services';
+import { getRandomPosition, getRandomPositionData } from './services';
 
 describe('utils', () => {
   describe('getRandomPosition', () => {
@@ -38,6 +39,19 @@ describe('utils', () => {
 
       // Then
       expect(position).toBeNull();
+    });
+  });
+
+  describe('getRandomPositionData', () => {
+    it('should return a valid fake data array', () => {
+      // Given / When
+      const result = getRandomPositionData();
+
+      // Then
+      expect(result).toHaveLength(12);
+      expect(result.map(({ value }) => value))
+        .toStrictEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+      expect(result.every((r) => hasIn(r, 'position'))).toBeTruthy();
     });
   });
 });

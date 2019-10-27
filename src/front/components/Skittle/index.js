@@ -5,7 +5,7 @@ import constants from '@utils/constants';
 
 const { POSITION } = constants;
 
-const Skittle = ({ position, value }) => {
+const Skittle = ({ position, value, size }) => {
   const initialColors = {
     textColor: '#0944ff',
     strokeColor: '#0944ff',
@@ -31,22 +31,28 @@ const Skittle = ({ position, value }) => {
   }, [position]);
 
   return (
-    <SVGCircle
-      text={value}
-      textColor={textColor}
-      strokeColor={strokeColor}
-      fillColor={fillColor}
-    />
+    <div style={{ width: size, height: size }}>
+      <SVGCircle
+        text={value}
+        textColor={textColor}
+        strokeColor={strokeColor}
+        fillColor={fillColor}
+        width="100%"
+        height="100%"
+      />
+    </div>
   );
 };
 
 Skittle.propTypes = {
   position: PropTypes.oneOf(Object.values(POSITION)),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Skittle.defaultProps = {
   position: null,
+  size: undefined,
 };
 
 export default Skittle;

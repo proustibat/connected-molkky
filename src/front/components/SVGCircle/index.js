@@ -15,8 +15,8 @@ const SVGCircle = ({
 );
 
 SVGCircle.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   strokeWidth: PropTypes.number,
   strokeColor: PropTypes.string,
   fillColor: PropTypes.string,

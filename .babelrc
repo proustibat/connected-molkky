@@ -22,6 +22,22 @@
           "@root": "./src"
         }
       }
+    ],
+    [
+      "inline-react-svg",
+      {
+        "svgo": {
+          "plugins": [
+            {
+              "removeAttrs": { "attrs": "(data-name)" }
+            },
+            {
+              "cleanupIDs": true
+            }
+          ]
+
+        }
+      }
     ]
   ]
 }

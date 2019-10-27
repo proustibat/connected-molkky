@@ -2,87 +2,93 @@
 
 exports[`Skittle should render the component correctly with knocked over position prop 1`] = `
 <div>
-  <svg
-    height="70"
-    viewBox="-25 -25 400 400"
-    width="70"
-  >
-    <circle
-      cx="175"
-      cy="175"
-      fill="#282828"
-      r="175"
-      stroke="#ebebeb"
-      stroke-width="25"
-    />
-    <text
-      dominant-baseline="central"
-      fill="#ebebeb"
-      style="font-size: 175px;"
-      text-anchor="middle"
-      x="175"
-      y="175"
+  <div>
+    <svg
+      height="100%"
+      viewBox="-25 -25 400 400"
+      width="100%"
     >
-      qwerty
-    </text>
-  </svg>
+      <circle
+        cx="175"
+        cy="175"
+        fill="#282828"
+        r="175"
+        stroke="#ebebeb"
+        stroke-width="25"
+      />
+      <text
+        dominant-baseline="central"
+        fill="#ebebeb"
+        style="font-size: 175px;"
+        text-anchor="middle"
+        x="175"
+        y="175"
+      >
+        qwerty
+      </text>
+    </svg>
+  </div>
 </div>
 `;
 
 exports[`Skittle should render the component correctly with upright position prop 1`] = `
 <div>
-  <svg
-    height="70"
-    viewBox="-25 -25 400 400"
-    width="70"
-  >
-    <circle
-      cx="175"
-      cy="175"
-      fill="#ebebeb"
-      r="175"
-      stroke="#282828"
-      stroke-width="25"
-    />
-    <text
-      dominant-baseline="central"
-      fill="#282828"
-      style="font-size: 175px;"
-      text-anchor="middle"
-      x="175"
-      y="175"
+  <div>
+    <svg
+      height="100%"
+      viewBox="-25 -25 400 400"
+      width="100%"
     >
-      qwerty
-    </text>
-  </svg>
+      <circle
+        cx="175"
+        cy="175"
+        fill="#ebebeb"
+        r="175"
+        stroke="#282828"
+        stroke-width="25"
+      />
+      <text
+        dominant-baseline="central"
+        fill="#282828"
+        style="font-size: 175px;"
+        text-anchor="middle"
+        x="175"
+        y="175"
+      >
+        qwerty
+      </text>
+    </svg>
+  </div>
 </div>
 `;
 
 exports[`Skittle should render the component correctly without position prop 1`] = `
 <div>
-  <svg
-    height="70"
-    viewBox="-25 -25 400 400"
-    width="70"
-  >
-    <circle
-      cx="175"
-      cy="175"
-      fill="#d7ffff"
-      r="175"
-      stroke="#0944ff"
-      stroke-width="25"
-    />
-    <text
-      dominant-baseline="central"
-      fill="#0944ff"
-      style="font-size: 175px;"
-      text-anchor="middle"
-      x="175"
-      y="175"
+  <div>
+    <svg
+      height="100%"
+      viewBox="-25 -25 400 400"
+      width="100%"
     >
-      qwerty
-    </text>
-  </svg>
+      <circle
+        cx="175"
+        cy="175"
+        fill="#d7ffff"
+        r="175"
+        stroke="#0944ff"
+        stroke-width="25"
+      />
+      <text
+        dominant-baseline="central"
+        fill="#0944ff"
+        style="font-size: 175px;"
+        text-anchor="middle"
+        x="175"
+        y="175"
+      >
+        qwerty
+      </text>
+    </svg>
+  </div>
 </div>
 `;

@@ -43,7 +43,7 @@ const PositionChecker = ({ onReadyChange }) => {
   return (
     <>
       <p className="flow-text">Be sure pins are placed as follows then start the game</p>
-      <SkittlesDisplay />
+      <SkittlesDisplay style={{ margin: '0 auto 2rem auto', width: '60%' }} />
       {renderWarning('Please stand up the following pins:', constants.POSITION.KNOCKED_OVER)}
       {renderWarning('All pins are not detected, try to move the missing pins:', null)}
       {renderError()}
