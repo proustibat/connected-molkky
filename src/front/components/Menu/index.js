@@ -13,8 +13,8 @@ const Menu = ({ title }) => {
     <div className="navbar-fixed">
       <nav>
         <div className="container nav-wrapper">
-          <a href="/" className="brand-logo left">{title}</a>
-          <a href="/" data-target="mobile-menu" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
+          <a href="/molkky/game" className="brand-logo left">{title}</a>
+          <a href="/molkky/game" data-target="mobile-menu" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
           <MenuLinks className="right hide-on-med-and-down" />
         </div>
       </nav>

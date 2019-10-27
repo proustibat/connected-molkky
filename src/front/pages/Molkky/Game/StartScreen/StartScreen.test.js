@@ -3,17 +3,17 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import Button from '@components/Button';
-import Menu from '@components/Menu';
 import PositionChecker from '@components/PositionChecker';
 import TeamButton from '@components/TeamButton';
 import { DataContextProvider } from '@contexts/DataContext';
 import constants from '@utils/constants';
 import * as services from '@utils/services';
-
 import StartScreen from './index';
 
+jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: jest.fn() }) }));
+
 const givenProps = {
-  title: 'StartScreen',
+  title: 'Game',
 };
 
 describe('StartScreen', () => {
@@ -31,6 +31,8 @@ describe('StartScreen', () => {
 
   afterAll(() => {
     services.getRandomPositionData.mockRestore();
+    jest.restoreAllMocks();
+    jest.resetModules();
   });
 
   it('should render the component correctly', () => {
@@ -40,7 +42,6 @@ describe('StartScreen', () => {
     // Then
     expect(component).toHaveLength(1);
     expect(component.find(DataContextProvider)).toHaveLength(1);
-    expect(component.find(Menu)).toHaveLength(1);
     expect(component.find('h1')).toHaveLength(2);
     expect(component.find(PositionChecker)).toHaveLength(1);
     expect(component.find(TeamButton)).toHaveLength(2);

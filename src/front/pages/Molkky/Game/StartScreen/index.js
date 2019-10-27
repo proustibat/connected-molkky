@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import PositionChecker from '@components/PositionChecker';
-import { DataContextProvider } from '@root/front/contexts/DataContext';
-import { getRandomPositionData } from '@utils/services';
+import { useHistory } from 'react-router-dom';
 import Button from '@components/Button';
-import Menu from '@components/Menu';
+import PositionChecker from '@components/PositionChecker';
+import TeamButton from '@components/TeamButton';
+import { DataContextProvider } from '@root/front/contexts/DataContext';
 import CatSVG from '@root/front/svg/cat.svg';
 import DogSVG from '@root/front/svg/dog.svg';
-import TeamButton from '@components/TeamButton';
+import { getRandomPositionData } from '@utils/services';
 
-const StartScreen = ({ title }) => {
+const StartScreen = () => {
+  const history = useHistory();
   const [positionData, setPositionData] = useState([]);
   const [startReady, setStartReady] = useState(false);
   const [refreshDataTimer, setRefreshDataTimer] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState('cat');
+
 
   const createFakeServer = () => {
     // Get random data for skittles
@@ -33,8 +34,8 @@ const StartScreen = ({ title }) => {
   }, []);
 
   const onStartClick = () => {
-    console.log('START');
     destroyFakeServer();
+    history.push('/molkky/game/play');
   };
 
   const onPositionReadyChange = (value) => {
@@ -48,7 +49,6 @@ const StartScreen = ({ title }) => {
 
   return (
     <DataContextProvider value={positionData}>
-      <Menu title={title} />
       <div className="section">
         <div className="container">
           <h1>Players</h1>
@@ -76,15 +76,5 @@ const StartScreen = ({ title }) => {
     </DataContextProvider>
   );
 };
-
-StartScreen.propTypes = {
-  title: PropTypes.string,
-};
-
-StartScreen.defaultProps = {
-  title: null,
-};
-
-StartScreen.displayName = 'StartScreen';
 
 export default StartScreen;

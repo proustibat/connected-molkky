@@ -2,87 +2,8 @@
 
 exports[`StartScreen should get random data on mount 1`] = `
 <StartScreen
-  title="StartScreen"
+  title="Game"
 >
-  <Menu
-    title="StartScreen"
-  >
-    <div
-      className="navbar-fixed"
-    >
-      <nav>
-        <div
-          className="container nav-wrapper"
-        >
-          <a
-            className="brand-logo left"
-            href="/"
-          >
-            StartScreen
-          </a>
-          <a
-            className="sidenav-trigger right"
-            data-target="mobile-menu"
-            href="/"
-          >
-            <i
-              className="material-icons"
-            >
-              menu
-            </i>
-          </a>
-          <MenuLinks
-            className="right hide-on-med-and-down"
-            id=""
-          >
-            <ul
-              className="right hide-on-med-and-down"
-              id=""
-            >
-              <li>
-                <a
-                  href="/"
-                >
-                  Link 1
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                >
-                  Link 2
-                </a>
-              </li>
-            </ul>
-          </MenuLinks>
-        </div>
-      </nav>
-      <MenuLinks
-        className="sidenav right"
-        id="mobile-menu"
-      >
-        <ul
-          className="sidenav right"
-          id="mobile-menu"
-        >
-          <li>
-            <a
-              href="/"
-            >
-              Link 1
-            </a>
-          </li>
-          <li>
-            <a
-              href="/"
-            >
-              Link 2
-            </a>
-          </li>
-        </ul>
-      </MenuLinks>
-    </div>
-  </Menu>
   <div
     className="section"
   >
@@ -1228,4 +1149,3 @@ exports[`StartScreen should get random data on mount 1`] = `
   </div>
 </StartScreen>
 `;
-

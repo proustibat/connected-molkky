@@ -1,4 +1,6 @@
+import { shallow } from 'enzyme';
 import ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom';
 import Home from './pages/Home';
 import App from './App';
 
@@ -52,8 +54,10 @@ describe('App', () => {
 
     // Then
     expect(ReactDOM.hydrate).toHaveBeenCalledTimes(1);
-    expect(ReactDOM.hydrate.mock.calls[0][0].props).toMatchObject(props);
-    expect(ReactDOM.hydrate.mock.calls[0][0].type.displayName).toBe(Home.displayName);
+    const wrapper = shallow(ReactDOM.hydrate.mock.calls[0][0]);
+    expect(wrapper.find(Router)).toHaveLength(1);
+    expect(wrapper.find(Router).find(Home)).toHaveLength(1);
+    expect(wrapper.find(Router).find(Home).props()).toMatchObject(props);
     expect(ReactDOM.hydrate.mock.calls[0][1]).toBe(div);
   });
 
