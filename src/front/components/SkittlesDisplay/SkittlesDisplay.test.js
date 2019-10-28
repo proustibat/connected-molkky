@@ -10,6 +10,7 @@ const { DataContextProvider } = DataContextModule;
 
 describe('SkittlesDisplay', () => {
   let useDataContextSpy;
+
   afterEach(() => {
     useDataContextSpy.mockClear();
   });
@@ -20,7 +21,7 @@ describe('SkittlesDisplay', () => {
 
   it('should render the component correctly with no data', () => {
     // Given
-    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue([]);
+    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({ positionData: [] });
 
     // When
     const component = shallow(
@@ -43,7 +44,7 @@ describe('SkittlesDisplay', () => {
 
   it('should render the component correctly with data', () => {
     // Given
-    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue(dataWithKnockedOverAndNull);
+    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({ positionData: dataWithKnockedOverAndNull });
 
     // When
     const component = shallow(

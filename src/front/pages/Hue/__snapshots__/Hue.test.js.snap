@@ -30,6 +30,7 @@ exports[`Page Hue Given the api requests succeed should handle connect request: 
         Bridge IP detected: 192.168.1.10
       </span>
       <Button
+        className=""
         disabled={false}
         onClick={[Function]}
         size="btn-small"
@@ -45,6 +46,7 @@ exports[`Page Hue Given the api requests succeed should handle connect request: 
       </Button>
     </p>
     <Button
+      className=""
       disabled={false}
       onClick={[Function]}
       size="btn-large"
@@ -86,6 +88,7 @@ exports[`Page Hue Given the api requests succeed should handle discover request:
         Bridge IP detected: 192.168.1.10
       </span>
       <Button
+        className=""
         disabled={false}
         onClick={[Function]}
         size="btn-small"
@@ -101,6 +104,7 @@ exports[`Page Hue Given the api requests succeed should handle discover request:
       </Button>
     </p>
     <Button
+      className=""
       disabled={false}
       onClick={[Function]}
       size="btn-large"
@@ -149,6 +153,7 @@ exports[`Page Hue Given the api requests succeed should handle info request: Ren
         Bridge IP detected: 192.168.1.10
       </span>
       <Button
+        className=""
         disabled={false}
         onClick={[Function]}
         size="btn-small"
@@ -164,6 +169,7 @@ exports[`Page Hue Given the api requests succeed should handle info request: Ren
       </Button>
     </p>
     <Button
+      className=""
       disabled={false}
       onClick={[Function]}
       size="btn-large"
@@ -217,6 +223,7 @@ exports[`Page Hue should render the page correctly on init 1`] = `
     className="container"
   >
     <Button
+      className=""
       disabled={false}
       onClick={[Function]}
       size="btn-large"
@@ -258,6 +265,7 @@ exports[`Page Hue should render the page correctly with all props and state data
         Bridge IP detected: 192.168.1.10
       </span>
       <Button
+        className=""
         disabled={false}
         onClick={[Function]}
         size="btn-small"
@@ -273,6 +281,7 @@ exports[`Page Hue should render the page correctly with all props and state data
       </Button>
     </p>
     <Button
+      className=""
       disabled={false}
       onClick={[Function]}
       size="btn-large"

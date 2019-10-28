@@ -8,7 +8,7 @@ import noop from 'lodash/noop';
 import { useDataContext } from '@contexts/DataContext';
 
 const PositionChecker = ({ onReadyChange }) => {
-  const data = useDataContext();
+  const { positionData: data } = useDataContext();
 
 
   useEffect(() => {

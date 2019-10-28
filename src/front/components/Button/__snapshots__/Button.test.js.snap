@@ -2,7 +2,7 @@
 
 exports[`Button should render the component correctly when it is disabled 1`] = `
 <button
-  className="waves-effect waves-light z-depth-2 btn btn-large disabled"
+  className="waves-effect waves-light z-depth-2 btn btn-large disabled "
   onClick={[Function]}
   style={Object {}}
   type="button"
@@ -13,7 +13,7 @@ exports[`Button should render the component correctly when it is disabled 1`] = 
 
 exports[`Button should render the component correctly when it is enabled 1`] = `
 <button
-  className="waves-effect waves-light z-depth-2 btn btn-large "
+  className="waves-effect waves-light z-depth-2 btn btn-large  "
   onClick={[Function]}
   style={Object {}}
   type="button"

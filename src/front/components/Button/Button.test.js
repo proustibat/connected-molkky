@@ -28,6 +28,15 @@ describe('Button', () => {
     expect(component.find('button').props().style).toMatchObject(style);
   });
 
+  it('should inherit classname', () => {
+    // Given / When
+    const className = 'bla-bli-blou';
+    const component = shallow(<Button onClick={() => {}} className={className}>click me</Button>);
+
+    // Then
+    expect(component.find('button').props().className).toContain(className);
+  });
+
   it('should handle click', () => {
     // Given / When
     const onClick = jest.fn();

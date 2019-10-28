@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const Button = ({
-  onClick, children, disabled, size, style,
+  onClick, children, disabled, size, style, className,
 }) => (
   <button
     type="button"
-    className={`waves-effect waves-light z-depth-2 btn ${size} ${disabled ? 'disabled' : ''}`}
+    className={`waves-effect waves-light z-depth-2 btn ${size} ${disabled ? 'disabled' : ''} ${className}`}
     onClick={onClick}
     style={style}
   >
@@ -21,12 +21,14 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(['btn-large', 'btn-small', '']),
   style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
   disabled: false,
   size: 'btn-large',
   style: {},
+  className: '',
 };
 
 export default Button;

@@ -31,9 +31,9 @@ h1, h2, h3 {
   align-items: center;
   word-break: break-word;
   padding: 0 1rem;
-  :first-child {
-    margin: 0 1rem 0 0;
-  }
+  //:first-child {
+  //  margin: 0 1rem 0 0;
+  //}
 }
 
 .disableFocus {

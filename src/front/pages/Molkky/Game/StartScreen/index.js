@@ -1,68 +1,70 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@components/Button';
-import CatSVG from '@root/front/svg/cat.svg';
-import { DataContextProvider } from '@root/front/contexts/DataContext';
-import DogSVG from '@root/front/svg/dog.svg';
 import PositionChecker from '@components/PositionChecker';
 import TeamButton from '@components/TeamButton';
-import { getRandomPositionData } from '@utils/services';
+import { useDataContext } from '@contexts/DataContext';
 import { useHistory } from 'react-router-dom';
+import { usePlayContext } from '@contexts/PlayContext';
 
 const StartScreen = () => {
   const history = useHistory();
-  const [positionData, setPositionData] = useState([]);
+
+  const { destroyFakeServer } = useDataContext();
+  const { teams, setCurrentTurn, setScores } = usePlayContext();
+
   const [startReady, setStartReady] = useState(false);
-  const [refreshDataTimer, setRefreshDataTimer] = useState(null);
-  const [selectedTeam, setSelectedTeam] = useState('cat');
+  const [selectedTeam, setSelectedTeam] = useState(Object.entries(teams)[0][0]);
 
-  const createFakeServer = () => {
-    // Get random data for skittles
-    const timer = setInterval(() => {
-      setPositionData(getRandomPositionData());
-    }, 3000);
-    setRefreshDataTimer(timer);
-  };
-
-  const destroyFakeServer = () => {
-    clearInterval(refreshDataTimer);
-    setRefreshDataTimer(null);
-  };
-
-  useEffect(() => {
-    createFakeServer();
-  }, []);
-
-  const onStartClick = () => {
-    destroyFakeServer();
-    history.push('/molkky/game/play');
-  };
-
-  const onPositionReadyChange = (value) => {
-    setStartReady(value);
+  const createGame = () => {
+    setCurrentTurn({ isPlaying: selectedTeam });
+    setScores(Object.entries(teams).reduce((acc, item) => {
+      const score = acc;
+      score[item[0]] = {
+        score: 0,
+        left: 50,
+      };
+      return score;
+    }, {}));
   };
 
   const onTeamSelect = (team) => {
     setSelectedTeam(team);
   };
 
+  const onStartClick = () => {
+    destroyFakeServer();
+    createGame();
+    history.push('/molkky/game/play');
+  };
+
   return (
-    <DataContextProvider value={positionData}>
+    <>
       <div className="section">
         <div className="container">
           <h1>Players</h1>
           <p className="flow-text">Which team plays first?</p>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <TeamButton icon={CatSVG} style={{ marginRight: '2rem' }} name="Team Cat" value="cat" onClick={onTeamSelect} selected={selectedTeam === 'cat'} />
-            <TeamButton icon={DogSVG} style={{ marginLeft: '2rem' }} name="Team Dog" value="dog" onClick={onTeamSelect} selected={selectedTeam === 'dog'} />
+            {
+              Object.entries(teams).map(([value, { icon, name }], i) => (
+                <TeamButton
+                  key={`${value}--i`}
+                  icon={icon}
+                  style={(i % 2 === 0) ? { marginRight: '2rem' } : { marginLeft: '2rem' }}
+                  name={name}
+                  value={value}
+                  onClick={onTeamSelect}
+                  selected={selectedTeam === value}
+                />
+              ))
+            }
           </div>
         </div>
       </div>
+      <div className="divider" />
       <div className="section">
         <div className="container">
           <h1>Playground</h1>
-          <PositionChecker
-            onReadyChange={onPositionReadyChange}
-          />
+          <PositionChecker onReadyChange={setStartReady} />
           <Button
             onClick={onStartClick}
             disabled={!startReady}
@@ -71,7 +73,7 @@ const StartScreen = () => {
           </Button>
         </div>
       </div>
-    </DataContextProvider>
+    </>
   );
 };
 

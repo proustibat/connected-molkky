@@ -1,8 +1,7 @@
 import constants from '@utils/constants';
 
-// eslint-disable-next-line import/prefer-default-export
-export const getRandomPosition = () => {
-  const randomValue = Math.floor(Math.random() * Math.floor(100));
+export const getRandomPosition = (scale = 100, noNull = false) => {
+  const randomValue = Math.floor(Math.random() * Math.floor(scale));
   const conditions = [{
     predicate: (value) => value >= 3,
     position: constants.POSITION.UPRIGHT,
@@ -11,12 +10,19 @@ export const getRandomPosition = () => {
     position: constants.POSITION.KNOCKED_OVER,
   }, {
     predicate: () => true,
-    position: null,
+    position: noNull ? constants.POSITION.UPRIGHT : null,
   }];
   return conditions.find((condition) => condition.predicate(randomValue)).position;
 };
 
-export const getRandomPositionData = () => Array.from({ length: 12 }, (_, i) => ({
-  value: i + 1,
-  position: getRandomPosition(),
-}));
+export const getRandomPositionData = (scale = 100, noNull = false) => Array.from(
+  { length: 12 },
+  (_, i) => ({
+    value: i + 1,
+    position: getRandomPosition(scale, noNull),
+  }),
+);
+
+export const calculatePoints = (knockedSkittles) => (knockedSkittles.length === 1
+  ? knockedSkittles[0].value
+  : knockedSkittles.length);

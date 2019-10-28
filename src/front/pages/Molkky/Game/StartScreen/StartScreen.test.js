@@ -1,14 +1,15 @@
+import * as DataContextModule from '@contexts/DataContext';
+import * as PlayContextModule from '@contexts/PlayContext';
 import * as services from '@utils/services';
-import { cleanup, fireEvent, render } from '@testing-library/react';
-import { mount, shallow } from 'enzyme';
 import Button from '@components/Button';
-import { DataContextProvider } from '@contexts/DataContext';
+import CatSVG from '@root/front/svg/cat.svg';
+import DogSVG from '@root/front/svg/dog.svg';
 import PositionChecker from '@components/PositionChecker';
 import React from 'react';
 import StartScreen from './index';
 import TeamButton from '@components/TeamButton';
-import { act } from 'react-dom/test-utils';
 import constants from '@utils/constants';
+import { shallow } from 'enzyme';
 
 jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: jest.fn() }) }));
 
@@ -17,19 +18,45 @@ const givenProps = {
 };
 
 describe('StartScreen', () => {
+  let usePlayContextSpy;
+  let useDataContextSpy;
+
   beforeAll(() => {
     jest.spyOn(services, 'getRandomPositionData').mockReturnValue(Array.from({ length: 12 }, (_, i) => ({
       value: i + 1,
       position: constants.POSITION.UPRIGHT,
     })));
+    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({
+      destroyFakeServer: jest.fn(),
+    });
+  });
+
+  beforeEach(() => {
+    usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
+      teams: {
+        cat: { name: 'cat team', icon: CatSVG },
+        dog: { name: 'dog team', icon: DogSVG },
+      },
+      setCurrentTurn: jest.fn(),
+      setScores: jest.fn(),
+    });
   });
 
   afterEach(() => {
+    useDataContextSpy().destroyFakeServer.mockClear();
+    usePlayContextSpy().setCurrentTurn.mockClear();
+    usePlayContextSpy().setScores.mockClear();
+    usePlayContextSpy.mockClear();
+    useDataContextSpy.mockClear();
     services.getRandomPositionData.mockClear();
-    cleanup();
   });
 
   afterAll(() => {
+    useDataContextSpy().destroyFakeServer.mockRestore();
+    usePlayContextSpy().setCurrentTurn.mockRestore();
+    usePlayContextSpy().setScores.mockRestore();
+    usePlayContextSpy.mockRestore();
+    useDataContextSpy.mockRestore();
     services.getRandomPositionData.mockRestore();
     jest.restoreAllMocks();
     jest.resetModules();
@@ -41,83 +68,53 @@ describe('StartScreen', () => {
 
     // Then
     expect(component).toHaveLength(1);
-    expect(component.find(DataContextProvider)).toHaveLength(1);
     expect(component.find('h1')).toHaveLength(2);
-    expect(component.find(PositionChecker)).toHaveLength(1);
     expect(component.find(TeamButton)).toHaveLength(2);
+    expect(component.find(TeamButton).at(0).props().selected).toBeTruthy();
+    expect(component.find(TeamButton).at(1).props().selected).toBeFalsy();
+    expect(component.find(PositionChecker)).toHaveLength(1);
     expect(component.find(Button)).toHaveLength(1);
     expect(component.find(Button).props().disabled).toBeTruthy();
   });
 
-  it('should get random data on mount', () => {
+  it('should select the team', () => {
     // Given
-    jest.useFakeTimers();
-    let component;
-    act(() => { component = mount(<StartScreen {...givenProps} />); });
+    const component = shallow(<StartScreen {...givenProps} />);
 
     // When
-    act(() => {
-      jest.advanceTimersByTime(9000);
-    });
+    component.find(TeamButton).at(1).props().onClick('dog');
 
     // Then
-    expect(setInterval).toHaveBeenCalledTimes(1);
-    expect(setInterval).toHaveBeenLastCalledWith(expect.any(Function), 3000);
-    expect(services.getRandomPositionData).toHaveBeenCalledTimes(3);
-    expect(component).toMatchSnapshot();
-
-    jest.clearAllTimers();
+    expect(component.find(TeamButton).at(0).props().selected).toBeFalsy();
+    expect(component.find(TeamButton).at(1).props().selected).toBeTruthy();
   });
 
   it('should enable play button', () => {
-    // Given / When
-    jest.useFakeTimers();
-    let component;
-    act(() => {
-      component = render(<StartScreen {...givenProps} />);
-      jest.advanceTimersByTime(3000);
-    });
-
-    // Then
-    expect(component.getByText('Play').classList.contains('disabled')).toBeFalsy();
-    jest.clearAllTimers();
-  });
-
-  it('should handle team selection', () => {
     // Given
-    jest.useFakeTimers();
-    let component;
-    act(() => {
-      component = render(<StartScreen {...givenProps} />);
-      jest.advanceTimersByTime(3000);
-    });
+    const component = shallow(<StartScreen {...givenProps} />);
 
     // When
-    act(() => {
-      fireEvent.click(component.getByText('Team Dog'));
-    });
+    component.find(PositionChecker).props().onReadyChange(true);
 
     // Then
-    expect(component.getByText('Team Dog').closest('button').classList.contains('z-depth-4')).toBeTruthy();
-    jest.clearAllTimers();
+    expect(component.find(Button).props().disabled).toBeFalsy();
   });
 
-  it('should handle click on play button', () => {
-    // Given / When
-    jest.useFakeTimers();
-    let component;
-    act(() => {
-      component = render(<StartScreen {...givenProps} />);
-      jest.advanceTimersByTime(3000);
-    });
+  it('should handle click on start button', () => {
+    // Given
+    const component = shallow(<StartScreen {...givenProps} />);
 
     // When
-    act(() => {
-      fireEvent.click(component.getByText('Play'));
-    });
+    component.find(PositionChecker).props().onReadyChange(true);
+    component.find(Button).simulate('click');
 
     // Then
-    expect(clearInterval).toHaveBeenCalledTimes(1);
-    jest.clearAllTimers();
+    expect(useDataContextSpy().destroyFakeServer).toHaveBeenCalledTimes(1);
+    expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
+    expect(usePlayContextSpy().setCurrentTurn).toHaveBeenLastCalledWith({ isPlaying: 'cat' });
+    expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith({
+      cat: { score: 0, left: 50 },
+      dog: { score: 0, left: 50 },
+    });
   });
 });

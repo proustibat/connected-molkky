@@ -12,7 +12,6 @@ export default {
     border: 'none',
   },
   containerSelected: {
-    // background: '#ebebeb',
     border: '1px solid #5f5f5f',
   },
   name: {

@@ -5,11 +5,11 @@ import get from 'lodash/get';
 import style from './style';
 import { useDataContext } from '@contexts/DataContext';
 
-const SkittlesDisplay = ({ skittleSize, style: customStyle }) => {
-  const data = useDataContext();
+const SkittlesDisplay = ({ skittleSize, style: customStyle, className }) => {
+  const { positionData: data } = useDataContext();
 
   return (
-    <div style={{ ...style.container, ...customStyle }}>
+    <div className={className} style={{ ...style.container, ...customStyle }}>
       <div style={style.row}>
         <Skittle value={7} position={get(data.find(({ value }) => value === 7) || {}, 'position', null)} size={skittleSize} />
         <Skittle value={8} position={get(data.find(({ value }) => value === 8) || {}, 'position', null)} size={skittleSize} />
@@ -37,11 +37,13 @@ const SkittlesDisplay = ({ skittleSize, style: customStyle }) => {
 SkittlesDisplay.propTypes = {
   skittleSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 SkittlesDisplay.defaultProps = {
   skittleSize: '25%',
   style: {},
+  className: '',
 };
 
 export default SkittlesDisplay;
