@@ -10,6 +10,5 @@ describe('Page Darksky', () => {
 
     // Then
     expect(component).toHaveLength(1);
-    expect(component).toMatchSnapshot();
   });
 });

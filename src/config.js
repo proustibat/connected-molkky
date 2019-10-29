@@ -1,10 +1,23 @@
 const dotenv = require('dotenv');
 
 // Read the .env file
-const result = dotenv.config();
+let config;
 
-if (result.error) {
-  throw result.error;
+if (!process.env.CI) {
+  const result = dotenv.config();
+
+  if (result.error) {
+    throw result.error;
+  }
+  const { parsed } = result;
+  config = parsed;
+} else {
+  config = {
+    NODE_ENV: process.env.NODE_ENV,
+    SERVER_PORT: process.env.SERVER_PORT,
+    BS_PORT: process.env.BS_PORT,
+    DARKSKY_SECRET: process.env.DARKSKY_SECRET,
+    SECRET_TOKEN: process.env.SECRET_TOKEN,
+  };
 }
-const { parsed: envs } = result;
-module.exports = envs;
+module.exports = config;

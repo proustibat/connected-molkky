@@ -16,6 +16,7 @@
     "front": "webpack --mode development --watch --progress",
     "test:front": "jest --coverage",
     "test": "jest --coverage",
+    "test:ci": "jest --collectCoverage=true --ci --runInBand --reporters=default --reporters=jest-junit",
     "analyze": "source-map-explorer './public/javascript/*.js'",
     "webpack-visalizer-open": "webpack --json > stats.json && open ./public/javascript/stats.html",
     "lint": "node_modules/.bin/eslint ./src",
@@ -95,6 +96,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.9.0",
+    "jest-junit": "^9.0.0",
     "mock-socket": "^9.0.2",
     "nodemon": "^1.19.3",
     "prop-types": "^15.7.2",
@@ -135,9 +137,10 @@
       "./src/front/**/*.js"
     ],
     "coverageReporters": [
-      "json",
       "html"
     ],
-    "clearMocks": true
+    "clearMocks": true,
+
+    "reporters": ["default", "jest-junit"]
   }
 }
