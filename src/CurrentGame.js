@@ -21,6 +21,19 @@ export default class CurrentGame {
         .keys(this._scores)
         .find((teamName) => teamName !== this._currentTurn.isPlaying);
       this._currentTurn.remain = config.MAX_TRIES;
+
+      const [wining] = Object.entries(this._scores).sort((a, b) => {
+        const scoreA = a[1].score;
+        const scoreB = b[1].score;
+        let comparison = 0;
+        if (scoreA < scoreB) {
+          comparison = 1;
+        } else if (scoreA > scoreB) {
+          comparison = -1;
+        }
+        return comparison;
+      })[0];
+      this._currentTurn.wining = wining;
     };
 
     return CurrentGame.instance;
