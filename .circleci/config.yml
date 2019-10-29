@@ -2,7 +2,6 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2
 jobs:
   build:
     docker:
@@ -50,3 +49,12 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: coverage
+      - sonarcloud/scan
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.0
+version: 2.1
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud

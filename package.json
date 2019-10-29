@@ -137,6 +137,8 @@
       "./src/front/**/*.js"
     ],
     "coverageReporters": [
+      "json",
+      "lcov",
       "html"
     ],
     "clearMocks": true,

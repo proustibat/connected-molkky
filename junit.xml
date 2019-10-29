@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="79" failures="0" time="6.706">
+  <testsuite name="ScoresOverview" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.167" tests="1">
+    <testcase classname="ScoresOverview should render the component correctly" name="ScoresOverview should render the component correctly" time="0.154">
+    </testcase>
+  </testsuite>
+  <testsuite name="DarkSkyIcon" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.247" tests="2">
+    <testcase classname="DarkSkyIcon should render the component correctly with default props" name="DarkSkyIcon should render the component correctly with default props" time="0.199">
+    </testcase>
+    <testcase classname="DarkSkyIcon should render the component correctly with custom props" name="DarkSkyIcon should render the component correctly with custom props" time="0.069">
+    </testcase>
+  </testsuite>
+  <testsuite name="MenuLinks" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.371" tests="2">
+    <testcase classname="MenuLinks should render the component correctly" name="MenuLinks should render the component correctly" time="0.169">
+    </testcase>
+    <testcase classname="MenuLinks should initialize the menu on mount" name="MenuLinks should initialize the menu on mount" time="0.135">
+    </testcase>
+  </testsuite>
+  <testsuite name="StartScreen" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.458" tests="4">
+    <testcase classname="StartScreen should render the component correctly" name="StartScreen should render the component correctly" time="0.143">
+    </testcase>
+    <testcase classname="StartScreen should select the team" name="StartScreen should select the team" time="0.032">
+    </testcase>
+    <testcase classname="StartScreen should enable play button" name="StartScreen should enable play button" time="0.015">
+    </testcase>
+    <testcase classname="StartScreen should handle click on start button" name="StartScreen should handle click on start button" time="0.023">
+    </testcase>
+  </testsuite>
+  <testsuite name="Game" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.494" tests="1">
+    <testcase classname="Game should render the component correctly" name="Game should render the component correctly" time="0.088">
+    </testcase>
+  </testsuite>
+  <testsuite name="SkittlesDisplay" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:04" time="1.508" tests="2">
+    <testcase classname="SkittlesDisplay should render the component correctly with no data" name="SkittlesDisplay should render the component correctly with no data" time="0.192">
+    </testcase>
+    <testcase classname="SkittlesDisplay should render the component correctly with data" name="SkittlesDisplay should render the component correctly with data" time="0.074">
+    </testcase>
+  </testsuite>
+  <testsuite name="PositionChecker" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.59" tests="3">
+    <testcase classname="PositionChecker should render the component correctly when all pins are upright" name="PositionChecker should render the component correctly when all pins are upright" time="0.322">
+    </testcase>
+    <testcase classname="PositionChecker should render the component correctly when some pins are knocked over and some are null" name="PositionChecker should render the component correctly when some pins are knocked over and some are null" time="0.094">
+    </testcase>
+    <testcase classname="PositionChecker should render an error message if there is no data" name="PositionChecker should render an error message if there is no data" time="0.063">
+    </testcase>
+  </testsuite>
+  <testsuite name="Molkky" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:04" time="1.654" tests="3">
+    <testcase classname="Molkky should render the component correctly with no skittles data" name="Molkky should render the component correctly with no skittles data" time="0.049">
+    </testcase>
+    <testcase classname="Molkky should connect to the socket and listen UPDATE event" name="Molkky should connect to the socket and listen UPDATE event" time="0.093">
+    </testcase>
+    <testcase classname="Molkky should use data from UPDATE socket event" name="Molkky should use data from UPDATE socket event" time="0.029">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page Hue" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:04" time="1.65" tests="13">
+    <testcase classname="Page Hue should render the page correctly on init" name="Page Hue should render the page correctly on init" time="0.036">
+    </testcase>
+    <testcase classname="Page Hue should render the page correctly with all props and state data" name="Page Hue should render the page correctly with all props and state data" time="0.008">
+    </testcase>
+    <testcase classname="Page Hue should get data from local storage on mount and update the state" name="Page Hue should get data from local storage on mount and update the state" time="0.011">
+    </testcase>
+    <testcase classname="Page Hue should clear the local storage if there is a token in it but no ipaddress" name="Page Hue should clear the local storage if there is a token in it but no ipaddress" time="0.004">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests succeed should handle discover request" name="Page Hue Given the api requests succeed should handle discover request" time="0.051">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests succeed should handle connect request" name="Page Hue Given the api requests succeed should handle connect request" time="0.025">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests succeed should save data after connect request" name="Page Hue Given the api requests succeed should save data after connect request" time="0.026">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests succeed should handle info request" name="Page Hue Given the api requests succeed should handle info request" time="0.035">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests succeed should render the information lists correctly when there is no element" name="Page Hue Given the api requests succeed should render the information lists correctly when there is no element" time="0.026">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests succeed should render the information lists correctly when there is only one element" name="Page Hue Given the api requests succeed should render the information lists correctly when there is only one element" time="0.034">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests fail should handle error on discover request" name="Page Hue Given the api requests fail should handle error on discover request" time="0.02">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests fail should handle error on connect request" name="Page Hue Given the api requests fail should handle error on connect request" time="0.016">
+    </testcase>
+    <testcase classname="Page Hue Given the api requests fail should handle error on info request" name="Page Hue Given the api requests fail should handle error on info request" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="App" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:04" time="1.817" tests="4">
+    <testcase classname="App should define a mapper on instantiation" name="App should define a mapper on instantiation" time="0.004">
+    </testcase>
+    <testcase classname="App should hydrate the right component with the props" name="App should hydrate the right component with the props" time="0.104">
+    </testcase>
+    <testcase classname="App should display an error toast if init fails" name="App should display an error toast if init fails" time="0.002">
+    </testcase>
+    <testcase classname="App should call the app from the index" name="App should call the app from the index" time="0.012">
+    </testcase>
+  </testsuite>
+  <testsuite name="CurrentTurn" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:03" time="1.98" tests="5">
+    <testcase classname="CurrentTurn should render the component correctly" name="CurrentTurn should render the component correctly" time="0.432">
+    </testcase>
+    <testcase classname="CurrentTurn should request calculate points on mount" name="CurrentTurn should request calculate points on mount" time="0.092">
+    </testcase>
+    <testcase classname="CurrentTurn should handle click on edit" name="CurrentTurn should handle click on edit" time="0.124">
+    </testcase>
+    <testcase classname="CurrentTurn should handle click on miss target button" name="CurrentTurn should handle click on miss target button" time="0.08">
+    </testcase>
+    <testcase classname="CurrentTurn should handle click on valid score button" name="CurrentTurn should handle click on valid score button" time="0.069">
+    </testcase>
+  </testsuite>
+  <testsuite name="ScoreTeamOverview" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:05" time="0.36" tests="3">
+    <testcase classname="ScoreTeamOverview should render the component correctly" name="ScoreTeamOverview should render the component correctly" time="0.056">
+    </testcase>
+    <testcase classname="ScoreTeamOverview should display the wining prop" name="ScoreTeamOverview should display the wining prop" time="0.013">
+    </testcase>
+    <testcase classname="ScoreTeamOverview should display the isPlaying state" name="ScoreTeamOverview should display the isPlaying state" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="TeamButton" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:05" time="0.336" tests="5">
+    <testcase classname="TeamButton should render the component correctly" name="TeamButton should render the component correctly" time="0.022">
+    </testcase>
+    <testcase classname="TeamButton should render the team name correctly" name="TeamButton should render the team name correctly" time="0.004">
+    </testcase>
+    <testcase classname="TeamButton should change style when selected prop changes" name="TeamButton should change style when selected prop changes" time="0.005">
+    </testcase>
+    <testcase classname="TeamButton should inherit style" name="TeamButton should inherit style" time="0.002">
+    </testcase>
+    <testcase classname="TeamButton should handle click" name="TeamButton should handle click" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="utils" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:05" time="0.264" tests="7">
+    <testcase classname="utils getRandomPosition should return the upright position" name="utils getRandomPosition should return the upright position" time="0.002">
+    </testcase>
+    <testcase classname="utils getRandomPosition should return the knocked over position" name="utils getRandomPosition should return the knocked over position" time="0.001">
+    </testcase>
+    <testcase classname="utils getRandomPosition should return a null position" name="utils getRandomPosition should return a null position" time="0.001">
+    </testcase>
+    <testcase classname="utils getRandomPosition should not return a null position" name="utils getRandomPosition should not return a null position" time="0.001">
+    </testcase>
+    <testcase classname="utils getRandomPositionData should return a valid fake data array" name="utils getRandomPositionData should return a valid fake data array" time="0.004">
+    </testcase>
+    <testcase classname="utils calculatePoints should count number of knocked over skittles" name="utils calculatePoints should count number of knocked over skittles" time="0">
+    </testcase>
+    <testcase classname="utils calculatePoints should return the skittle value" name="utils calculatePoints should return the skittle value" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="PlayScreen" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:05" time="0.398" tests="1">
+    <testcase classname="PlayScreen should render the component correctly" name="PlayScreen should render the component correctly" time="0.026">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page Home" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.24" tests="2">
+    <testcase classname="Page Home should render the page correctly with a title" name="Page Home should render the page correctly with a title" time="0.018">
+    </testcase>
+    <testcase classname="Page Home should render the page correctly without a title" name="Page Home should render the page correctly without a title" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="Contexts" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:05" time="0.309" tests="1">
+    <testcase classname="Contexts should export a context on for each use hooks" name="Contexts should export a context on for each use hooks" time="0.067">
+    </testcase>
+  </testsuite>
+  <testsuite name="SVGCircle" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.266" tests="2">
+    <testcase classname="SVGCircle should render the component correctly with default props" name="SVGCircle should render the component correctly with default props" time="0.012">
+    </testcase>
+    <testcase classname="SVGCircle should render the component correctly with custom props and a text" name="SVGCircle should render the component correctly with custom props and a text" time="0.013">
+    </testcase>
+  </testsuite>
+  <testsuite name="Skittle" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:05" time="0.467" tests="3">
+    <testcase classname="Skittle should render the component correctly without position prop" name="Skittle should render the component correctly without position prop" time="0.042">
+    </testcase>
+    <testcase classname="Skittle should render the component correctly with upright position prop" name="Skittle should render the component correctly with upright position prop" time="0.011">
+    </testcase>
+    <testcase classname="Skittle should render the component correctly with knocked over position prop" name="Skittle should render the component correctly with knocked over position prop" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="Button" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.192" tests="5">
+    <testcase classname="Button should render the component correctly when it is enabled" name="Button should render the component correctly when it is enabled" time="0.008">
+    </testcase>
+    <testcase classname="Button should render the component correctly when it is disabled" name="Button should render the component correctly when it is disabled" time="0.008">
+    </testcase>
+    <testcase classname="Button should inherit style" name="Button should inherit style" time="0.005">
+    </testcase>
+    <testcase classname="Button should inherit classname" name="Button should inherit classname" time="0.002">
+    </testcase>
+    <testcase classname="Button should handle click" name="Button should handle click" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="LoadingBar" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.148" tests="1">
+    <testcase classname="LoadingBar should render the component correctly" name="LoadingBar should render the component correctly" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="LoadingBar" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.189" tests="2">
+    <testcase classname="LoadingBar should render the component correctly with no title" name="LoadingBar should render the component correctly with no title" time="0.01">
+    </testcase>
+    <testcase classname="LoadingBar should render the component correctly with a title" name="LoadingBar should render the component correctly with a title" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="MessageIcon" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.16" tests="3">
+    <testcase classname="MessageIcon should render the component correctly for warning" name="MessageIcon should render the component correctly for warning" time="0.007">
+    </testcase>
+    <testcase classname="MessageIcon should render the component correctly for info" name="MessageIcon should render the component correctly for info" time="0.001">
+    </testcase>
+    <testcase classname="MessageIcon should render the component correctly for error" name="MessageIcon should render the component correctly for error" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="MenuLinks" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.114" tests="2">
+    <testcase classname="MenuLinks should render the component correctly" name="MenuLinks should render the component correctly" time="0.004">
+    </testcase>
+    <testcase classname="MenuLinks should inherit classname and id" name="MenuLinks should inherit classname and id" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="Link" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.113" tests="1">
+    <testcase classname="Link should render component correctly" name="Link should render component correctly" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="Page Darksky" errors="0" failures="0" skipped="0" timestamp="2019-10-29T16:00:06" time="0.533" tests="1">
+    <testcase classname="Page Darksky should render the page correctly" name="Page Darksky should render the page correctly" time="0.002">
+    </testcase>
+  </testsuite>
+</testsuites>
