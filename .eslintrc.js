@@ -15,6 +15,7 @@ module.exports = {
                 '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__',
                 '__INITIAL_PROPS__'
             ],
+            "allowAfterThis": true
         }],
         'no-unused-expressions': ['error', {allowShortCircuit: true}],
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
