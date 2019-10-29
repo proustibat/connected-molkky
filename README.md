@@ -6,7 +6,6 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=sqale_index)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
 
-
 ## Prerequisites
 Be sure Node and npm are installed.
 
@@ -27,6 +26,9 @@ SERVER_PORT=8080
 BS_PORT=3000
 DARKSKY_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+## Api documentation
+[Endpoints are documented here on postman](https://documenter.getpostman.com/view/1117131/SW11Vxdm?version=latest)
 
 ## Development
 ```$xslt
