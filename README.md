@@ -1,4 +1,5 @@
-# Node Hue Prstbt
+# Node Hue Prstbt 
+[![CircleCI](https://circleci.com/gh/proustibat/node-hue-prstbt/tree/master.svg?style=svg&circle-token=21b2ae139645a4668edc9ffe79e369ce75c63e2d)](https://circleci.com/gh/proustibat/node-hue-prstbt/tree/master)
 
 ## Prerequisites
 Be sure Node and npm are installed.
