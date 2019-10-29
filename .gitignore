@@ -14,3 +14,4 @@ stats.json
 *.map
 webpack-stats.json
 .env.prod
+junit.xml

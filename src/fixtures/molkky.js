@@ -34,3 +34,20 @@ export const dataFromSocketUPDATE = {
     battery: 11,
   },
 };
+
+export const serverResultAfterStart = {
+  scores: {
+    cat: {
+      score: 0,
+      left: 50,
+    },
+    dog: {
+      score: 0,
+      left: 50,
+    },
+  },
+  currentTurn: {
+    isPlaying: 'cat',
+    remain: 3,
+  },
+};

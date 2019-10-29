@@ -46,7 +46,6 @@ const Game = ({ title }) => {
     setServerIsRunning(false);
   };
 
-
   useEffect(() => {
     createFakeServer();
   }, []);

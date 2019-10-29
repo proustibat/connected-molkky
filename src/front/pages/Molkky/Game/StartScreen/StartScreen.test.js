@@ -9,6 +9,7 @@ import React from 'react';
 import StartScreen from './index';
 import TeamButton from '@components/TeamButton';
 import constants from '@utils/constants';
+import { serverResultAfterStart } from '@fixtures/molkky';
 import { shallow } from 'enzyme';
 
 jest.mock('react-router-dom', () => ({ useHistory: () => ({ push: jest.fn() }) }));
@@ -20,15 +21,20 @@ const givenProps = {
 describe('StartScreen', () => {
   let usePlayContextSpy;
   let useDataContextSpy;
+  let toastSpy;
 
   beforeAll(() => {
     jest.spyOn(services, 'getRandomPositionData').mockReturnValue(Array.from({ length: 12 }, (_, i) => ({
       value: i + 1,
       position: constants.POSITION.UPRIGHT,
     })));
+
     useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({
       destroyFakeServer: jest.fn(),
     });
+
+    toastSpy = jest.fn();
+    global.M = { toast: toastSpy };
   });
 
   beforeEach(() => {
@@ -49,6 +55,8 @@ describe('StartScreen', () => {
     usePlayContextSpy.mockClear();
     useDataContextSpy.mockClear();
     services.getRandomPositionData.mockClear();
+    global.fetch && global.fetch.mockClear();
+    global.M && global.M.toast.mockClear();
   });
 
   afterAll(() => {
@@ -60,6 +68,13 @@ describe('StartScreen', () => {
     services.getRandomPositionData.mockRestore();
     jest.restoreAllMocks();
     jest.resetModules();
+
+    global.fetch.mockRestore();
+    delete global.fetch;
+
+    global.M.toast.mockRestore();
+    delete global.M.toast;
+    delete global.M;
   });
 
   it('should render the component correctly', () => {
@@ -100,8 +115,13 @@ describe('StartScreen', () => {
     expect(component.find(Button).props().disabled).toBeFalsy();
   });
 
-  it('should handle click on start button', () => {
+  it('should handle click on start button', (done) => {
     // Given
+    global.fetch = jest.fn()
+      .mockImplementation(() => Promise.resolve({
+        status: 200,
+        json: () => (serverResultAfterStart),
+      }));
     const component = shallow(<StartScreen {...givenProps} />);
 
     // When
@@ -109,12 +129,54 @@ describe('StartScreen', () => {
     component.find(Button).simulate('click');
 
     // Then
-    expect(useDataContextSpy().destroyFakeServer).toHaveBeenCalledTimes(1);
-    expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
-    expect(usePlayContextSpy().setCurrentTurn).toHaveBeenLastCalledWith({ isPlaying: 'cat' });
-    expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith({
-      cat: { score: 0, left: 50 },
-      dog: { score: 0, left: 50 },
+    setImmediate(() => {
+      expect(useDataContextSpy().destroyFakeServer).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setScores).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setCurrentTurn)
+        .toHaveBeenLastCalledWith(serverResultAfterStart.currentTurn);
+      expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith(serverResultAfterStart.scores);
+      done();
+    });
+  });
+
+  it('should handle fetch error when creating game', (done) => {
+    // Given
+    const error = 'mocked error test';
+    global.fetch = jest.fn().mockRejectedValue(error);
+    const component = shallow(<StartScreen {...givenProps} />);
+
+    // When
+    component.find(PositionChecker).props().onReadyChange(true);
+    component.find(Button).simulate('click');
+
+    // Then
+    setImmediate(() => {
+      expect(toastSpy).toHaveBeenCalledTimes(1);
+      expect(toastSpy).toHaveBeenLastCalledWith({ html: error, classes: 'red darken-4' });
+      done();
+    });
+  });
+
+  it('should handle error 400 when creating game', (done) => {
+    // Given
+    const error = 'mocked error test';
+    global.fetch = jest.fn()
+      .mockImplementation(() => Promise.resolve({
+        status: 400,
+        statusText: error,
+      }));
+    const component = shallow(<StartScreen {...givenProps} />);
+
+    // When
+    component.find(PositionChecker).props().onReadyChange(true);
+    component.find(Button).simulate('click');
+
+    // Then
+    setImmediate(() => {
+      expect(toastSpy).toHaveBeenCalledTimes(1);
+      expect(toastSpy).toHaveBeenLastCalledWith({ html: error, classes: 'red darken-4' });
+      done();
     });
   });
 });

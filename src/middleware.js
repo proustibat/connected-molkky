@@ -68,8 +68,8 @@ const checkConditionsToStartGame = (req, res, next) => {
   }
 
   if (error) {
-    res.writeHead(400, 'Bad Request', { 'content-type': 'text/plain' });
-    res.end(error);
+    res.writeHead(400, error, { 'content-type': 'application/json' });
+    res.end();
     return false;
   }
 
@@ -82,7 +82,7 @@ const checkGameHasStarted = (req, res, next) => {
   if (!currentGame) {
     const message = 'No game has been created!';
     res.writeHead(400, message, { 'content-type': 'text/plain' });
-    res.end(message);
+    res.end();
     return false;
   }
   return next();
@@ -103,8 +103,8 @@ const checkTeam = (req, res, next) => {
   }
 
   if (error) {
-    res.writeHead(400, 'Bad Request', { 'content-type': 'text/plain' });
-    res.end(error);
+    res.writeHead(400, error, { 'content-type': 'application/json' });
+    res.end();
     return false;
   }
 
@@ -123,8 +123,8 @@ const checkPoints = (req, res, next) => {
   }
 
   if (error) {
-    res.writeHead(400, 'Bad Request', { 'content-type': 'text/plain' });
-    res.end(error);
+    res.writeHead(400, error, { 'content-type': 'application/json' });
+    res.end();
     return false;
   }
 
