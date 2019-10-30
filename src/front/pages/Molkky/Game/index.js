@@ -3,30 +3,26 @@ import { Route, Switch } from 'react-router-dom';
 import CatSVG from '@root/front/svg/cat.svg';
 import { DataContextProvider } from '@root/front/contexts/DataContext';
 import DogSVG from '@root/front/svg/dog.svg';
+import LoadingBar from '@components/LoadingBar';
 import Menu from '@components/Menu';
 import { PlayContextProvider } from '@root/front/contexts/PlayContext';
 import PlayScreen from '@pages/Molkky/Game/PlayScreen';
 import PropTypes from 'prop-types';
 import StartScreen from '@pages/Molkky/Game/StartScreen';
 import { getRandomPositionData } from '@utils';
-
+import style from './style';
 
 const Game = ({ title }) => {
   const [positionData, setPositionData] = useState([]);
   const [refreshDataTimer, setRefreshDataTimer] = useState(null);
   const [serverIsRunning, setServerIsRunning] = useState(false);
   const [teams, setTeams] = useState({
-    cat: {
-      name: 'Team Cat',
-      icon: CatSVG,
-    },
-    dog: {
-      name: 'Team Dog',
-      icon: DogSVG,
-    },
+    cat: { name: 'Team Cat', icon: CatSVG },
+    dog: { name: 'Team Dog', icon: DogSVG },
   });
   const [scores, setScores] = useState(null);
   const [currentTurn, setCurrentTurn] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const createFakeServer = (scale = 100, noNull = false) => {
     console.log('Game: createFakeServer ', serverIsRunning);
@@ -53,7 +49,7 @@ const Game = ({ title }) => {
   return (
     <div>
       <DataContextProvider value={{
-        positionData, createFakeServer, destroyFakeServer, serverIsRunning,
+        positionData, createFakeServer, destroyFakeServer, serverIsRunning, setIsLoading, isLoading,
       }}
       >
         <PlayContextProvider value={{
@@ -61,6 +57,12 @@ const Game = ({ title }) => {
         }}
         >
           <Menu title={title} />
+          {isLoading && (
+          <LoadingBar
+            style={style.loadingBar}
+            progressBarStyle={style.loadingBarProgress}
+          />
+          )}
           <Switch>
             <Route
               exact

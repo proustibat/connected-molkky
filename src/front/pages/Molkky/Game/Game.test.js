@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router-dom';
 import Game from './index';
+import LoadingBar from '@components/LoadingBar';
 import Menu from '@components/Menu';
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -16,5 +17,6 @@ describe('Game', () => {
     expect(component.find(Menu).props().title).toBe(title);
     expect(component.find(Switch)).toHaveLength(1);
     expect(component.find(Route)).toHaveLength(2);
+    expect(component.find(LoadingBar)).toHaveLength(0);
   });
 });

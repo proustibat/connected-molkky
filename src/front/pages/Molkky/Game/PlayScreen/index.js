@@ -6,7 +6,9 @@ import { useDataContext } from '@contexts/DataContext';
 import { usePlayContext } from '@contexts/PlayContext';
 
 const PlayScreen = () => {
-  const { destroyFakeServer, createFakeServer } = useDataContext();
+  const {
+    destroyFakeServer, createFakeServer, isLoading, setIsLoading,
+  } = useDataContext();
   const { currentTurn, setCurrentTurn, setScores } = usePlayContext();
 
   useEffect(() => {
@@ -24,11 +26,15 @@ const PlayScreen = () => {
     destroyFakeServer();
   };
   const onMissTargetClick = async () => {
+    setIsLoading(true);
     const result = await missTarget(currentTurn.isPlaying);
+    setIsLoading(false);
     result && updatePlayContext(result);
   };
   const onValidPoints = (points) => async () => {
+    setIsLoading(true);
     const result = await scorePoints({ team: currentTurn.isPlaying, points });
+    setIsLoading(false);
     result && updatePlayContext(result);
   };
 
@@ -38,6 +44,7 @@ const PlayScreen = () => {
         onValid={onValidPoints}
         onMiss={onMissTargetClick}
         onEdit={onEditClick}
+        disabled={isLoading}
       />
       <div className="divider" />
       <ScoresOverview />

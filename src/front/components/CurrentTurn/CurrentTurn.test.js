@@ -146,4 +146,15 @@ describe('CurrentTurn', () => {
     expect(onValidCompose).toHaveBeenCalledTimes(1);
     expect(givenProps.onValid).toHaveBeenLastCalledWith(6);
   });
+
+  it('should disable buttons', () => {
+    // Given / When
+    const component = mount(<CurrentTurn {...givenProps} disabled />);
+
+    // Then
+    expect(component
+      .find(Button)
+      .map((btn) => btn.props().className)
+      .every((className) => className.split(' ').includes('disabled'))).toBeTruthy();
+  });
 });
