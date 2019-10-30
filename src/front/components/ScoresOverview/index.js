@@ -17,7 +17,7 @@ const ScoresOverview = () => {
             <ScoreTeamOverview
               key={id}
               team={teams[id]}
-              score={get(scores, `${id}.total`, 0)}
+              score={get(scores, `${id}.score`, 0)}
               left={get(scores, `${id}.left`, 0)}
               wining={currentTurn.wining === id}
               isPlaying={currentTurn.isPlaying === id}

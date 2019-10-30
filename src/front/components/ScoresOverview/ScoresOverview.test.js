@@ -12,7 +12,7 @@ describe('ScoresOverview', () => {
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
       teams: { cat: { name: 'cat team', icon: CatSVG }, dog: { name: 'dog team', icon: DogSVG } },
       currentTurn: { isPlaying: 'dog' },
-      scores: { cat: { total: 50, left: 0 }, dog: { total: 50, left: 0 } },
+      scores: { cat: { score: 50, left: 0 }, dog: { score: 50, left: 0 } },
     });
   });
 

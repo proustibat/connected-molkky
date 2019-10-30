@@ -1,6 +1,6 @@
 import * as DataContextModule from '@contexts/DataContext';
 import * as PlayContextModule from '@contexts/PlayContext';
-import * as Services from '@utils/services';
+import * as Services from '@utils';
 import Button from '@components/Button';
 import CatSVG from '@root/front/svg/cat.svg';
 import CurrentTurn from './index';
@@ -10,16 +10,14 @@ import SkittlesDisplay from '@components/SkittlesDisplay';
 import constants from '@utils/constants';
 import { mount } from 'enzyme';
 
-const givenProps = {};
-
 describe('CurrentTurn', () => {
   let usePlayContextSpy;
   let useDataContextSpy;
   let calculatePointsSpy;
-  let consoleSpy;
+  let givenProps;
+  let onValidCompose;
 
   beforeAll(() => {
-    consoleSpy = jest.spyOn(window.console, 'log');
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
       teams: {
         cat: { name: 'cat team', icon: CatSVG },
@@ -29,6 +27,7 @@ describe('CurrentTurn', () => {
         isPlaying: 'dog',
       },
     });
+
     useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({
       positionData: [
         { value: 1, position: constants.POSITION.UPRIGHT },
@@ -48,7 +47,15 @@ describe('CurrentTurn', () => {
       createFakeServer: () => {},
       destroyFakeServer: () => {},
     });
+
     calculatePointsSpy = jest.spyOn(Services, 'calculatePoints').mockReturnValue(6);
+
+    onValidCompose = jest.fn();
+    givenProps = {
+      onValid: jest.fn().mockReturnValue(onValidCompose),
+      onMiss: jest.fn(),
+      onEdit: jest.fn(),
+    };
   });
 
   beforeEach(() => {
@@ -58,14 +65,20 @@ describe('CurrentTurn', () => {
     usePlayContextSpy.mockClear();
     useDataContextSpy.mockClear();
     calculatePointsSpy.mockClear();
-    consoleSpy.mockClear();
+    onValidCompose.mockClear();
+    givenProps.onValid.mockClear();
+    givenProps.onMiss.mockClear();
+    givenProps.onEdit.mockClear();
   });
 
   afterAll(() => {
     usePlayContextSpy.mockRestore();
     useDataContextSpy.mockRestore();
     calculatePointsSpy.mockRestore();
-    consoleSpy.mockRestore();
+    onValidCompose.mockRestore();
+    givenProps.onValid.mockRestore();
+    givenProps.onMiss.mockRestore();
+    givenProps.onEdit.mockRestore();
   });
 
   it('should render the component correctly', () => {
@@ -82,10 +95,13 @@ describe('CurrentTurn', () => {
     expect(component.find(Button)).toHaveLength(3);
     expect(component.find(Button).at(0).find('i')).toHaveLength(1);
     expect(component.find(Button).at(0).find('i').text()).toBe('edit');
+    expect(component.find(Button).at(0).props().onClick).toBe(givenProps.onEdit);
     expect(component.find(Button).at(1).find('i')).toHaveLength(1);
     expect(component.find(Button).at(1).find('i').text()).toBe('highlight_off');
+    expect(component.find(Button).at(1).props().onClick).toBe(givenProps.onMiss);
     expect(component.find(Button).at(2).find('i')).toHaveLength(1);
     expect(component.find(Button).at(2).find('i').text()).toBe('done');
+    expect(component.find(Button).at(2).props().onClick).toBe(onValidCompose);
   });
 
   it('should request calculate points on mount', () => {
@@ -105,8 +121,7 @@ describe('CurrentTurn', () => {
     component.find(Button).at(0).find('i').simulate('click');
 
     // Then
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
-    expect(consoleSpy).toHaveBeenLastCalledWith('onEditClick');
+    expect(givenProps.onEdit).toHaveBeenCalledTimes(1);
   });
 
   it('should handle click on miss target button', () => {
@@ -117,8 +132,7 @@ describe('CurrentTurn', () => {
     component.find(Button).at(1).find('i').simulate('click');
 
     // Then
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
-    expect(consoleSpy).toHaveBeenLastCalledWith('onMissTargetClick');
+    expect(givenProps.onMiss).toHaveBeenCalledTimes(1);
   });
 
   it('should handle click on valid score button', () => {
@@ -129,7 +143,7 @@ describe('CurrentTurn', () => {
     component.find(Button).at(2).find('i').simulate('click');
 
     // Then
-    expect(consoleSpy).toHaveBeenCalledTimes(1);
-    expect(consoleSpy).toHaveBeenLastCalledWith('onValidScoreClick');
+    expect(onValidCompose).toHaveBeenCalledTimes(1);
+    expect(givenProps.onValid).toHaveBeenLastCalledWith(6);
   });
 });

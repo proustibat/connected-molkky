@@ -1,4 +1,4 @@
-import { calculatePoints, getRandomPosition, getRandomPositionData } from './services';
+import { calculatePoints, getRandomPosition, getRandomPositionData } from './index';
 import constants from '@utils/constants';
 import hasIn from 'lodash/hasIn';
 

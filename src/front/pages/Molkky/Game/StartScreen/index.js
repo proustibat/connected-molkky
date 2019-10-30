@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '@components/Button';
 import PositionChecker from '@components/PositionChecker';
 import TeamButton from '@components/TeamButton';
-import get from 'lodash/get';
+import { startGame } from '@root/front/services/api';
 import { useDataContext } from '@contexts/DataContext';
 import { useHistory } from 'react-router-dom';
 import { usePlayContext } from '@contexts/PlayContext';
@@ -16,27 +16,13 @@ const StartScreen = () => {
   const [startReady, setStartReady] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(Object.entries(teams)[0][0]);
 
-  const toastError = (error) => {
-    get(window, 'M.toast', () => {})({ html: error, classes: 'red darken-4' });
-  };
-
-  const createGame = async () => fetch('/api/molkky/start', {
-    method: 'post',
-    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ teams: Object.keys(teams), playingTeam: selectedTeam }),
-  })
-    .then((response) => (response.status === 200
-      ? response.json()
-      : Promise.reject(response.statusText)))
-    .catch(toastError);
-
   const onTeamSelect = (team) => {
     setSelectedTeam(team);
   };
 
   const onStartClick = async () => {
     destroyFakeServer();
-    const result = await createGame();
+    const result = await startGame({ teams: Object.keys(teams), playingTeam: selectedTeam });
     if (result) {
       const { scores, currentTurn } = result;
       setCurrentTurn(currentTurn);

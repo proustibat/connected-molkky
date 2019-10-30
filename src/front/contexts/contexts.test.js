@@ -28,7 +28,7 @@ describe('Contexts', () => {
   });
 
   // When
-  it('should export a context on for each use hooks', () => {
+  it('should export a context for each use hooks', () => {
     // When
     mount(<TestComponent onContext={onContextSpy} useContextFunc={useDataContext} />);
     mount(<TestComponent onContext={onContextSpy} useContextFunc={usePlayContext} />);

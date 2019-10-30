@@ -8,7 +8,7 @@ import { PlayContextProvider } from '@root/front/contexts/PlayContext';
 import PlayScreen from '@pages/Molkky/Game/PlayScreen';
 import PropTypes from 'prop-types';
 import StartScreen from '@pages/Molkky/Game/StartScreen';
-import { getRandomPositionData } from '@utils/services';
+import { getRandomPositionData } from '@utils';
 
 
 const Game = ({ title }) => {

@@ -51,3 +51,39 @@ export const serverResultAfterStart = {
     remain: 3,
   },
 };
+
+export const serverResultAfterScore = {
+  scores: {
+    cat: {
+      score: 0,
+      left: 50,
+    },
+    dog: {
+      score: 2,
+      left: 48,
+    },
+  },
+  currentTurn: {
+    isPlaying: 'dog',
+    remain: 3,
+    wining: 'dog',
+  },
+};
+
+export const serverResultAfterMiss = {
+  scores: {
+    cat: {
+      score: 0,
+      left: 50,
+    },
+    dog: {
+      score: 2,
+      left: 48,
+    },
+  },
+  currentTurn: {
+    isPlaying: 'cat',
+    remain: 2,
+    wining: 'dog',
+  },
+};

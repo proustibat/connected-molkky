@@ -1,6 +1,7 @@
 import * as DataContextModule from '@contexts/DataContext';
 import * as PlayContextModule from '@contexts/PlayContext';
-import * as services from '@utils/services';
+import * as api from '@root/front/services/api';
+import * as services from '@utils';
 import Button from '@components/Button';
 import CatSVG from '@root/front/svg/cat.svg';
 import DogSVG from '@root/front/svg/dog.svg';
@@ -21,6 +22,7 @@ const givenProps = {
 describe('StartScreen', () => {
   let usePlayContextSpy;
   let useDataContextSpy;
+  let startGameSpy;
   let toastSpy;
 
   beforeAll(() => {
@@ -33,11 +35,6 @@ describe('StartScreen', () => {
       destroyFakeServer: jest.fn(),
     });
 
-    toastSpy = jest.fn();
-    global.M = { toast: toastSpy };
-  });
-
-  beforeEach(() => {
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
       teams: {
         cat: { name: 'cat team', icon: CatSVG },
@@ -46,6 +43,11 @@ describe('StartScreen', () => {
       setCurrentTurn: jest.fn(),
       setScores: jest.fn(),
     });
+
+    startGameSpy = jest.spyOn(api, 'startGame').mockReturnValue(serverResultAfterStart);
+
+    toastSpy = jest.fn();
+    global.M = { toast: toastSpy };
   });
 
   afterEach(() => {
@@ -54,6 +56,7 @@ describe('StartScreen', () => {
     usePlayContextSpy().setScores.mockClear();
     usePlayContextSpy.mockClear();
     useDataContextSpy.mockClear();
+    startGameSpy.mockClear();
     services.getRandomPositionData.mockClear();
     global.fetch && global.fetch.mockClear();
     global.M && global.M.toast.mockClear();
@@ -65,6 +68,7 @@ describe('StartScreen', () => {
     usePlayContextSpy().setScores.mockRestore();
     usePlayContextSpy.mockRestore();
     useDataContextSpy.mockRestore();
+    startGameSpy.mockRestore();
     services.getRandomPositionData.mockRestore();
     jest.restoreAllMocks();
     jest.resetModules();
@@ -117,11 +121,6 @@ describe('StartScreen', () => {
 
   it('should handle click on start button', (done) => {
     // Given
-    global.fetch = jest.fn()
-      .mockImplementation(() => Promise.resolve({
-        status: 200,
-        json: () => (serverResultAfterStart),
-      }));
     const component = shallow(<StartScreen {...givenProps} />);
 
     // When
@@ -131,51 +130,13 @@ describe('StartScreen', () => {
     // Then
     setImmediate(() => {
       expect(useDataContextSpy().destroyFakeServer).toHaveBeenCalledTimes(1);
+      expect(startGameSpy).toHaveBeenCalledTimes(1);
+      expect(startGameSpy).toHaveBeenLastCalledWith({ teams: ['cat', 'dog'], playingTeam: 'cat' });
       expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
-      expect(usePlayContextSpy().setScores).toHaveBeenCalledTimes(1);
       expect(usePlayContextSpy().setCurrentTurn)
         .toHaveBeenLastCalledWith(serverResultAfterStart.currentTurn);
+      expect(usePlayContextSpy().setScores).toHaveBeenCalledTimes(1);
       expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith(serverResultAfterStart.scores);
-      done();
-    });
-  });
-
-  it('should handle fetch error when creating game', (done) => {
-    // Given
-    const error = 'mocked error test';
-    global.fetch = jest.fn().mockRejectedValue(error);
-    const component = shallow(<StartScreen {...givenProps} />);
-
-    // When
-    component.find(PositionChecker).props().onReadyChange(true);
-    component.find(Button).simulate('click');
-
-    // Then
-    setImmediate(() => {
-      expect(toastSpy).toHaveBeenCalledTimes(1);
-      expect(toastSpy).toHaveBeenLastCalledWith({ html: error, classes: 'red darken-4' });
-      done();
-    });
-  });
-
-  it('should handle error 400 when creating game', (done) => {
-    // Given
-    const error = 'mocked error test';
-    global.fetch = jest.fn()
-      .mockImplementation(() => Promise.resolve({
-        status: 400,
-        statusText: error,
-      }));
-    const component = shallow(<StartScreen {...givenProps} />);
-
-    // When
-    component.find(PositionChecker).props().onReadyChange(true);
-    component.find(Button).simulate('click');
-
-    // Then
-    setImmediate(() => {
-      expect(toastSpy).toHaveBeenCalledTimes(1);
-      expect(toastSpy).toHaveBeenLastCalledWith({ html: error, classes: 'red darken-4' });
       done();
     });
   });
