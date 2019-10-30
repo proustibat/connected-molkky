@@ -31,24 +31,12 @@ describe('ScoreTeamOverview', () => {
     expect(component.find('.card-stacked')).toHaveLength(1);
     expect(component.find('.card-title')).toHaveLength(1);
     expect(component.find('.card-title span').text()).toBe(givenProps.team.name);
-    expect(component.find('.card-title i')).toHaveLength(1);
-    expect(component.find('.card-title i').at(0).props().className).toContain('scale-out');
     expect(component.find('.card-content')).toHaveLength(1);
     expect(component.find('.card-content strong')).toHaveLength(1);
     expect(component.find('.card-content strong').first().text()).toBe(givenProps.left.toString());
     expect(component.find('.card p')).toHaveLength(2);
     expect(component.find('.card p').at(1).text(1)).toBe(givenProps.score.toString());
     expect(component.find('.card p').at(1).props().className).toContain('scale-in');
-  });
-
-  it('should display the wining prop', () => {
-    // Given / When
-    const component = shallow(<ScoreTeamOverview {...givenProps} wining />);
-
-    // Then
-    expect(component.find('.card-title i')).toHaveLength(1);
-    expect(component.find('.card-title i').text()).toBe('grade');
-    expect(component.find('.card-title i').props().className).toContain('scale-in');
   });
 
   it('should animate the score', async () => {
@@ -72,7 +60,7 @@ describe('ScoreTeamOverview', () => {
 
     // Then
     expect(component).toHaveLength(1);
-    expect(component.props().className).toContain('z-depth-4');
+    expect(component.props().className).toContain('z-depth-1');
     expect(component.props().style).toMatchObject(style.containerHighlighted);
   });
 });

@@ -6,7 +6,7 @@ const TeamButton = ({
   icon: IconSVG, style: customStyle, name, onClick, selected, value,
 }) => (
   <button
-    className={`z-depth-${selected ? 4 : 1} disableFocus`}
+    className={`z-depth-${selected ? 2 : 1} disableFocus`}
     type="button"
     style={{
       ...style.container,

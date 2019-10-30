@@ -41,7 +41,7 @@ describe('TeamButton', () => {
     component.setProps({ selected: true });
 
     // Then
-    expect(component.find('button').props().className).toContain('z-depth-4');
+    expect(component.find('button').props().className).toContain('z-depth-2');
     expect(styleUnselected).not.toMatchObject(component.find('button').props().style);
   });
 

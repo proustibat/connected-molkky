@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import style from './style';
 
 const ScoreTeamOverview = ({
-  score, left, wining, team: { icon: IconSVG, name }, isPlaying,
+  score, left, team: { icon: IconSVG, name }, isPlaying,
 }) => {
   const [scaleClassName, setScaleClassName] = useState('scale-in');
   const [scoreToDisplay, setScoreToDisplay] = useState(score);
@@ -17,14 +17,13 @@ const ScoreTeamOverview = ({
   }, [score]);
 
   return (
-    <div className={`card horizontal ${isPlaying && 'z-depth-4'}`} style={{ ...style.container, ...(isPlaying && style.containerHighlighted) }}>
+    <div className={`card horizontal ${isPlaying && 'z-depth-1'}`} style={{ ...style.container, ...(isPlaying && style.containerHighlighted) }}>
       <div className="card-image valign-wrapper" style={style.cardImage}>
         <IconSVG style={style.icon} />
       </div>
       <div className="card-stacked" style={style.cardStacked}>
         <span className="card-title" style={style.cardTitle}>
           <span style={style.cardTitleName}>{name}</span>
-          <i style={style.cardTitleWinIcon} className={`material-icons scale-transition ${wining ? 'scale-in' : 'scale-out'}`}>grade</i>
         </span>
         <div className="card-content" style={style.cardContent}>
           <p style={style.cardContentText}>
@@ -43,7 +42,6 @@ Left:&nbsp;
 };
 
 ScoreTeamOverview.propTypes = {
-  wining: PropTypes.bool,
   isPlaying: PropTypes.bool,
   score: PropTypes.number.isRequired,
   left: PropTypes.number.isRequired,
@@ -54,7 +52,6 @@ ScoreTeamOverview.propTypes = {
 };
 
 ScoreTeamOverview.defaultProps = {
-  wining: false,
   isPlaying: false,
 };
 

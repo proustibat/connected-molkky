@@ -34,13 +34,13 @@ const PlayScreen = () => {
 
   return (
     <div>
-      <ScoresOverview />
-      <div className="divider" />
       <CurrentTurn
         onValid={onValidPoints}
         onMiss={onMissTargetClick}
         onEdit={onEditClick}
       />
+      <div className="divider" />
+      <ScoresOverview />
     </div>
   );
 };

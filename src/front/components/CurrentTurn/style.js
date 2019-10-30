@@ -1,7 +1,7 @@
 export default {
   container: { marginTop: '1rem' },
   title: { display: 'flex' },
-  titleIconContainer: { fontSize: '1.4rem', display: 'flex', alignItems: 'center' },
+  titleIconContainer: { fontSize: '1.5rem', display: 'flex', alignItems: 'center' },
   titleIcon: {
     width: '2rem',
     marginRight: '0.6rem',
@@ -9,8 +9,6 @@ export default {
   },
   content: { marginTop: '2rem' },
   editBtn: {
-    width: '3rem',
-    height: '3rem',
     margin: 'auto',
     padding: '0',
     display: 'flex',
@@ -21,14 +19,14 @@ export default {
     fontSize: '1.5rem',
     display: 'inline-block',
   },
-  pointsContainer: { textAlign: 'center', fontSize: '6rem' },
+  pointsContainer: { textAlign: 'center', fontSize: '4rem' },
   points: {
-    width: '120px',
+    width: '100px',
     padding: '1rem',
-    height: '120px',
+    height: '100px',
     display: 'inline-block',
-    lineHeight: '6rem',
+    lineHeight: '5rem',
   },
-  pointsBtn: { width: '5rem', height: '5rem', margin: 'auto' },
+  pointsBtn: { margin: 'auto' },
   pointsBtnIcon: { fontSize: '3rem' },
 };

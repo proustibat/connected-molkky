@@ -110,7 +110,7 @@ describe('CurrentTurn', () => {
 
     // Then
     expect(calculatePointsSpy).toHaveBeenCalledTimes(1);
-    expect(component.find('.row .s6 .s12 span').text()).toBe('6');
+    expect(component.find('#points').text()).toBe('6');
   });
 
   it('should handle click on edit', () => {

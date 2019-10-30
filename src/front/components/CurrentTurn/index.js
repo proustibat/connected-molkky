@@ -38,30 +38,30 @@ const CurrentTurn = ({ onValid, onMiss, onEdit }) => {
           </span>
         </h1>
         <div className="row" style={style.content}>
-          <div className="col s6">
+          <div className="col s7">
             <SkittlesDisplay />
-            <Button className="grey lighten-1" onClick={onEdit} style={style.editBtn}>
+          </div>
+          <div className="col s5">
+            <div className="col s12" style={style.pointsContainer}>
+              <span id="points" className="z-depth-1" style={style.points}>{points}</span>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col s4">
+            <Button className="btn btn-floating grey lighten-1" onClick={onEdit} style={style.editBtn}>
               <i className="material-icons center valign-wrapper" style={style.editIcon}>edit</i>
             </Button>
           </div>
-          <div className="col s6">
-            <div className="row">
-              <div className="col s12" style={style.pointsContainer}>
-                <span className="z-depth-1" style={style.points}>{points}</span>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col s6">
-                <Button className="red" onClick={onMiss} style={style.pointsBtn}>
-                  <i className="material-icons center valign-wrapper" style={style.pointsBtnIcon}>highlight_off</i>
-                </Button>
-              </div>
-              <div className="col s6">
-                <Button className="green" onClick={onValid(points)} style={style.pointsBtn}>
-                  <i className="material-icons center valign-wrapper" style={style.pointsBtnIcon}>done</i>
-                </Button>
-              </div>
-            </div>
+          <div className="col s4">
+            <Button className="btn btn-floating red" onClick={onMiss} style={style.pointsBtn}>
+              <i className="material-icons center valign-wrapper" style={style.pointsBtnIcon}>highlight_off</i>
+            </Button>
+          </div>
+          <div className="col s4">
+            <Button className="btn btn-floating green" onClick={onValid(points)} style={style.pointsBtn}>
+              <i className="material-icons center valign-wrapper" style={style.pointsBtnIcon}>done</i>
+            </Button>
           </div>
         </div>
       </div>
