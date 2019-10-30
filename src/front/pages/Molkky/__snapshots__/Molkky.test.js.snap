@@ -16,46 +16,84 @@ exports[`Molkky should use data from UPDATE socket event 1`] = `
       >
         <thead>
           <tr>
-            <th>
+            <th
+              style="width: 25%;"
+            >
               Mac
             </th>
-            <th>
+            <th
+              style="width: 25%;"
+            >
+              Value
+            </th>
+            <th
+              style="width: 25%;"
+            >
               Position
             </th>
-            <th>
+            <th
+              style="width: 25%;"
+            >
               Battery
             </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
+            <td
+              style="width: 25%;"
+            >
               123qwe123
             </td>
-            <td>
+            <td
+              style="width: 25%;"
+            />
+            <td
+              style="width: 25%;"
+            >
               UPRIGHT
             </td>
-            <td>
+            <td
+              style="width: 25%;"
+            >
               99
             </td>
           </tr>
           <tr>
-            <td>
+            <td
+              style="width: 25%;"
+            >
               456rty789
             </td>
-            <td>
+            <td
+              style="width: 25%;"
+            />
+            <td
+              style="width: 25%;"
+            >
               KNOCKED_OVER
             </td>
-            <td>
+            <td
+              style="width: 25%;"
+            >
               43
             </td>
           </tr>
           <tr>
-            <td>
+            <td
+              style="width: 25%;"
+            >
               102ajd647
             </td>
-            <td />
-            <td>
+            <td
+              style="width: 25%;"
+            />
+            <td
+              style="width: 25%;"
+            />
+            <td
+              style="width: 25%;"
+            >
               11
             </td>
           </tr>

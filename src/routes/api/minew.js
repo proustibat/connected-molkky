@@ -1,4 +1,4 @@
-import { SKITTLES } from '@routes/api/constants';
+import { POSITION_LEVEL, SKITTLES } from '@routes/api/constants';
 import advlib from 'advlib';
 import debugRenderer from 'debug';
 import express from 'express';
@@ -42,9 +42,10 @@ router.post('/', async (req, res) => {
           ...lastState[mac],
           ...(battery && { battery }),
           ...(z && {
-            position: z >= 0.9 ? 'UPRIGHT' : 'KNOCKED_OVER',
+            position: z >= POSITION_LEVEL ? 'UPRIGHT' : 'KNOCKED_OVER',
             z,
           }),
+          value: SKITTLES[mac],
         };
       });
       const io = req.app.get('socketio');

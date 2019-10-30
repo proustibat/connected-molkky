@@ -43,9 +43,6 @@ describe('CurrentTurn', () => {
         { value: 11, position: constants.POSITION.UPRIGHT },
         { value: 12, position: constants.POSITION.UPRIGHT },
       ],
-      serverIsRunning: false,
-      createFakeServer: () => {},
-      destroyFakeServer: () => {},
     });
 
     calculatePointsSpy = jest.spyOn(Services, 'calculatePoints').mockReturnValue(6);

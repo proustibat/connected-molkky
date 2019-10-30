@@ -3,14 +3,12 @@ import Button from '@components/Button';
 import PositionChecker from '@components/PositionChecker';
 import TeamButton from '@components/TeamButton';
 import { startGame } from '@root/front/services/api';
-import { useDataContext } from '@contexts/DataContext';
 import { useHistory } from 'react-router-dom';
 import { usePlayContext } from '@contexts/PlayContext';
 
 const StartScreen = () => {
   const history = useHistory();
 
-  const { destroyFakeServer } = useDataContext();
   const { teams, setCurrentTurn, setScores } = usePlayContext();
 
   const [startReady, setStartReady] = useState(false);
@@ -21,7 +19,6 @@ const StartScreen = () => {
   };
 
   const onStartClick = async () => {
-    destroyFakeServer();
     const result = await startGame({ teams: Object.keys(teams), playingTeam: selectedTeam });
     if (result) {
       const { scores, currentTurn } = result;

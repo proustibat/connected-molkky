@@ -9,13 +9,11 @@ import { PlayContextProvider } from '@root/front/contexts/PlayContext';
 import PlayScreen from '@pages/Molkky/Game/PlayScreen';
 import PropTypes from 'prop-types';
 import StartScreen from '@pages/Molkky/Game/StartScreen';
-import { getRandomPositionData } from '@utils';
+import socketIOClient from 'socket.io-client';
 import style from './style';
 
 const Game = ({ title }) => {
   const [positionData, setPositionData] = useState([]);
-  const [refreshDataTimer, setRefreshDataTimer] = useState(null);
-  const [serverIsRunning, setServerIsRunning] = useState(false);
   const [teams, setTeams] = useState({
     cat: { name: 'Team Cat', icon: CatSVG },
     dog: { name: 'Team Dog', icon: DogSVG },
@@ -24,34 +22,17 @@ const Game = ({ title }) => {
   const [currentTurn, setCurrentTurn] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const createFakeServer = (scale = 100, noNull = false) => {
-    console.log('Game: createFakeServer ', serverIsRunning);
-    // Get random data for skittles
-    const timer = setInterval(() => {
-      console.log('refresh fake data');
-      setPositionData(getRandomPositionData(scale, noNull));
-    }, 3000);
-    setServerIsRunning(true);
-    setRefreshDataTimer(timer);
-  };
-
-  const destroyFakeServer = () => {
-    console.log('Game: destroyFakeServer ', serverIsRunning);
-    clearInterval(refreshDataTimer);
-    setRefreshDataTimer(null);
-    setServerIsRunning(false);
-  };
-
   useEffect(() => {
-    createFakeServer();
+    const socket = socketIOClient('localhost:8888');
+    socket.on('UPDATE', (data) => {
+      setPositionData(Object.entries(data)
+        .map(([, { position = null, value }]) => ({ position, value })));
+    });
   }, []);
 
   return (
     <div>
-      <DataContextProvider value={{
-        positionData, createFakeServer, destroyFakeServer, serverIsRunning, setIsLoading, isLoading,
-      }}
-      >
+      <DataContextProvider value={{ positionData, setIsLoading, isLoading }}>
         <PlayContextProvider value={{
           teams, scores, currentTurn, setTeams, setScores, setCurrentTurn,
         }}

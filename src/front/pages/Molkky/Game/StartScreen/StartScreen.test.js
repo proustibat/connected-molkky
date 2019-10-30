@@ -1,4 +1,3 @@
-import * as DataContextModule from '@contexts/DataContext';
 import * as PlayContextModule from '@contexts/PlayContext';
 import * as api from '@root/front/services/api';
 import * as services from '@utils';
@@ -21,7 +20,6 @@ const givenProps = {
 
 describe('StartScreen', () => {
   let usePlayContextSpy;
-  let useDataContextSpy;
   let startGameSpy;
   let toastSpy;
 
@@ -30,10 +28,6 @@ describe('StartScreen', () => {
       value: i + 1,
       position: constants.POSITION.UPRIGHT,
     })));
-
-    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({
-      destroyFakeServer: jest.fn(),
-    });
 
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
       teams: {
@@ -51,11 +45,9 @@ describe('StartScreen', () => {
   });
 
   afterEach(() => {
-    useDataContextSpy().destroyFakeServer.mockClear();
     usePlayContextSpy().setCurrentTurn.mockClear();
     usePlayContextSpy().setScores.mockClear();
     usePlayContextSpy.mockClear();
-    useDataContextSpy.mockClear();
     startGameSpy.mockClear();
     services.getRandomPositionData.mockClear();
     global.fetch && global.fetch.mockClear();
@@ -63,11 +55,9 @@ describe('StartScreen', () => {
   });
 
   afterAll(() => {
-    useDataContextSpy().destroyFakeServer.mockRestore();
     usePlayContextSpy().setCurrentTurn.mockRestore();
     usePlayContextSpy().setScores.mockRestore();
     usePlayContextSpy.mockRestore();
-    useDataContextSpy.mockRestore();
     startGameSpy.mockRestore();
     services.getRandomPositionData.mockRestore();
     jest.restoreAllMocks();
@@ -129,7 +119,6 @@ describe('StartScreen', () => {
 
     // Then
     setImmediate(() => {
-      expect(useDataContextSpy().destroyFakeServer).toHaveBeenCalledTimes(1);
       expect(startGameSpy).toHaveBeenCalledTimes(1);
       expect(startGameSpy).toHaveBeenLastCalledWith({ teams: ['cat', 'dog'], playingTeam: 'cat' });
       expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);

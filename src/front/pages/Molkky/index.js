@@ -4,6 +4,7 @@ import socketIOClient from 'socket.io-client';
 
 const Molkky = ({ title }) => {
   const [skittlesState, setSkittlesState] = useState({});
+  const colStyle = { width: '25%' };
 
   useEffect(() => {
     const socket = socketIOClient('localhost:8888');
@@ -16,21 +17,32 @@ const Molkky = ({ title }) => {
     <table className="striped">
       <thead>
         <tr>
-          <th>Mac</th>
-          <th>Position</th>
-          <th>Battery</th>
+          <th style={colStyle}>Mac</th>
+          <th style={colStyle}>Value</th>
+          <th style={colStyle}>Position</th>
+          <th style={colStyle}>Battery</th>
         </tr>
       </thead>
 
       <tbody>
         {
-          Object.entries(skittlesState).map(([mac, { position, battery }]) => (
-            <tr key={mac}>
-              <td>{mac}</td>
-              <td>{position}</td>
-              <td>{battery}</td>
-            </tr>
-          ))
+          Object.entries(skittlesState)
+            .sort(([, { value: valA }], [, { value: valB }]) => {
+              let comparison = 0;
+              if (valA > valB) {
+                comparison = 1;
+              } else if (valA < valB) {
+                comparison = -1;
+              }
+              return comparison;
+            }).map(([mac, { position, battery, value }]) => (
+              <tr key={mac}>
+                <td style={colStyle}>{mac}</td>
+                <td style={colStyle}>{value}</td>
+                <td style={colStyle}>{position}</td>
+                <td style={colStyle}>{battery}</td>
+              </tr>
+            ))
         }
       </tbody>
     </table>

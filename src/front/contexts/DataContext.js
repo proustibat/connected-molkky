@@ -2,9 +2,6 @@ import React from 'react';
 
 export const DataContext = React.createContext({
   positionData: [],
-  serverIsRunning: false,
-  createFakeServer: () => {},
-  destroyFakeServer: () => {},
 });
 export const useDataContext = () => React.useContext(DataContext);
 export const DataContextProvider = DataContext.Provider;

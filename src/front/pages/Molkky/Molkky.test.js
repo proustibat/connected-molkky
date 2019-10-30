@@ -34,7 +34,7 @@ describe('Molkky', () => {
     expect(component.find('table')).toHaveLength(1);
     expect(component.find('thead')).toHaveLength(1);
     expect(component.find('tr')).toHaveLength(1);
-    expect(component.find('th')).toHaveLength(3);
+    expect(component.find('th')).toHaveLength(4);
   });
 
   it('should connect to the socket and listen UPDATE event', () => {
