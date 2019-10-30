@@ -1,6 +1,8 @@
+import { cleanup, render } from '@testing-library/react';
 import CatSVG from '@root/front/svg/cat.svg';
 import React from 'react';
 import ScoreTeamOverview from './index';
+import { act } from 'react-dom/test-utils';
 import { shallow } from 'enzyme';
 import style from './style';
 
@@ -28,12 +30,15 @@ describe('ScoreTeamOverview', () => {
     expect(component.find('.card-image').find(CatSVG)).toHaveLength(1);
     expect(component.find('.card-stacked')).toHaveLength(1);
     expect(component.find('.card-title')).toHaveLength(1);
-    expect(component.find('.card-title').text()).toBe(givenProps.team.name);
-    expect(component.find('.card-title i')).toHaveLength(0);
+    expect(component.find('.card-title span').text()).toBe(givenProps.team.name);
+    expect(component.find('.card-title i')).toHaveLength(1);
+    expect(component.find('.card-title i').at(0).props().className).toContain('scale-out');
     expect(component.find('.card-content')).toHaveLength(1);
-    expect(component.find('.card-content strong')).toHaveLength(2);
-    expect(component.find('.card-content strong').at(0).text()).toBe(givenProps.score.toString());
-    expect(component.find('.card-content strong').at(1).text()).toBe(givenProps.left.toString());
+    expect(component.find('.card-content strong')).toHaveLength(1);
+    expect(component.find('.card-content strong').first().text()).toBe(givenProps.left.toString());
+    expect(component.find('.card p')).toHaveLength(2);
+    expect(component.find('.card p').at(1).text(1)).toBe(givenProps.score.toString());
+    expect(component.find('.card p').at(1).props().className).toContain('scale-in');
   });
 
   it('should display the wining prop', () => {
@@ -43,6 +48,22 @@ describe('ScoreTeamOverview', () => {
     // Then
     expect(component.find('.card-title i')).toHaveLength(1);
     expect(component.find('.card-title i').text()).toBe('grade');
+    expect(component.find('.card-title i').props().className).toContain('scale-in');
+  });
+
+  it('should animate the score', async () => {
+    // Given / When
+    jest.useFakeTimers();
+    const component = render(<ScoreTeamOverview {...givenProps} wining />);
+    act(() => {
+      jest.runOnlyPendingTimers();
+    });
+
+    // Then
+    const score = await component.findByText('45');
+    expect(score.className).toContain('scale-in');
+    jest.clearAllTimers();
+    cleanup();
   });
 
   it('should display the isPlaying state', () => {
