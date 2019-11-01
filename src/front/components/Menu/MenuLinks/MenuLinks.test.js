@@ -1,5 +1,10 @@
 import * as Api from '@root/front/services/api';
 import { cleanup, fireEvent, render } from '@testing-library/react';
+import {
+  serverResultAfterSimulateRandom,
+  serverResultAfterStartFakeServer,
+  serverResultAfterStopFakeServer,
+} from '@fixtures/molkky';
 import Button from '@components/Button';
 import MenuLinks from './index';
 import React from 'react';
@@ -12,15 +17,9 @@ describe('MenuLinks', () => {
   let simulateThrowSpy;
 
   beforeAll(() => {
-    startFakeSkittlesSpy = jest.spyOn(Api, 'startFakeSkittles').mockReturnValue({
-      mock: { skittles: true },
-    });
-
-    stopFakeSkittlesSpy = jest.spyOn(Api, 'stopFakeSkittles').mockReturnValue({
-      mock: { skittles: false },
-    });
-
-    simulateThrowSpy = jest.spyOn(Api, 'simulateThrow').mockReturnValue({});
+    startFakeSkittlesSpy = jest.spyOn(Api, 'startFakeSkittles').mockReturnValue(serverResultAfterStartFakeServer);
+    stopFakeSkittlesSpy = jest.spyOn(Api, 'stopFakeSkittles').mockReturnValue(serverResultAfterStopFakeServer);
+    simulateThrowSpy = jest.spyOn(Api, 'simulateThrow').mockReturnValue(serverResultAfterSimulateRandom);
   });
 
   afterEach(() => {

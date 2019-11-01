@@ -23,6 +23,8 @@ const CurrentTurn = ({
     setPoints(calculatePoints(knockedSkittles));
   }, [positionData]);
 
+  const onValidClick = () => onValid(points);
+
   return (
     <div className="section">
       <div className="container" style={style.container}>
@@ -61,7 +63,7 @@ const CurrentTurn = ({
             </Button>
           </div>
           <div className="col s4">
-            <Button className={`btn btn-floating green ${disabled ? 'disabled' : ''}`} onClick={onValid(points)} style={style.pointsBtn}>
+            <Button className={`btn btn-floating green ${disabled ? 'disabled' : ''}`} onClick={onValidClick} style={style.pointsBtn}>
               <i className="material-icons center valign-wrapper" style={style.pointsBtnIcon}>done</i>
             </Button>
           </div>

@@ -5,7 +5,9 @@ import constants from '@utils/constants';
 
 const { POSITION } = constants;
 
-const Skittle = ({ position, value, size }) => {
+const Skittle = ({
+  position, value, size, onClick,
+}) => {
   const initialColors = {
     textColor: '#0944ff',
     strokeColor: '#0944ff',
@@ -30,8 +32,17 @@ const Skittle = ({ position, value, size }) => {
     }
   }, [position]);
 
+  const onClickSkittle = () => {
+    onClick && onClick(value);
+  };
+
   return (
-    <div style={{ width: size, height: size }}>
+    // eslint-disable-next-line max-len
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+    <div
+      style={{ width: size, height: size }}
+      onClick={onClickSkittle}
+    >
       <SVGCircle
         text={value}
         textColor={textColor}
@@ -48,11 +59,13 @@ Skittle.propTypes = {
   position: PropTypes.oneOf(Object.values(POSITION)),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  onClick: PropTypes.func,
 };
 
 Skittle.defaultProps = {
   position: null,
   size: undefined,
+  onClick: null,
 };
 
 export default Skittle;

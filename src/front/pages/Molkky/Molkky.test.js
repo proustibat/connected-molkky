@@ -4,6 +4,7 @@ import Molkky from './index';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { dataFromSocketUPDATE } from '@fixtures/molkky';
+import gameConfig from '@root/gameConfig';
 import socketIOClient from 'socket.io-client';
 
 jest.mock('socket.io-client', () => {
@@ -43,7 +44,7 @@ describe('Molkky', () => {
 
     // Then
     expect(socketIOClient).toHaveBeenCalledTimes(1);
-    expect(socketIOClient).toHaveBeenLastCalledWith('localhost:8888');
+    expect(socketIOClient).toHaveBeenLastCalledWith(gameConfig.socketServer);
     expect(socketIOClient().on).toHaveBeenCalledTimes(1);
     expect(socketIOClient().on.mock.calls[0][0]).toBe('UPDATE');
   });

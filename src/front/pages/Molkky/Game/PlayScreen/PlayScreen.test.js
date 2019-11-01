@@ -3,6 +3,7 @@ import * as DataContextModule from '@contexts/DataContext';
 import * as PlayContextModule from '@contexts/PlayContext';
 import { serverResultAfterMiss, serverResultAfterScore } from '@fixtures/molkky';
 import CurrentTurn from '@components/CurrentTurn';
+import ModalEdit from '@components/ModalEdit';
 import PlayScreen from './index';
 import React from 'react';
 import ScoresOverview from '@components/ScoresOverview';
@@ -57,6 +58,7 @@ describe('PlayScreen', () => {
     expect(component).toHaveLength(1);
     expect(component.find(ScoresOverview)).toHaveLength(1);
     expect(component.find(CurrentTurn)).toHaveLength(1);
+    expect(component.find(ModalEdit)).toHaveLength(1);
   });
 
   it('should handle points validation', (done) => {
@@ -64,11 +66,12 @@ describe('PlayScreen', () => {
     const component = shallow(<PlayScreen />);
 
     // When
-    component.find(CurrentTurn).props().onValid(2)();
+    component.find(CurrentTurn).props().onValid(2);
 
     // Then
     expect(useDataContextSpy().setIsLoading).toHaveBeenCalledTimes(1);
     expect(useDataContextSpy().setIsLoading).toHaveBeenLastCalledWith(true);
+
     setImmediate(() => {
       expect(scorePointsSpy).toHaveBeenCalledTimes(1);
       expect(scorePointsSpy).toHaveBeenLastCalledWith({
@@ -95,6 +98,7 @@ describe('PlayScreen', () => {
     // Then
     expect(useDataContextSpy().setIsLoading).toHaveBeenCalledTimes(1);
     expect(useDataContextSpy().setIsLoading).toHaveBeenLastCalledWith(true);
+
     setImmediate(() => {
       expect(missTargetSpy).toHaveBeenCalledTimes(1);
       expect(missTargetSpy).toHaveBeenLastCalledWith(usePlayContextSpy().currentTurn.isPlaying);
@@ -103,6 +107,57 @@ describe('PlayScreen', () => {
         .toHaveBeenLastCalledWith(serverResultAfterMiss.currentTurn);
       expect(usePlayContextSpy().setScores).toHaveBeenCalledTimes(1);
       expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith(serverResultAfterMiss.scores);
+      expect(useDataContextSpy().setIsLoading).toHaveBeenCalledTimes(2);
+      expect(useDataContextSpy().setIsLoading).toHaveBeenLastCalledWith(false);
+      done();
+    });
+  });
+
+  it('should open the edit modal', () => {
+    // Given
+    const component = shallow(<PlayScreen />);
+
+    // When
+    component.find(CurrentTurn).props().onEdit();
+
+    // Then
+    expect(component.find(ModalEdit).props().openModal).toBeTruthy();
+  });
+
+  it('should handle the close modal action', () => {
+    // Given
+    const component = shallow(<PlayScreen />);
+
+    // When
+    component.find(CurrentTurn).props().onEdit();
+    component.find(ModalEdit).props().onClose();
+
+    // Then
+    expect(component.find(ModalEdit).props().openModal).toBeFalsy();
+  });
+
+  it('should handle the edit validation', (done) => {
+    // Given
+    const component = shallow(<PlayScreen />);
+
+    // When
+    component.find(CurrentTurn).props().onEdit();
+    component.find(ModalEdit).props().onModalValid(12);
+
+    // Then
+    expect(useDataContextSpy().setIsLoading).toHaveBeenCalledTimes(1);
+    expect(useDataContextSpy().setIsLoading).toHaveBeenLastCalledWith(true);
+
+    setImmediate(() => {
+      expect(scorePointsSpy).toHaveBeenCalledTimes(1);
+      expect(scorePointsSpy).toHaveBeenLastCalledWith({
+        team: usePlayContextSpy().currentTurn.isPlaying, points: 12,
+      });
+      expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setCurrentTurn)
+        .toHaveBeenLastCalledWith(serverResultAfterScore.currentTurn);
+      expect(usePlayContextSpy().setScores).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith(serverResultAfterScore.scores);
       expect(useDataContextSpy().setIsLoading).toHaveBeenCalledTimes(2);
       expect(useDataContextSpy().setIsLoading).toHaveBeenLastCalledWith(false);
       done();

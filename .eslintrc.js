@@ -21,7 +21,7 @@ module.exports = {
         'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
         'react/static-property-placement': ['error', 'static public field'],
         'react/forbid-prop-types': ['error', {
-            forbid: ['any', 'array'],
+            forbid: ['any'],
             checkContextTypes: true,
             checkChildContextTypes: true,
         }],

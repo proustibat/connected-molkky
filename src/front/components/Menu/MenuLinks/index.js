@@ -13,10 +13,17 @@ const MenuLinks = ({ id, className, style }) => {
     }
   };
 
+  const onSimulateThrow = async () => {
+    const result = await simulateThrow();
+    if (result) {
+      setIsFakerServerRunning(result.mock.skittles);
+    }
+  };
+
   return (
     <ul id={id} className={className} style={style}>
       <li><Button className="btn btn-small red lighten-2" onClick={onFakeServerLink}>{`${isFakeServerRunning ? 'Stop' : 'Start'} fake server`}</Button></li>
-      <li><Button className="btn btn-small red lighten-2" onClick={simulateThrow}>Simulate a throw</Button></li>
+      <li><Button className="btn btn-small red lighten-2" onClick={onSimulateThrow}>Simulate a throw</Button></li>
     </ul>
   );
 };

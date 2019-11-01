@@ -26,7 +26,7 @@ router.post('/skittles/simulate-throw', async (req, res) => {
   const io = req.app.get('socketio');
   const simulatedThrow = getRandomPositionData(10, true);
   io.emit('UPDATE', simulatedThrow);
-  res.json({ mock: { simulatedThrow } }).end();
+  res.json({ mock: { simulatedThrow, skittles: false } }).end();
 });
 
 

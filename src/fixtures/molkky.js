@@ -21,6 +21,21 @@ export const dataWithKnockedOverAndNull = [
   { value: 12, position: constants.POSITION.UPRIGHT },
 ];
 
+export const dataWithValue4 = [
+  { value: 1, position: constants.POSITION.UPRIGHT },
+  { value: 2, position: constants.POSITION.UPRIGHT },
+  { value: 3, position: constants.POSITION.UPRIGHT },
+  { value: 4, position: constants.POSITION.KNOCKED_OVER },
+  { value: 5, position: constants.POSITION.UPRIGHT },
+  { value: 6, position: constants.POSITION.UPRIGHT },
+  { value: 7, position: constants.POSITION.UPRIGHT },
+  { value: 8, position: constants.POSITION.UPRIGHT },
+  { value: 9, position: constants.POSITION.UPRIGHT },
+  { value: 10, position: constants.POSITION.UPRIGHT },
+  { value: 11, position: constants.POSITION.UPRIGHT },
+  { value: 12, position: constants.POSITION.UPRIGHT },
+];
+
 export const dataFromSocketUPDATE = {
   '123qwe123': {
     battery: 99,

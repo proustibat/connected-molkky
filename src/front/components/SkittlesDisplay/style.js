@@ -8,4 +8,5 @@ export default {
     display: 'flex',
     justifyContent: 'center',
   },
+  hover: { cursor: 'pointer' },
 };

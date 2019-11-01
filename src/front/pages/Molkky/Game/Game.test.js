@@ -6,6 +6,7 @@ import Menu from '@components/Menu';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { dataFromSocketUPDATE } from '@fixtures/molkky';
+import gameConfig from '@root/gameConfig';
 import { shallow } from 'enzyme';
 import socketIOClient from 'socket.io-client';
 
@@ -53,7 +54,7 @@ describe('Game', () => {
 
     // Then
     expect(socketIOClient).toHaveBeenCalledTimes(2);
-    expect(socketIOClient).toHaveBeenNthCalledWith(1, 'localhost:8888');
+    expect(socketIOClient).toHaveBeenNthCalledWith(1, gameConfig.socketServer);
     expect(socketIOClient().on).toHaveBeenCalledTimes(1);
     expect(socketIOClient().on.mock.calls[0][0]).toBe('UPDATE');
   });

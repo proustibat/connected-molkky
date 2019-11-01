@@ -9,6 +9,7 @@ import { PlayContextProvider } from '@root/front/contexts/PlayContext';
 import PlayScreen from '@pages/Molkky/Game/PlayScreen';
 import PropTypes from 'prop-types';
 import StartScreen from '@pages/Molkky/Game/StartScreen';
+import gameConfig from '@root/gameConfig';
 import socketIOClient from 'socket.io-client';
 import style from './style';
 
@@ -23,7 +24,7 @@ const Game = ({ title }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const socket = socketIOClient('localhost:8888');
+    const socket = socketIOClient(gameConfig.socketServer);
     socket.on('UPDATE', (data) => {
       setPositionData(Object.entries(data)
         .map(([, { position = null, value }]) => ({ position, value })));

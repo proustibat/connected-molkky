@@ -15,7 +15,6 @@ describe('CurrentTurn', () => {
   let useDataContextSpy;
   let calculatePointsSpy;
   let givenProps;
-  let onValidCompose;
 
   beforeAll(() => {
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
@@ -47,22 +46,17 @@ describe('CurrentTurn', () => {
 
     calculatePointsSpy = jest.spyOn(Services, 'calculatePoints').mockReturnValue(6);
 
-    onValidCompose = jest.fn();
     givenProps = {
-      onValid: jest.fn().mockReturnValue(onValidCompose),
+      onValid: jest.fn(),
       onMiss: jest.fn(),
       onEdit: jest.fn(),
     };
-  });
-
-  beforeEach(() => {
   });
 
   afterEach(() => {
     usePlayContextSpy.mockClear();
     useDataContextSpy.mockClear();
     calculatePointsSpy.mockClear();
-    onValidCompose.mockClear();
     givenProps.onValid.mockClear();
     givenProps.onMiss.mockClear();
     givenProps.onEdit.mockClear();
@@ -72,7 +66,6 @@ describe('CurrentTurn', () => {
     usePlayContextSpy.mockRestore();
     useDataContextSpy.mockRestore();
     calculatePointsSpy.mockRestore();
-    onValidCompose.mockRestore();
     givenProps.onValid.mockRestore();
     givenProps.onMiss.mockRestore();
     givenProps.onEdit.mockRestore();
@@ -92,13 +85,10 @@ describe('CurrentTurn', () => {
     expect(component.find(Button)).toHaveLength(3);
     expect(component.find(Button).at(0).find('i')).toHaveLength(1);
     expect(component.find(Button).at(0).find('i').text()).toBe('edit');
-    expect(component.find(Button).at(0).props().onClick).toBe(givenProps.onEdit);
     expect(component.find(Button).at(1).find('i')).toHaveLength(1);
     expect(component.find(Button).at(1).find('i').text()).toBe('highlight_off');
-    expect(component.find(Button).at(1).props().onClick).toBe(givenProps.onMiss);
     expect(component.find(Button).at(2).find('i')).toHaveLength(1);
     expect(component.find(Button).at(2).find('i').text()).toBe('done');
-    expect(component.find(Button).at(2).props().onClick).toBe(onValidCompose);
   });
 
   it('should request calculate points on mount', () => {
@@ -140,7 +130,6 @@ describe('CurrentTurn', () => {
     component.find(Button).at(2).find('i').simulate('click');
 
     // Then
-    expect(onValidCompose).toHaveBeenCalledTimes(1);
     expect(givenProps.onValid).toHaveBeenLastCalledWith(6);
   });
 

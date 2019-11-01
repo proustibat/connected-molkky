@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import gameConfig from '@root/gameConfig';
 import socketIOClient from 'socket.io-client';
 
 const Molkky = ({ title }) => {
@@ -7,7 +8,7 @@ const Molkky = ({ title }) => {
   const colStyle = { width: '25%' };
 
   useEffect(() => {
-    const socket = socketIOClient('localhost:8888');
+    const socket = socketIOClient(gameConfig.socketServer);
     socket.on('UPDATE', (data) => {
       setSkittlesState(data);
     });

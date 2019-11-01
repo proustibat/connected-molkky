@@ -1,4 +1,4 @@
-import { cleanup, render } from '@testing-library/react';
+import { cleanup, fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import Skittle from './index';
 import constants from '@utils/constants';
@@ -35,5 +35,21 @@ describe('Skittle', () => {
 
     // Then
     expect(container).toMatchSnapshot();
+  });
+
+  it('should handle click', () => {
+    // Given
+    const onClickSpy = jest.fn();
+    const value = 'qwerty';
+    const { container } = render(
+      <Skittle value={value} position={constants.POSITION.KNOCKED_OVER} onClick={onClickSpy} />,
+    );
+
+    // When
+    fireEvent.click(container.querySelector('div'));
+
+    // Then
+    expect(onClickSpy).toHaveBeenCalledTimes(1);
+    expect(onClickSpy).toHaveBeenLastCalledWith(value);
   });
 });
