@@ -87,3 +87,60 @@ export const serverResultAfterMiss = {
     wining: 'dog',
   },
 };
+
+export const serverResultAfterStartFakeServer = { mock: { skittles: true } };
+export const serverResultAfterStopFakeServer = { mock: { skittles: true } };
+export const serverResultAfterSimulateRandom = {
+  mock: {
+    simulatedThrow: [
+      {
+        value: 1,
+        position: 'KNOCKED_OVER',
+      },
+      {
+        value: 2,
+        position: 'UPRIGHT',
+      },
+      {
+        value: 3,
+        position: 'KNOCKED_OVER',
+      },
+      {
+        value: 4,
+        position: 'KNOCKED_OVER',
+      },
+      {
+        value: 5,
+        position: 'KNOCKED_OVER',
+      },
+      {
+        value: 6,
+        position: 'UPRIGHT',
+      },
+      {
+        value: 7,
+        position: 'UPRIGHT',
+      },
+      {
+        value: 8,
+        position: 'UPRIGHT',
+      },
+      {
+        value: 9,
+        position: 'KNOCKED_OVER',
+      },
+      {
+        value: 10,
+        position: 'UPRIGHT',
+      },
+      {
+        value: 11,
+        position: 'UPRIGHT',
+      },
+      {
+        value: 12,
+        position: 'UPRIGHT',
+      },
+    ],
+  },
+};

@@ -15,7 +15,10 @@ Object {
 
 exports[`MenuLinks should render the component correctly: mobile menu props 1`] = `
 Object {
-  "className": "sidenav right",
-  "id": "mobile-menu",
+  "className": "right hide-on-med-and-down",
+  "id": "",
+  "style": Object {
+    "marginTop": "0.4rem",
+  },
 }
 `;

@@ -1,6 +1,5 @@
 import * as PlayContextModule from '@contexts/PlayContext';
 import * as api from '@root/front/services/api';
-import * as services from '@utils';
 import Button from '@components/Button';
 import CatSVG from '@root/front/svg/cat.svg';
 import DogSVG from '@root/front/svg/dog.svg';
@@ -8,7 +7,6 @@ import PositionChecker from '@components/PositionChecker';
 import React from 'react';
 import StartScreen from './index';
 import TeamButton from '@components/TeamButton';
-import constants from '@utils/constants';
 import { serverResultAfterStart } from '@fixtures/molkky';
 import { shallow } from 'enzyme';
 
@@ -24,11 +22,6 @@ describe('StartScreen', () => {
   let toastSpy;
 
   beforeAll(() => {
-    jest.spyOn(services, 'getRandomPositionData').mockReturnValue(Array.from({ length: 12 }, (_, i) => ({
-      value: i + 1,
-      position: constants.POSITION.UPRIGHT,
-    })));
-
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
       teams: {
         cat: { name: 'cat team', icon: CatSVG },
@@ -49,9 +42,6 @@ describe('StartScreen', () => {
     usePlayContextSpy().setScores.mockClear();
     usePlayContextSpy.mockClear();
     startGameSpy.mockClear();
-    services.getRandomPositionData.mockClear();
-    global.fetch && global.fetch.mockClear();
-    global.M && global.M.toast.mockClear();
   });
 
   afterAll(() => {
@@ -59,16 +49,8 @@ describe('StartScreen', () => {
     usePlayContextSpy().setScores.mockRestore();
     usePlayContextSpy.mockRestore();
     startGameSpy.mockRestore();
-    services.getRandomPositionData.mockRestore();
     jest.restoreAllMocks();
     jest.resetModules();
-
-    global.fetch.mockRestore();
-    delete global.fetch;
-
-    global.M.toast.mockRestore();
-    delete global.M.toast;
-    delete global.M;
   });
 
   it('should render the component correctly', () => {
