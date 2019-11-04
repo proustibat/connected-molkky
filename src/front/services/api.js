@@ -31,6 +31,15 @@ export const missTarget = (team) => fetch('/api/molkky/miss', {
     : Promise.reject(response.statusText)))
   .catch(toastError);
 
+export const resetGame = () => fetch('/api/molkky/reset', {
+  method: 'post',
+  headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+})
+  .then((response) => (response.status === 200
+    ? response.json()
+    : Promise.reject(response.statusText)))
+  .catch(toastError);
+
 export const startFakeSkittles = () => fetch('/api/mocks/skittles/start', {
   method: 'post',
   headers: { Accept: 'application/json', 'Content-Type': 'application/json' },

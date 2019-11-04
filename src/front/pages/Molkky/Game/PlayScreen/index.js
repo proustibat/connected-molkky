@@ -2,19 +2,23 @@ import React, { useState } from 'react';
 import { missTarget, scorePoints } from '@root/front/services/api';
 import CurrentTurn from '@components/CurrentTurn';
 import ModalEdit from '@components/ModalEdit';
+import ModalGameOver from '@components/ModalGameOver';
 import ScoresOverview from '@components/ScoresOverview';
 import { useDataContext } from '@contexts/DataContext';
 import { usePlayContext } from '@contexts/PlayContext';
 
 const PlayScreen = () => {
   const { isLoading, setIsLoading } = useDataContext();
-  const { currentTurn, setCurrentTurn, setScores } = usePlayContext();
+  const {
+    currentTurn, setCurrentTurn, setScores, teams, scores,
+  } = usePlayContext();
 
   const [openModal, setOpenModal] = useState(false);
+  // const [gameOverModalInstance, setGameOverModal] = useState(null);
 
-  const updatePlayContext = ({ currentTurn: ct, scores }) => {
+  const updatePlayContext = ({ currentTurn: ct, scores: sc }) => {
     setCurrentTurn(ct);
-    setScores(scores);
+    setScores(sc);
   };
 
   const onMissTargetClick = async () => {
@@ -32,7 +36,9 @@ const PlayScreen = () => {
   };
 
   const onEditClick = () => setOpenModal(true);
-  const onCloseModal = () => setOpenModal(false);
+  const onCloseEditModal = () => setOpenModal(false);
+
+  const onGameOverModalInit = (instance) => instance.open();
 
   return (
     <div>
@@ -46,9 +52,21 @@ const PlayScreen = () => {
       <ScoresOverview />
       <ModalEdit
         openModal={openModal}
-        onClose={onCloseModal}
+        onClose={onCloseEditModal}
         onModalValid={onValidPoints}
       />
+      {currentTurn.over
+        && (
+          <ModalGameOver
+            onInit={onGameOverModalInit}
+            winnerIcon={teams[currentTurn.wining].icon}
+            winnerName={teams[currentTurn.wining].name}
+            winnerScore={scores[currentTurn.wining].score}
+            loserIcon={teams[currentTurn.losing].icon}
+            loserName={teams[currentTurn.losing].name}
+            loserScore={scores[currentTurn.losing].score}
+          />
+        )}
     </div>
   );
 };

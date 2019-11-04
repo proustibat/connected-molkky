@@ -4,7 +4,7 @@ import React from 'react';
 
 const givenProps = {
   id: 'my-modal',
-  onEditModalInit: jest.fn(),
+  onInit: jest.fn(),
   title: 'Title',
   footer: 'Footer',
   onCloseEnd: jest.fn(),
@@ -25,7 +25,7 @@ describe('Modal', () => {
 
   afterEach(() => {
     querySelectorSpy.mockClear();
-    givenProps.onEditModalInit.mockClear();
+    givenProps.onInit.mockClear();
     givenProps.onCloseEnd.mockClear();
     global.M.Modal.getInstance().destroy.mockClear();
     global.M.Modal.init.mockClear();
@@ -34,7 +34,7 @@ describe('Modal', () => {
 
   afterAll(() => {
     querySelectorSpy.mockRestore();
-    givenProps.onEditModalInit.mockRestore();
+    givenProps.onInit.mockRestore();
     givenProps.onCloseEnd.mockRestore();
     global.M.Modal.getInstance().destroy.mockRestore();
     global.M.Modal.init.mockRestore();
@@ -66,8 +66,8 @@ describe('Modal', () => {
     // Then
     expect(global.M.Modal.init).toHaveBeenCalledTimes(1);
     expect(global.M.Modal.init).toHaveBeenLastCalledWith(`#${givenProps.id}`, { onCloseEnd: givenProps.onCloseEnd, dismissible: false });
-    expect(givenProps.onEditModalInit).toHaveBeenCalledTimes(1);
-    expect(givenProps.onEditModalInit).toHaveBeenLastCalledWith('mockedInstance');
+    expect(givenProps.onInit).toHaveBeenCalledTimes(1);
+    expect(givenProps.onInit).toHaveBeenLastCalledWith('mockedInstance');
   });
 
   it('should destroy the MaterializeCSS modal on unmount', () => {

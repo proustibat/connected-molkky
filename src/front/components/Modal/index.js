@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import hasIn from 'lodash/hasIn';
 
 const Modal = ({
-  id, children, onEditModalInit, title, footer, onCloseEnd,
+  id, children, onInit, title, footer, onCloseEnd, styleTitle,
 }) => {
   const [instance, setInstance] = useState(null);
 
@@ -24,18 +24,16 @@ const Modal = ({
   }, []);
 
   useEffect(() => {
-    instance && onEditModalInit(instance);
+    instance && onInit(instance);
   }, [instance]);
 
   return (
     <div id={id} className="modal modal-fixed-footer">
       <div className="modal-content">
-        {title && <h2 style={{ borderLeft: '1rem solid', borderRight: '1rem solid' }}>{title}</h2>}
+        {title && <h2 style={{ ...{ borderLeft: '1rem solid', borderRight: '1rem solid' }, ...styleTitle }}>{title}</h2>}
         {children}
       </div>
-      <div className="modal-footer">
-        {footer && footer}
-      </div>
+      {footer && <div className="modal-footer">{footer}</div>}
     </div>
   );
 };
@@ -43,15 +41,18 @@ const Modal = ({
 Modal.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  onEditModalInit: PropTypes.func.isRequired,
-  onCloseEnd: PropTypes.func.isRequired,
+  onInit: PropTypes.func.isRequired,
+  onCloseEnd: PropTypes.func,
   title: PropTypes.string,
   footer: PropTypes.node,
+  styleTitle: PropTypes.object,
 };
 
 Modal.defaultProps = {
   title: null,
   footer: null,
+  onCloseEnd: null,
+  styleTitle: {},
 };
 
 export default Modal;

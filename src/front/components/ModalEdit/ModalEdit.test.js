@@ -59,7 +59,7 @@ describe('ModalEdit', () => {
     const modalInstance = { open: jest.fn() };
 
     // When
-    await component.find(Modal).props().onEditModalInit(modalInstance);
+    await component.find(Modal).props().onInit(modalInstance);
     await component.setProps({ openModal: true });
 
     // Then
@@ -69,9 +69,9 @@ describe('ModalEdit', () => {
   it('should handle the validation', () => {
     // Given
     const component = mount(<ModalEdit {...givenProps} />);
-    calculatePointsSpy.mockClear();
 
     // When
+    calculatePointsSpy.mockClear();
     component.find(Modal).find(SkittlesDisplay).props().onChange(dataWithValue4);
     component.find(Modal).find('.modal-footer').find(Button).at(1)
       .simulate('click');

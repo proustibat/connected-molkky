@@ -43,7 +43,7 @@ const ModalEdit = ({
     (
       <Modal
         id="modal-edit"
-        onEditModalInit={onInit}
+        onInit={onInit}
         onCloseEnd={onClose}
         s
         title="Choose the knocked over pins"

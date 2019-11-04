@@ -7,10 +7,10 @@ const router = express.Router();
 router.post('/start', middleware.checkConditionsToStartGame, async (req, res) => {
   const { body: { teams, playingTeam } } = req;
   // eslint-disable-next-line no-new
-  new CurrentGame({ teams, playingTeam });
+  const currentGame = new CurrentGame({ teams, playingTeam });
   res.json({
-    scores: CurrentGame.instance.scores,
-    currentTurn: CurrentGame.instance.currentTurn,
+    scores: currentGame.scores,
+    currentTurn: currentGame.currentTurn,
   }).end();
 });
 
@@ -19,8 +19,8 @@ router.post('/score', middleware.checkGameStarted, middleware.checkTeam, middlew
   const currentGame = CurrentGame.instance;
   currentGame.addPoints({ team, points });
   res.json({
-    scores: CurrentGame.instance.scores,
-    currentTurn: CurrentGame.instance.currentTurn,
+    scores: currentGame.scores,
+    currentTurn: currentGame.currentTurn,
   }).end();
 });
 
@@ -28,8 +28,17 @@ router.post('/miss', middleware.checkGameStarted, middleware.checkTeam, async (r
   const currentGame = CurrentGame.instance;
   currentGame.missTurn();
   res.json({
-    scores: CurrentGame.instance.scores,
-    currentTurn: CurrentGame.instance.currentTurn,
+    scores: currentGame.scores,
+    currentTurn: currentGame.currentTurn,
+  }).end();
+});
+
+router.post('/reset', async (req, res) => {
+  const currentGame = CurrentGame.instance;
+  currentGame.reset();
+  res.json({
+    scores: currentGame.scores,
+    currentTurn: currentGame.currentTurn,
   }).end();
 });
 
