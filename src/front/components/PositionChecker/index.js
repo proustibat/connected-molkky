@@ -1,8 +1,8 @@
+import { MESSAGE_TYPE, POSITION } from '@utils/constants';
 import React, { useEffect } from 'react';
 import MessageIcon from '@components/MessageIcon';
 import PropTypes from 'prop-types';
 import SkittlesDisplay from '@components/SkittlesDisplay';
-import constants from '@utils/constants';
 import kebabCase from 'lodash/kebabCase';
 import noop from 'lodash/noop';
 import { useDataContext } from '@contexts/DataContext';
@@ -14,14 +14,14 @@ const PositionChecker = ({ onReadyChange }) => {
   useEffect(() => {
     onReadyChange(
       data.length !== 0
-      && data.every(({ position }) => position === constants.POSITION.UPRIGHT),
+      && data.every(({ position }) => position === POSITION.UPRIGHT),
     );
   }, [data]);
 
   const renderWarning = (message, positionType) => data
     .some(({ position }) => position === positionType) && (
     <>
-      <MessageIcon type={constants.MESSAGE_TYPE.WARNING}>
+      <MessageIcon type={MESSAGE_TYPE.WARNING}>
         {message}
       </MessageIcon>
       <ul className="collection">
@@ -35,7 +35,7 @@ const PositionChecker = ({ onReadyChange }) => {
   );
 
   const renderError = () => data.length === 0 && (
-    <MessageIcon type={constants.MESSAGE_TYPE.ERROR}>
+    <MessageIcon type={MESSAGE_TYPE.ERROR}>
       Oops! Please move the pins to detect them!
     </MessageIcon>
   );
@@ -44,7 +44,7 @@ const PositionChecker = ({ onReadyChange }) => {
     <>
       <p className="flow-text">Be sure pins are placed as follows then start the game</p>
       <SkittlesDisplay style={{ margin: '0 auto 2rem auto', width: '60%' }} />
-      {renderWarning('Please stand up the following pins:', constants.POSITION.KNOCKED_OVER)}
+      {renderWarning('Please stand up the following pins:', POSITION.KNOCKED_OVER)}
       {renderWarning('All pins are not detected, try to move the missing pins:', null)}
       {renderError()}
     </>

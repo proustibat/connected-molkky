@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { POSITION } from '@utils/constants';
 import PropTypes from 'prop-types';
 import SVGCircle from '@components/SVGCircle';
-import constants from '@utils/constants';
-
-const { POSITION } = constants;
 
 const Skittle = ({
   position, value, size, onClick,

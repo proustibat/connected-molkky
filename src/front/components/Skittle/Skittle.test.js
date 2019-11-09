@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render } from '@testing-library/react';
+import { POSITION } from '@utils/constants';
 import React from 'react';
 import Skittle from './index';
-import constants from '@utils/constants';
 
 
 describe('Skittle', () => {
@@ -20,7 +20,7 @@ describe('Skittle', () => {
   it('should render the component correctly with upright position prop', () => {
     // Given / When
     const { container } = render(
-      <Skittle value="qwerty" position={constants.POSITION.UPRIGHT} />,
+      <Skittle value="qwerty" position={POSITION.UPRIGHT} />,
     );
 
     // Then
@@ -30,7 +30,7 @@ describe('Skittle', () => {
   it('should render the component correctly with knocked over position prop', () => {
     // Given / When
     const { container } = render(
-      <Skittle value="qwerty" position={constants.POSITION.KNOCKED_OVER} />,
+      <Skittle value="qwerty" position={POSITION.KNOCKED_OVER} />,
     );
 
     // Then
@@ -42,7 +42,7 @@ describe('Skittle', () => {
     const onClickSpy = jest.fn();
     const value = 'qwerty';
     const { container } = render(
-      <Skittle value={value} position={constants.POSITION.KNOCKED_OVER} onClick={onClickSpy} />,
+      <Skittle value={value} position={POSITION.KNOCKED_OVER} onClick={onClickSpy} />,
     );
 
     // When

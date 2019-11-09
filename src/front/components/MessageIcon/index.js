@@ -1,6 +1,6 @@
+import { MESSAGE_TYPE } from '@utils/constants';
 import PropTypes from 'prop-types';
 import React from 'react';
-import constants from '@utils/constants';
 import style from './style';
 
 const MessageIcon = ({ type, children }) => (
@@ -14,7 +14,7 @@ const MessageIcon = ({ type, children }) => (
 
 MessageIcon.propTypes = {
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(Object.values(constants.MESSAGE_TYPE)).isRequired,
+  type: PropTypes.oneOf(Object.values(MESSAGE_TYPE)).isRequired,
 };
 
 export default MessageIcon;

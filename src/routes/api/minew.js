@@ -1,4 +1,4 @@
-import { POSITION_LEVEL, SKITTLES } from '@routes/api/constants';
+import { POSITION_LEVEL, SKITTLES } from '@utils/constants';
 import advlib from 'advlib';
 import debugRenderer from 'debug';
 import express from 'express';

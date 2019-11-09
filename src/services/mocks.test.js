@@ -1,5 +1,5 @@
 import { getRandomPosition, getRandomPositionData } from './mocks';
-import constants from '@utils/constants';
+import { POSITION } from '@utils/constants';
 import hasIn from 'lodash/hasIn';
 
 describe('mocks', () => {
@@ -16,7 +16,7 @@ describe('mocks', () => {
       const position = getRandomPosition();
 
       // Then
-      expect(position).toBe(constants.POSITION.UPRIGHT);
+      expect(position).toBe(POSITION.UPRIGHT);
     });
 
     it('should return the knocked over position', () => {
@@ -27,7 +27,7 @@ describe('mocks', () => {
       const position = getRandomPosition();
 
       // Then
-      expect(position).toBe(constants.POSITION.KNOCKED_OVER);
+      expect(position).toBe(POSITION.KNOCKED_OVER);
     });
 
     it('should return a null position', () => {
@@ -50,7 +50,7 @@ describe('mocks', () => {
 
       // Then
       expect(position).not.toBeNull();
-      expect(position).toBe(constants.POSITION.UPRIGHT);
+      expect(position).toBe(POSITION.UPRIGHT);
     });
   });
 

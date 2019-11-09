@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@components/Button';
+import { POSITION } from '@utils/constants';
 import PropTypes from 'prop-types';
 import SkittlesDisplay from '@components/SkittlesDisplay';
 import { calculatePoints } from '@utils';
-import constants from '@utils/constants';
 import get from 'lodash/get';
 import style from './style';
 import { useDataContext } from '@contexts/DataContext';
@@ -19,7 +19,7 @@ const CurrentTurn = ({
 
   useEffect(() => {
     const knockedSkittles = positionData
-      .filter((data) => data.position === constants.POSITION.KNOCKED_OVER);
+      .filter((data) => data.position === POSITION.KNOCKED_OVER);
     setPoints(calculatePoints(knockedSkittles));
   }, [positionData]);
 

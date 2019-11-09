@@ -1,3 +1,14 @@
+export const POSITION = {
+  KNOCKED_OVER: 'KNOCKED_OVER',
+  UPRIGHT: 'UPRIGHT',
+};
+
+export const MESSAGE_TYPE = {
+  INFO: 'info',
+  WARNING: 'warning',
+  ERROR: 'error',
+};
+
 export const SKITTLES = {
   AC233FA247EB: 1,
   AC233FA247F0: 2,

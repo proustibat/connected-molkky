@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@components/Button';
 import Modal from '@components/Modal';
+import { POSITION } from '@utils/constants';
 import PropTypes from 'prop-types';
 import SkittlesDisplay from '@components/SkittlesDisplay';
 import { calculatePoints } from '@utils/index';
-import constants from '@utils/constants';
 import style from './style';
 import { useDataContext } from '@contexts/DataContext';
 
@@ -17,7 +17,7 @@ const ModalEdit = ({
 
   const [modalInstance, setModalInstance] = useState(null);
   const [skittlesForEditMode, setSkittlesForEditMode] = useState(Array.from({ length: 12 },
-    (position = constants.POSITION.UPRIGHT, value) => ({ value: value + 1, position })));
+    (position = POSITION.UPRIGHT, value) => ({ value: value + 1, position })));
   const [editedPoints, setEditedPoints] = useState(0);
 
   const onInit = async (instance) => {
@@ -30,7 +30,7 @@ const ModalEdit = ({
 
   const onSkittlesChange = (data) => {
     const knockedSkittles = data
-      .filter((item) => item.position === constants.POSITION.KNOCKED_OVER);
+      .filter((item) => item.position === POSITION.KNOCKED_OVER);
     setEditedPoints(calculatePoints(knockedSkittles));
   };
 

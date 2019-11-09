@@ -1,6 +1,6 @@
+import { MESSAGE_TYPE } from '@utils/constants';
 import MessageIcon from './index';
 import React from 'react';
-import constants from '@utils/constants';
 import { shallow } from 'enzyme';
 
 const givenProps = {
@@ -12,7 +12,7 @@ describe('MessageIcon', () => {
     // Given / When
     const component = shallow(<MessageIcon
       {...givenProps}
-      type={constants.MESSAGE_TYPE.WARNING}
+      type={MESSAGE_TYPE.WARNING}
     />);
 
     // Then
@@ -24,7 +24,7 @@ describe('MessageIcon', () => {
     // Given / When
     const component = shallow(<MessageIcon
       {...givenProps}
-      type={constants.MESSAGE_TYPE.INFO}
+      type={MESSAGE_TYPE.INFO}
     />);
 
     // Then
@@ -36,7 +36,7 @@ describe('MessageIcon', () => {
     // Given / When
     const component = shallow(<MessageIcon
       {...givenProps}
-      type={constants.MESSAGE_TYPE.ERROR}
+      type={MESSAGE_TYPE.ERROR}
     />);
 
     // Then

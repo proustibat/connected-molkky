@@ -14,7 +14,7 @@
         "alias": {
           "@pages": "./src/front/pages",
           "@components": "./src/front/components",
-          "@utils": "./src/front/utils",
+          "@utils": "./src/utils",
           "@contexts": "./src/front/contexts",
           "@fixtures": "./src/fixtures",
           "@services": "./src/services",
