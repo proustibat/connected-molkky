@@ -1,4 +1,4 @@
-import CurrentGame from '@root/CurrentGame';
+import CurrentGame from '@root/server/CurrentGame';
 
 const checkConditionsToStartGame = (req, res, next) => {
   const { body } = req;

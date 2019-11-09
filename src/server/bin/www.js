@@ -5,7 +5,7 @@
  */
 import '@babel/polyfill';
 import { SERVER_PORT } from '@root/config';
-import app from '@root/app';
+import app from '@root/server/app';
 import debugRenderer from 'debug';
 import http from 'http';
 import socketIO from 'socket.io';
@@ -84,7 +84,7 @@ class Server {
     debug(`Listening on ${bind}`);
 
     // if (NODE_ENV === 'development' && get(process, 'env.TARGET') !== 'production') {
-    //   const bs = browserSync.create('node-hue-prstbt');
+    //   const bs = browserSync.create('connected-molkky');
     //   // eslint-disable-next-line global-require
     //   // const browserSyncReuseTab = require('browser-sync-reuse-tab')(bs);
     //   bs.init({
@@ -110,12 +110,12 @@ class Server {
     //     reloadDelay: 10,
     //     reloadOnRestart: true,
     //     logConnections: true,
-    //     logPrefix: 'node-hue-prstbt',
+    //     logPrefix: 'connected-molkky',
     //     logLevel: 'debug',
     //   }, (data) => {
     //     console.log('RELOAD ', { data });
-    //     const nodeHuePrstbtBs = browserSync.get('node-hue-prstbt');
-    //     nodeHuePrstbtBs.reload();
+    //     const conneectedMolkkyBS = browserSync.get('connected-molkky');
+    //     conneectedMolkkyBS.reload();
     //   });
     // }
   }

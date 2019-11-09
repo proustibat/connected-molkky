@@ -15,16 +15,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(sassMiddleware({
-  src: path.join(__dirname, 'scss'),
-  dest: path.join(__dirname, '..', 'public', 'stylesheets'),
+  src: path.join(__dirname, '..', 'scss'),
+  dest: path.join(__dirname, '..', '..', 'public', 'stylesheets'),
   indentedSyntax: false, // true = .sass and false = .scss
   outputStyle: 'compressed',
   prefix: '/stylesheets',
   sourceMap: true,
 }));
-app.use('/javascript', express.static(path.join(__dirname, '..', 'public', 'javascript')));
-app.use('/stylesheets', express.static(path.join(__dirname, '..', 'public', 'stylesheets')));
-app.use('/images', express.static(path.join(__dirname, '..', 'public', 'images')));
+app.use('/javascript', express.static(path.join(__dirname, '..', '..', 'public', 'javascript')));
+app.use('/stylesheets', express.static(path.join(__dirname, '..', '..', 'public', 'stylesheets')));
+app.use('/images', express.static(path.join(__dirname, '..', '..', 'public', 'images')));
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies

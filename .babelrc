@@ -17,8 +17,8 @@
           "@utils": "./src/utils",
           "@contexts": "./src/front/contexts",
           "@fixtures": "./src/fixtures",
-          "@services": "./src/services",
-          "@routes": "./src/routes",
+          "@services": "./src/server/services",
+          "@routes": "./src/server/routes",
           "@root": "./src"
         }
       }
