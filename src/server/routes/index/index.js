@@ -1,7 +1,7 @@
 import Home from '@pages/Home';
 import React from 'react';
 import express from 'express';
-import renderTemplate from '@root/renderTemplate';
+import renderTemplate from '@root/server/renderTemplate';
 
 const router = express.Router();
 

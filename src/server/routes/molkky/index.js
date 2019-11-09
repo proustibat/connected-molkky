@@ -3,7 +3,7 @@ import Molkky from '@pages/Molkky';
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
-import renderTemplate from '@root/renderTemplate';
+import renderTemplate from '@root/server/renderTemplate';
 
 const router = express.Router();
 

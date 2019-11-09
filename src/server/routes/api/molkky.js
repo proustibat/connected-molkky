@@ -1,6 +1,6 @@
-import CurrentGame from '@root/CurrentGame';
+import CurrentGame from '@root/server/CurrentGame';
 import express from 'express';
-import middleware from '@root/middleware';
+import middleware from '@root/server/middleware';
 
 const router = express.Router();
 
