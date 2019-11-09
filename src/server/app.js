@@ -1,10 +1,10 @@
-import apiRoutes from '@routes/api/_';
+import apiRoutes from '@routes/api';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import createError from 'http-errors';
 import express from 'express';
 import logger from 'morgan';
-import pagesRoutes from '@routes/_';
+import pagesRoutes from '@routes/pages';
 import path from 'path';
 import sassMiddleware from 'node-sass-middleware';
 
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // pages routes
 Object.entries(pagesRoutes).forEach((entry) => {
-  app.use(`/${entry[0] !== 'index' ? entry[0] : ''}`, entry[1]);
+  app.use(`/${entry[0] !== 'home' ? entry[0] : ''}`, entry[1]);
 });
 
 // api routes

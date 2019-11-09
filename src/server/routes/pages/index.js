@@ -1,7 +1,7 @@
-import index from './index';
+import home from './home';
 import molkky from './molkky';
 
 export default {
-  index,
+  home,
   molkky,
 };
