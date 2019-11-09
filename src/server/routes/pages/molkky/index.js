@@ -1,3 +1,4 @@
+import CurrentGame from '@root/server/CurrentGame';
 import Game from '@pages/Molkky/Game';
 import Molkky from '@pages/Molkky';
 import React from 'react';
@@ -15,7 +16,9 @@ router.get('/', (req, res) => {
 });
 
 router.get(['/game', '/game/play'], (req, res) => {
-  const context = {};
+  const context = {
+    currentGame: CurrentGame.instance,
+  };
   const data = { title: 'Molkky Game' };
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end(renderTemplate(

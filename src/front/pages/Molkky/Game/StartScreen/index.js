@@ -1,15 +1,19 @@
+import { Link, useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
+import { resetGame, startGame } from '@root/front/services/api';
 import Button from '@components/Button';
 import PositionChecker from '@components/PositionChecker';
 import TeamButton from '@components/TeamButton';
-import { startGame } from '@root/front/services/api';
-import { useHistory } from 'react-router-dom';
+import { useDataContext } from '@contexts/DataContext';
 import { usePlayContext } from '@contexts/PlayContext';
 
 const StartScreen = () => {
   const history = useHistory();
 
-  const { teams, setCurrentTurn, setScores } = usePlayContext();
+  const {
+    teams, currentTurn, setCurrentTurn, scores, setScores,
+  } = usePlayContext();
+  const { setIsLoading } = useDataContext();
 
   const [startReady, setStartReady] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(Object.entries(teams)[0][0]);
@@ -18,17 +22,20 @@ const StartScreen = () => {
     setSelectedTeam(team);
   };
 
-  const onStartClick = async () => {
-    const result = await startGame({ teams: Object.keys(teams), playingTeam: selectedTeam });
+  const onStartClick = (restart = false) => async () => {
+    setIsLoading(true);
+    const result = restart
+      ? await resetGame()
+      : await startGame({ teams: Object.keys(teams), playingTeam: selectedTeam });
+    setIsLoading(false);
     if (result) {
-      const { scores, currentTurn } = result;
-      setCurrentTurn(currentTurn);
-      setScores(scores);
+      setCurrentTurn(result.currentTurn);
+      setScores(result.scores);
       history.push('/molkky/game/play');
     }
   };
 
-  return (
+  return (!currentTurn && !scores) ? (
     <>
       <div className="section">
         <div className="container">
@@ -56,15 +63,19 @@ const StartScreen = () => {
         <div className="container">
           <h1>Playground</h1>
           <PositionChecker onReadyChange={setStartReady} />
-          <Button
-            onClick={onStartClick}
-            disabled={!startReady}
-          >
-            Play
-          </Button>
+          <Button onClick={onStartClick()} disabled={!startReady}>Play</Button>
         </div>
       </div>
     </>
+  ) : (
+    <div className="section">
+      <div className="container">
+        <h1>A game has already been started!</h1>
+        <p>Do you want to continue the same or restart a new one ?</p>
+        <Link className="waves-effect waves-light z-depth-1 btn" to="/molkky/game/play">Continue the current game</Link>
+        <Button onClick={onStartClick(true)}>Start a new game</Button>
+      </div>
+    </div>
   );
 };
 

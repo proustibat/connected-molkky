@@ -40,7 +40,8 @@ describe('MenuLinks', () => {
     expect(component.find('nav').find('a').at(0).props().children).toBe(title);
     expect(component.find('nav').find('a').at(1).props()).toMatchSnapshot('mobile menu link props');
     expect(component.find(MenuLinks)).toHaveLength(2);
-    expect(component.find(MenuLinks).at(1).props()).toMatchSnapshot('mobile menu props');
+    expect(component.find(MenuLinks).at(0).props()).toMatchSnapshot('mobile menu props');
+    expect(component.find(MenuLinks).at(1).props()).toMatchSnapshot('desktop menu props');
   });
 
   it('should initialize the menu on mount', () => {

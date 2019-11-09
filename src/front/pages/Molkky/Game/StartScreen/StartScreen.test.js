@@ -1,3 +1,4 @@
+import * as DataContextModule from '@contexts/DataContext';
 import * as PlayContextModule from '@contexts/PlayContext';
 import * as api from '@root/front/services/api';
 import Button from '@components/Button';
@@ -18,10 +19,24 @@ const givenProps = {
 
 describe('StartScreen', () => {
   let usePlayContextSpy;
+  let useDataContextSpy;
   let startGameSpy;
+  let resetGameSpy;
   let toastSpy;
 
   beforeAll(() => {
+    useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({
+      setIsLoading: jest.fn(),
+    });
+
+    startGameSpy = jest.spyOn(api, 'startGame').mockReturnValue(serverResultAfterStart);
+    resetGameSpy = jest.spyOn(api, 'resetGame').mockReturnValue(serverResultAfterStart);
+
+    toastSpy = jest.fn();
+    global.M = { toast: toastSpy };
+  });
+
+  beforeEach(() => {
     usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
       teams: {
         cat: { name: 'cat team', icon: CatSVG },
@@ -29,26 +44,26 @@ describe('StartScreen', () => {
       },
       setCurrentTurn: jest.fn(),
       setScores: jest.fn(),
+      scores: undefined,
+      currentTurn: undefined,
     });
-
-    startGameSpy = jest.spyOn(api, 'startGame').mockReturnValue(serverResultAfterStart);
-
-    toastSpy = jest.fn();
-    global.M = { toast: toastSpy };
   });
 
   afterEach(() => {
-    usePlayContextSpy().setCurrentTurn.mockClear();
-    usePlayContextSpy().setScores.mockClear();
-    usePlayContextSpy.mockClear();
+    useDataContextSpy().setIsLoading.mockClear();
+    useDataContextSpy.mockClear();
     startGameSpy.mockClear();
+    resetGameSpy.mockClear();
   });
 
   afterAll(() => {
     usePlayContextSpy().setCurrentTurn.mockRestore();
     usePlayContextSpy().setScores.mockRestore();
     usePlayContextSpy.mockRestore();
+    useDataContextSpy().setIsLoading.mockRestore();
+    useDataContextSpy.mockRestore();
     startGameSpy.mockRestore();
+    resetGameSpy.mockRestore();
     jest.restoreAllMocks();
     jest.resetModules();
   });
@@ -66,6 +81,27 @@ describe('StartScreen', () => {
     expect(component.find(PositionChecker)).toHaveLength(1);
     expect(component.find(Button)).toHaveLength(1);
     expect(component.find(Button).props().disabled).toBeTruthy();
+  });
+
+  it('should render component correctly when a game has already been started', () => {
+    // Given
+    usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
+      teams: { cat: { name: 'cat team', icon: CatSVG }, dog: { name: 'dog team', icon: DogSVG } },
+      setCurrentTurn: jest.fn(),
+      setScores: jest.fn(),
+      ...serverResultAfterStart,
+    });
+
+    // When
+    const component = shallow(<StartScreen {...givenProps} />);
+
+    // Then
+    expect(component.find('h1')).toHaveLength(1);
+    expect(component.find('h1').text()).toBe('A game has already been started!');
+    expect(component.find(Button)).toHaveLength(1);
+    // TODO: find NavLink but there is a bug with enzyme
+    //  and NavLink (NavLink appears as "Component")
+    usePlayContextSpy.mockRestore();
   });
 
   it('should select the team', () => {
@@ -103,6 +139,31 @@ describe('StartScreen', () => {
     setImmediate(() => {
       expect(startGameSpy).toHaveBeenCalledTimes(1);
       expect(startGameSpy).toHaveBeenLastCalledWith({ teams: ['cat', 'dog'], playingTeam: 'cat' });
+      expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setCurrentTurn)
+        .toHaveBeenLastCalledWith(serverResultAfterStart.currentTurn);
+      expect(usePlayContextSpy().setScores).toHaveBeenCalledTimes(1);
+      expect(usePlayContextSpy().setScores).toHaveBeenLastCalledWith(serverResultAfterStart.scores);
+      done();
+    });
+  });
+
+  it('should handle click on restart button', (done) => {
+    // Given
+    usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
+      teams: { cat: { name: 'cat team', icon: CatSVG }, dog: { name: 'dog team', icon: DogSVG } },
+      setCurrentTurn: jest.fn(),
+      setScores: jest.fn(),
+      ...serverResultAfterStart,
+    });
+    const component = shallow(<StartScreen {...givenProps} />);
+
+    // When
+    component.find(Button).simulate('click');
+
+    // Then
+    setImmediate(() => {
+      expect(resetGameSpy).toHaveBeenCalledTimes(1);
       expect(usePlayContextSpy().setCurrentTurn).toHaveBeenCalledTimes(1);
       expect(usePlayContextSpy().setCurrentTurn)
         .toHaveBeenLastCalledWith(serverResultAfterStart.currentTurn);

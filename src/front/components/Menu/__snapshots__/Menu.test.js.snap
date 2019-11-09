@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MenuLinks should render the component correctly: desktop menu props 1`] = `
+Object {
+  "className": "right hide-on-med-and-down",
+  "id": "",
+  "style": Object {
+    "display": "grid",
+    "gridGap": "1rem",
+    "gridTemplateColumns": "1fr 1fr",
+    "marginTop": "0.4rem",
+  },
+}
+`;
+
 exports[`MenuLinks should render the component correctly: mobile menu link props 1`] = `
 Object {
   "children": <i
@@ -15,10 +28,8 @@ Object {
 
 exports[`MenuLinks should render the component correctly: mobile menu props 1`] = `
 Object {
-  "className": "right hide-on-med-and-down",
-  "id": "",
-  "style": Object {
-    "marginTop": "0.4rem",
-  },
+  "className": "sidenav right",
+  "id": "mobile-menu",
+  "style": Object {},
 }
 `;

@@ -1,5 +1,6 @@
 import {
   missTarget,
+  resetGame,
   scorePoints,
   simulateThrow,
   startFakeSkittles,
@@ -76,6 +77,50 @@ describe('api', () => {
 
       // When
       const result = await startGame({ teams: {}, playingTeam: null });
+
+      // Then
+      expect(result).toBeUndefined();
+      expect(toastSpy).toHaveBeenCalledTimes(1);
+      expect(toastSpy).toHaveBeenLastCalledWith({ html: error, classes: 'red darken-4' });
+    });
+  });
+
+  describe('resetGame', () => {
+    it('should request the api and return the result', async () => {
+      // Given
+      global.fetch = jest.fn()
+        .mockImplementation(() => Promise.resolve({
+          status: 200,
+          json: () => (serverResultAfterStart),
+        }));
+
+      // When
+      const result = await resetGame();
+
+      // Then
+      expect(result).toBe(serverResultAfterStart);
+    });
+
+    it('should catch the error when requesting the api', async () => {
+      // Given
+      global.fetch = jest.fn().mockRejectedValue(error);
+
+      // When
+      const result = await resetGame();
+
+      // Then
+      expect(result).toBeUndefined();
+      expect(toastSpy).toHaveBeenCalledTimes(1);
+      expect(toastSpy).toHaveBeenLastCalledWith({ html: error, classes: 'red darken-4' });
+    });
+
+    it('should catch the error when response is not 200', async () => {
+      // Given
+      global.fetch = jest.fn()
+        .mockImplementation(() => Promise.resolve({ status: 400, statusText: error }));
+
+      // When
+      const result = await resetGame();
 
       // Then
       expect(result).toBeUndefined();
