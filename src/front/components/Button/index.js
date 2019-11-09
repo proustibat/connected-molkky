@@ -6,7 +6,7 @@ const Button = ({
 }) => (
   <button
     type="button"
-    className={`waves-effect waves-light z-depth-2 btn ${size} ${disabled ? 'disabled' : ''} ${className}`}
+    className={`waves-effect waves-light z-depth-1 btn ${size} ${disabled ? 'disabled' : ''} ${className}`}
     onClick={onClick}
     style={style}
   >

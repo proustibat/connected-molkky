@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import MenuLinks from '@components/Menu/MenuLinks';
 import PropTypes from 'prop-types';
+import style from './style';
 
 const Menu = ({ title }) => {
   useEffect(() => {
@@ -17,7 +18,7 @@ const Menu = ({ title }) => {
           <div className="container nav-wrapper">
             <a href="/molkky/game" className="brand-logo left">{title}</a>
             <a href="/molkky/game" data-target="mobile-menu" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
-            <MenuLinks className="right hide-on-med-and-down" style={{ marginTop: '0.4rem' }} />
+            <MenuLinks className="right hide-on-med-and-down" style={style.menu_medium_up} />
           </div>
         </nav>
       </div>
