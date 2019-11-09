@@ -6,7 +6,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:11.10.1
+      - image: circleci/node:11.15.0
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -38,24 +38,24 @@ jobs:
           paths:
             - node_modules
   linter:
-          docker:
-            - image: circleci/node:11.10.1
-          working_directory: ~/repo
-          steps:
-            - checkout
-            - attach_workspace:
-                at: ~/repo
-            # Lint
-            - run:
-                name: "ESLint"
-                command: yarn lint -f json -o eslint-reports.json
-            - persist_to_workspace:
-                root: ~/repo
-                paths:
-                  - eslint-reports.json
+    docker:
+      - image: circleci/node:11.15.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      # Lint
+      - run:
+          name: "ESLint"
+          command: yarn lint -f json -o eslint-reports.json
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - eslint-reports.json
   tests:
     docker:
-      - image: circleci/node:11.10.1
+      - image: circleci/node:11.15.0
     working_directory: ~/repo
     steps:
       - checkout
@@ -82,7 +82,7 @@ jobs:
             - reports
   sonar:
     docker:
-      - image: circleci/node:11.10.1
+      - image: circleci/node:11.15.0
     working_directory: ~/repo
     steps:
       - checkout
@@ -105,7 +105,7 @@ workflows:
             - build
       - sonar:
           requires:
-          - build
-          - linter
-          - tests
+            - build
+            - linter
+            - tests
           context: SonarCloud
