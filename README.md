@@ -215,4 +215,3 @@ You can run [localhost:8888/hello/world](http://localhost:8888/hello/world) and 
 ### Use MaterializeCSS javascript component in your React component
 
 // TODO
-
