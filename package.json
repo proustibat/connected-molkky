@@ -32,7 +32,7 @@
     "docker-dev-stop": "docker-compose down"
   },
   "dependencies": {
-    "@babel/polyfill": "7.6.0",
+    "@babel/polyfill": "7.7.0",
     "advlib": "0.1.4",
     "body-parser": "1.19.0",
     "cookie-parser": "1.4.4",
@@ -56,15 +56,15 @@
     "socket.io-client": "2.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.6.2",
-    "@babel/core": "7.6.2",
-    "@babel/node": "7.6.2",
-    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/cli": "7.7.0",
+    "@babel/core": "7.7.2",
+    "@babel/node": "7.7.0",
+    "@babel/plugin-proposal-class-properties": "7.7.0",
     "@babel/plugin-proposal-throw-expressions": "7.2.0",
-    "@babel/plugin-transform-regenerator": "7.4.5",
+    "@babel/plugin-transform-regenerator": "7.7.0",
     "@babel/plugin-transform-runtime": "7.6.2",
-    "@babel/preset-env": "7.6.2",
-    "@babel/preset-react": "7.0.0",
+    "@babel/preset-env": "7.7.1",
+    "@babel/preset-react": "7.7.0",
     "@svgr/webpack": "4.3.3",
     "@testing-library/react": "9.3.0",
     "babel-eslint": "10.0.3",
