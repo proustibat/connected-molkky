@@ -1,10 +1,10 @@
-# Node Hue Prstbt 
-[![CircleCI](https://circleci.com/gh/proustibat/node-hue-prstbt/tree/master.svg?style=svg&circle-token=21b2ae139645a4668edc9ffe79e369ce75c63e2d)](https://circleci.com/gh/proustibat/node-hue-prstbt/tree/master)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=alert_status)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=coverage)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=code_smells)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=sqale_index)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=proustibat_node-hue-prstbt&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=proustibat_node-hue-prstbt)
+# Connected Molkky
+[![CircleCI](https://circleci.com/gh/proustibat/connected-molkky/tree/master.svg?style=svg&circle-token=511d3d6891047a304594ef257911443a66a80519)](https://circleci.com/gh/proustibat/connected-molkky/tree/master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=proustibat_connected-molkky&metric=alert_status)](https://sonarcloud.io/dashboard?id=proustibat_connected-molkky)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=proustibat_connected-molkky&metric=coverage)](https://sonarcloud.io/dashboard?id=proustibat_connected-molkky)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=proustibat_connected-molkky&metric=code_smells)](https://sonarcloud.io/dashboard?id=proustibat_connected-molkky)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=proustibat_connected-molkky&metric=sqale_index)](https://sonarcloud.io/dashboard?id=proustibat_connected-molkky)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=proustibat_connected-molkky&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=proustibat_connected-molkky)
 
 ## Prerequisites
 Be sure Node and npm are installed.
@@ -12,8 +12,8 @@ Be sure Node and npm are installed.
 ## Install
 
 ```$xslt
-git clone git@github.com:proustibat/node-hue-prstbt.git
-cd node-hue-prstbt
+git clone git@github.com:proustibat/connected-molkky.git
+cd connected-molkky
 npm i
 ```
 
