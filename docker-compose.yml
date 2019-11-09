@@ -5,8 +5,8 @@ services:
     container_name: back
     command: npm run dev
     volumes:
-      - .:/usr/src/node-hue-prstbt
-      - /usr/src/node-hue-prstbt/node_modules
+      - .:/usr/src/connected-molkky
+      - /usr/src/connected-molkky/node_modules
     ports:
       - "8888:8888"
   front:
@@ -14,7 +14,7 @@ services:
     container_name: front
     command: npm run front
     volumes:
-      - .:/usr/src/node-hue-prstbt
-      - /usr/src/node-hue-prstbt/node_modules
+      - .:/usr/src/connected-molkky
+      - /usr/src/connected-molkky/node_modules
     depends_on:
       - back

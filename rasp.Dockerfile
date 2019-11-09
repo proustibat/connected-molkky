@@ -1,7 +1,7 @@
 FROM arm32v7/node:10.16.2
 
 # Create app directory
-WORKDIR /usr/src/node-hue-prstbt
+WORKDIR /usr/src/connected-molkky
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied

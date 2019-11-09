@@ -13,7 +13,7 @@ describe('Page Home', () => {
     expect(component).toHaveLength(1);
     expect(component.find('h1')).toHaveLength(1);
     expect(component.find('h1').text()).toBe(title);
-    expect(component.find(Link)).toHaveLength(4);
+    expect(component.find(Link)).toHaveLength(2);
   });
 
   it('should render the page correctly without a title', () => {
@@ -23,6 +23,6 @@ describe('Page Home', () => {
     // Then
     expect(component).toHaveLength(1);
     expect(component.find('h1')).toHaveLength(0);
-    expect(component.find(Link)).toHaveLength(4);
+    expect(component.find(Link)).toHaveLength(2);
   });
 });

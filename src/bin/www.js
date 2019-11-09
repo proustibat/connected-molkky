@@ -10,7 +10,7 @@ import debugRenderer from 'debug';
 import http from 'http';
 import socketIO from 'socket.io';
 
-const debug = debugRenderer('node-hue-prstbt');
+const debug = debugRenderer('connected-molkky');
 
 class Server {
   constructor() {
