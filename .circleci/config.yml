@@ -12,43 +12,79 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
-
     working_directory: ~/repo
-
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
+          name: Restore Yarn Package Cache
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install
-
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
+          name: Save Yarn Package Cache
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      # Lint
+            - ~/.cache/yarn
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      # Build
       - run:
-          name: "ESLint"
-          command: yarn lint
-
+          name: Build
+          command: yarn build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - node_modules
+  linter:
+          docker:
+            - image: circleci/node:11.10.1
+          working_directory: ~/repo
+          steps:
+            - checkout
+            - attach_workspace:
+                at: ~/repo
+            # Lint
+            - run:
+                name: "ESLint"
+                command: yarn lint
+  tests:
+    docker:
+      - image: circleci/node:11.10.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
       # Tests
       - run:
-          name: "Jest and coverage"
+          name: "Unit tests and coverage"
           command: yarn test -- --ci
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
       - store_test_results:
           path: reports/junit
       - store_artifacts:
+          name: "Store tests report"
           path: reports/junit
       - store_artifacts:
+          name: "Store coverage report"
           path: coverage
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - coverage
+            - reports
+  sonar:
+    docker:
+      - image: circleci/node:11.10.1
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/repo
+      # Sonar
       - sonarcloud/scan
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.0
@@ -56,5 +92,15 @@ version: 2.1
 workflows:
   main:
     jobs:
-      - build:
+      - build
+      - linter:
+          requires:
+            - build
+      - tests:
+          requires:
+            - build
+      - sonar:
+          requires:
+          - build
+          - tests
           context: SonarCloud
