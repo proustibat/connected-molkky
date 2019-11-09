@@ -2565,11 +2565,11 @@ css-select-base-adapter@^0.1.1:
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
 
 css-select@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/css-select/-/css-select-2.0.2.tgz#ab4386cec9e1f668855564b17c3733b43b2a5ede"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/css-select/-/css-select-2.1.0.tgz#6a34653356635934a81baca68d0255432105dbef"
   dependencies:
     boolbase "^1.0.0"
-    css-what "^2.1.2"
+    css-what "^3.2.1"
     domutils "^1.7.0"
     nth-check "^1.0.2"
 
@@ -2589,9 +2589,13 @@ css-tree@1.0.0-alpha.37:
     mdn-data "2.0.4"
     source-map "^0.6.1"
 
-css-what@2.1, css-what@^2.1.2:
+css-what@2.1:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.3.tgz#a6d7604573365fe74686c3f311c56513d88285f2"
+
+css-what@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/css-what/-/css-what-3.2.1.tgz#f4a8f12421064621b456755e34a03a2c22df5da1"
 
 csso@^4.0.2:
   version "4.0.2"
@@ -2848,8 +2852,8 @@ doctrine@^3.0.0:
     esutils "^2.0.2"
 
 dom-serializer@0:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.2.1.tgz#13650c850daffea35d8b626a4cfc4d3a17643fdb"
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.2.2.tgz#1afb81f533717175d478655debc5e332d9f9bb51"
   dependencies:
     domelementtype "^2.0.1"
     entities "^2.0.0"
@@ -3096,20 +3100,21 @@ envify@^3.0.0:
     jstransform "^11.0.3"
     through "~2.3.4"
 
-enzyme-adapter-react-16@1.14.0:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.14.0.tgz#204722b769172bcf096cb250d33e6795c1f1858f"
+enzyme-adapter-react-16@1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.15.1.tgz#8ad55332be7091dc53a25d7d38b3485fc2ba50d5"
   dependencies:
-    enzyme-adapter-utils "^1.12.0"
+    enzyme-adapter-utils "^1.12.1"
+    enzyme-shallow-equal "^1.0.0"
     has "^1.0.3"
     object.assign "^4.1.0"
     object.values "^1.1.0"
     prop-types "^15.7.2"
-    react-is "^16.8.6"
+    react-is "^16.10.2"
     react-test-renderer "^16.0.0-0"
     semver "^5.7.0"
 
-enzyme-adapter-utils@^1.12.0:
+enzyme-adapter-utils@^1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/enzyme-adapter-utils/-/enzyme-adapter-utils-1.12.1.tgz#e828e0d038e2b1efa4b9619ce896226f85c9dd88"
   dependencies:
@@ -3126,6 +3131,13 @@ enzyme-matchers@^7.1.1:
   dependencies:
     circular-json-es6 "^2.0.1"
     deep-equal-ident "^1.1.1"
+
+enzyme-shallow-equal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/enzyme-shallow-equal/-/enzyme-shallow-equal-1.0.0.tgz#d8e4603495e6ea279038eef05a4bf4887b55dc69"
+  dependencies:
+    has "^1.0.3"
+    object-is "^1.0.1"
 
 enzyme-to-json@3.4.2:
   version "3.4.2"
@@ -6748,7 +6760,7 @@ react-dom@^0.14.0:
   version "0.14.9"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.9.tgz#05064a3dcf0fb1880a3b2bfc9d58c55d8d9f6293"
 
-react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
+react-is@^16.10.2, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6, react-is@^16.9.0:
   version "16.11.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
 
@@ -8011,8 +8023,8 @@ terser-webpack-plugin@^1.4.1:
     worker-farm "^1.7.0"
 
 terser@^4.1.2:
-  version "4.3.9"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-4.3.9.tgz#e4be37f80553d02645668727777687dad26bbca8"
+  version "4.3.10"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.3.10.tgz#094154a3ac30859b1e077c4be6c71b7cf4c09fac"
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
