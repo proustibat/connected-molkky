@@ -8,7 +8,7 @@ import isNull from 'lodash/isNull';
 import isUndefined from 'lodash/isUndefined';
 import omit from 'lodash/omit';
 
-const debug = debugRenderer('node-hue-prstbt');
+const debug = debugRenderer('connected-molkky');
 
 const router = express.Router();
 

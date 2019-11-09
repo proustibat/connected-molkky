@@ -16,8 +16,6 @@ if (!process.env.CI) {
     NODE_ENV: process.env.NODE_ENV,
     SERVER_PORT: process.env.SERVER_PORT,
     BS_PORT: process.env.BS_PORT,
-    DARKSKY_SECRET: process.env.DARKSKY_SECRET,
-    SECRET_TOKEN: process.env.SECRET_TOKEN,
   };
 }
 module.exports = config;

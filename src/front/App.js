@@ -1,8 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
-import Darksky from '@pages/Darksky';
 import Game from '@pages/Molkky/Game';
 import Home from '@pages/Home';
-import Hue from '@pages/Hue';
 import Molkky from '@pages/Molkky';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -14,16 +12,10 @@ export default class App {
       isMatching: (pathname) => pathname === '/',
       component: Home,
     }, {
-      isMatching: (pathname) => pathname === '/darksky',
-      component: Darksky,
-    }, {
-      isMatching: (pathname) => pathname === '/hue',
-      component: Hue,
-    }, {
       isMatching: (pathname) => pathname === '/molkky',
       component: Molkky,
     }, {
-      isMatching: (pathname) => pathname === '/molkky/game',
+      isMatching: (pathname) => ['/molkky/game', '/molkky/game/play'].includes(pathname),
       component: Game,
     }, {
       isMatching: () => true,

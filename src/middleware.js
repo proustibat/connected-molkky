@@ -1,56 +1,4 @@
 import CurrentGame from '@root/CurrentGame';
-import { SECRET_TOKEN } from '@root/config';
-import jwt from 'jsonwebtoken';
-
-// TODO: refactor these methods
-
-const checkHueToken = (req, res, next) => {
-  let token = req.headers['x-access-token'] || req.headers.authorization;
-
-  if (token) {
-    if (token.startsWith('Bearer ')) {
-      // Remove Bearer from string
-      token = token.slice(7, token.length);
-    }
-    return jwt.verify(token, SECRET_TOKEN, (err, decoded) => {
-      if (err) {
-        const message = 'Token is not valid';
-        res.writeHead(400, message, { 'content-type': 'text/plain' });
-        res.end(message);
-        return false;
-      }
-      req.decoded = decoded;
-      return next();
-    });
-  }
-  const message = 'Auth token is not supplied';
-  res.writeHead(400, message, { 'content-type': 'text/plain' });
-  res.end(message);
-  return false;
-};
-
-const checkConnectToken = (req, res, next) => {
-  let token = req.headers['x-access-token'] || req.headers.authorization;
-
-  if (token) {
-    if (token.startsWith('Bearer ')) {
-      // Remove Bearer from string
-      token = token.slice(7, token.length);
-    }
-    return jwt.verify(token, SECRET_TOKEN, (err, decoded) => {
-      if (err) {
-        const message = 'Token is not valid';
-        res.writeHead(400, message, { 'content-type': 'text/plain' });
-        res.end(message);
-        return false;
-      }
-      req.decoded = decoded;
-
-      return next();
-    });
-  }
-  return next();
-};
 
 const checkConditionsToStartGame = (req, res, next) => {
   const { body } = req;
@@ -76,7 +24,7 @@ const checkConditionsToStartGame = (req, res, next) => {
   return next();
 };
 
-const checkGameHasStarted = (req, res, next) => {
+const checkGameStarted = (req, res, next) => {
   const currentGame = CurrentGame.instance;
 
   if (!currentGame) {
@@ -132,9 +80,7 @@ const checkPoints = (req, res, next) => {
 };
 
 module.exports = {
-  checkHueToken,
-  checkConnectToken,
-  checkGameStarted: checkGameHasStarted,
+  checkGameStarted,
   checkTeam,
   checkPoints,
   checkConditionsToStartGame,

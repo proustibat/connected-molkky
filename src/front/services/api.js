@@ -1,6 +1,5 @@
 import { toastError } from '@root/front/services/toasts';
 
-// eslint-disable-next-line import/prefer-default-export
 export const startGame = ({ teams, playingTeam }) => fetch('/api/molkky/start', {
   method: 'post',
   headers: { Accept: 'application/json', 'Content-Type': 'application/json' },

@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   res.end(renderTemplate(<Molkky {...data} />));
 });
 
-router.get('/game', (req, res) => {
+router.get(['/game', '/game/play'], (req, res) => {
   const context = {};
   const data = { title: 'Molkky Game' };
   res.writeHead(200, { 'Content-Type': 'text/html' });

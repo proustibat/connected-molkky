@@ -10,10 +10,6 @@ import sassMiddleware from 'node-sass-middleware';
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -56,7 +52,10 @@ app.use((err, req, res) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: res.locals.message,
+    error: res.locals.error,
+  }).end();
 });
 
 module.exports = app;

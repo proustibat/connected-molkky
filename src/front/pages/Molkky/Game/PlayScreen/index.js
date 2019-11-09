@@ -14,7 +14,6 @@ const PlayScreen = () => {
   } = usePlayContext();
 
   const [openModal, setOpenModal] = useState(false);
-  // const [gameOverModalInstance, setGameOverModal] = useState(null);
 
   const updatePlayContext = ({ currentTurn: ct, scores: sc }) => {
     setCurrentTurn(ct);
@@ -40,7 +39,7 @@ const PlayScreen = () => {
 
   const onGameOverModalInit = (instance) => instance.open();
 
-  return (
+  return currentTurn ? (
     <div>
       <CurrentTurn
         onValid={onValidPoints}
@@ -68,7 +67,7 @@ const PlayScreen = () => {
           />
         )}
     </div>
-  );
+  ) : 'No data for current game';
 };
 
 export default PlayScreen;
