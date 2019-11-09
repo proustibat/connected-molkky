@@ -16,3 +16,4 @@ stats.json
 webpack-stats.json
 .env.prod
 junit.xml
+reports

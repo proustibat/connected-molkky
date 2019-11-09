@@ -48,7 +48,11 @@ jobs:
             # Lint
             - run:
                 name: "ESLint"
-                command: yarn lint
+                command: yarn lint -f json -o eslint-reports.json
+            - persist_to_workspace:
+                root: ~/repo
+                paths:
+                  - eslint-reports.json
   tests:
     docker:
       - image: circleci/node:11.10.1
@@ -102,5 +106,6 @@ workflows:
       - sonar:
           requires:
           - build
+          - linter
           - tests
           context: SonarCloud
