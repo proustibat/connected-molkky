@@ -5,9 +5,9 @@ import Button from '@components/Button';
 import CatSVG from '@root/front/svg/cat.svg';
 import CurrentTurn from './index';
 import DogSVG from '@root/front/svg/dog.svg';
+import { POSITION } from '@utils/constants';
 import React from 'react';
 import SkittlesDisplay from '@components/SkittlesDisplay';
-import constants from '@utils/constants';
 import { mount } from 'enzyme';
 
 describe('CurrentTurn', () => {
@@ -22,25 +22,23 @@ describe('CurrentTurn', () => {
         cat: { name: 'cat team', icon: CatSVG },
         dog: { name: 'dog team', icon: DogSVG },
       },
-      currentTurn: {
-        isPlaying: 'dog',
-      },
+      currentTurn: { isPlaying: 'dog' },
     });
 
     useDataContextSpy = jest.spyOn(DataContextModule, 'useDataContext').mockReturnValue({
       positionData: [
-        { value: 1, position: constants.POSITION.UPRIGHT },
-        { value: 2, position: constants.POSITION.UPRIGHT },
-        { value: 3, position: constants.POSITION.UPRIGHT },
-        { value: 4, position: constants.POSITION.UPRIGHT },
-        { value: 5, position: constants.POSITION.UPRIGHT },
-        { value: 6, position: constants.POSITION.KNOCKED_OVER },
-        { value: 7, position: constants.POSITION.UPRIGHT },
-        { value: 8, position: constants.POSITION.UPRIGHT },
-        { value: 9, position: constants.POSITION.UPRIGHT },
-        { value: 10, position: constants.POSITION.UPRIGHT },
-        { value: 11, position: constants.POSITION.UPRIGHT },
-        { value: 12, position: constants.POSITION.UPRIGHT },
+        { value: 1, position: POSITION.UPRIGHT },
+        { value: 2, position: POSITION.UPRIGHT },
+        { value: 3, position: POSITION.UPRIGHT },
+        { value: 4, position: POSITION.UPRIGHT },
+        { value: 5, position: POSITION.UPRIGHT },
+        { value: 6, position: POSITION.KNOCKED_OVER },
+        { value: 7, position: POSITION.UPRIGHT },
+        { value: 8, position: POSITION.UPRIGHT },
+        { value: 9, position: POSITION.UPRIGHT },
+        { value: 10, position: POSITION.UPRIGHT },
+        { value: 11, position: POSITION.UPRIGHT },
+        { value: 12, position: POSITION.UPRIGHT },
       ],
     });
 

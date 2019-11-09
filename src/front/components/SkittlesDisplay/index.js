@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { POSITION } from '@utils/constants';
 import PropTypes from 'prop-types';
 import Skittle from '@components/Skittle';
 import cloneDeep from 'lodash/cloneDeep';
-import constants from '@utils/constants';
 import get from 'lodash/get';
 import style from './style';
 import { useDataContext } from '@contexts/DataContext';
@@ -11,7 +11,7 @@ const SkittlesDisplay = ({
   skittleSize, style: customStyle, className, editMode, onChange, skittles,
 }) => {
   const [positionData, setPositionData] = useState(Array.from({ length: 12 },
-    (position = constants.POSITION.UPRIGHT, value) => ({ value: value + 1, position })));
+    (position = POSITION.UPRIGHT, value) => ({ value: value + 1, position })));
 
   const { positionData: data } = editMode
     ? { positionData }
@@ -29,9 +29,9 @@ const SkittlesDisplay = ({
     const indexToChange = positionDataClone.findIndex((item) => item.value === value);
     positionDataClone[indexToChange] = {
       value,
-      position: positionDataClone[indexToChange].position === constants.POSITION.KNOCKED_OVER
-        ? constants.POSITION.UPRIGHT
-        : constants.POSITION.KNOCKED_OVER,
+      position: positionDataClone[indexToChange].position === POSITION.KNOCKED_OVER
+        ? POSITION.UPRIGHT
+        : POSITION.KNOCKED_OVER,
     };
     setPositionData(positionDataClone);
     onChange(positionDataClone);

@@ -1,14 +1,14 @@
 import { colorError, colorInfo, colorWarning } from '@root/gStyles';
-import constants from '@utils/constants';
+import { MESSAGE_TYPE } from '@utils/constants';
 
 const mappers = [{
-  predicate: (type) => type === constants.MESSAGE_TYPE.WARNING,
+  predicate: (type) => type === MESSAGE_TYPE.WARNING,
   color: colorWarning,
 }, {
-  predicate: (type) => type === constants.MESSAGE_TYPE.ERROR,
+  predicate: (type) => type === MESSAGE_TYPE.ERROR,
   color: colorError,
 }, {
-  predicate: (type) => type === constants.MESSAGE_TYPE.INFO,
+  predicate: (type) => type === MESSAGE_TYPE.INFO,
   color: colorInfo,
 }];
 

@@ -1,9 +1,9 @@
 import * as DataContextModule from '@contexts/DataContext';
 import { mount, shallow } from 'enzyme';
+import { POSITION } from '@utils/constants';
 import React from 'react';
 import Skittle from '@components/Skittle';
 import SkittlesDisplay from './index';
-import constants from '@utils/constants';
 import { dataWithKnockedOverAndNull } from '@fixtures/molkky';
 
 const { DataContextProvider } = DataContextModule;
@@ -72,12 +72,12 @@ describe('SkittlesDisplay', () => {
       .find(Skittle)
       .map((skittle) => skittle.props())
       .filter((props) => [2, 4].includes(props.value))
-      .every(({ position }) => position === constants.POSITION.KNOCKED_OVER)).toBeTruthy();
+      .every(({ position }) => position === POSITION.KNOCKED_OVER)).toBeTruthy();
     expect(component
       .find(Skittle)
       .map((skittle) => skittle.props())
       .filter((props) => [3, 7, 8, 9, 10, 11, 12].includes(props.value))
-      .every(({ position }) => position === constants.POSITION.UPRIGHT)).toBeTruthy();
+      .every(({ position }) => position === POSITION.UPRIGHT)).toBeTruthy();
   });
 
   it('should render the component correctly in edit mode', () => {
@@ -88,14 +88,14 @@ describe('SkittlesDisplay', () => {
     expect(component
       .find(Skittle)
       .map((skittle) => skittle.props())
-      .every(({ position }) => position === constants.POSITION.UPRIGHT)).toBeTruthy();
+      .every(({ position }) => position === POSITION.UPRIGHT)).toBeTruthy();
   });
 
   it('should render the component correctly in edit mode and skittles in prop', () => {
     // Given / When
     const skittles = Array.from({ length: 12 },
-      (position = constants.POSITION.UPRIGHT, value) => ({ value: value + 1, position }));
-    skittles[2] = { value: 3, position: constants.POSITION.KNOCKED_OVER };
+      (position = POSITION.UPRIGHT, value) => ({ value: value + 1, position }));
+    skittles[2] = { value: 3, position: POSITION.KNOCKED_OVER };
     const component = mount(<SkittlesDisplay editMode skittles={skittles} />);
 
     // Then
@@ -103,20 +103,20 @@ describe('SkittlesDisplay', () => {
       .find(Skittle)
       .map((skittle) => skittle.props())
       .filter((props) => ![3].includes(props.value))
-      .every(({ position }) => position === constants.POSITION.UPRIGHT)).toBeTruthy();
+      .every(({ position }) => position === POSITION.UPRIGHT)).toBeTruthy();
 
     expect(component
       .find(Skittle)
       .map((skittle) => skittle.props())
       .filter((props) => [3].includes(props.value))
-      .every(({ position }) => position === constants.POSITION.KNOCKED_OVER)).toBeTruthy();
+      .every(({ position }) => position === POSITION.KNOCKED_OVER)).toBeTruthy();
   });
 
   it('should select a skittle in edit mode', () => {
     // Given
     const skittles = Array.from({ length: 12 },
-      (position = constants.POSITION.UPRIGHT, value) => ({ value: value + 1, position }));
-    skittles[2] = { value: 3, position: constants.POSITION.KNOCKED_OVER };
+      (position = POSITION.UPRIGHT, value) => ({ value: value + 1, position }));
+    skittles[2] = { value: 3, position: POSITION.KNOCKED_OVER };
     const onChangeSpy = jest.fn();
     const component = mount(<SkittlesDisplay
       editMode
@@ -135,15 +135,15 @@ describe('SkittlesDisplay', () => {
     // Then
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
     const expectedData = [...skittles];
-    expectedData[7] = { value: 8, position: constants.POSITION.KNOCKED_OVER };
+    expectedData[7] = { value: 8, position: POSITION.KNOCKED_OVER };
     expect(onChangeSpy).toHaveBeenLastCalledWith(expectedData);
   });
 
   it('should unselect a skittle in edit mode', () => {
     // Given
     const skittles = Array.from({ length: 12 },
-      (position = constants.POSITION.UPRIGHT, value) => ({ value: value + 1, position }));
-    skittles[2] = { value: 3, position: constants.POSITION.KNOCKED_OVER };
+      (position = POSITION.UPRIGHT, value) => ({ value: value + 1, position }));
+    skittles[2] = { value: 3, position: POSITION.KNOCKED_OVER };
     const onChangeSpy = jest.fn();
     const component = mount(<SkittlesDisplay
       editMode
@@ -162,7 +162,7 @@ describe('SkittlesDisplay', () => {
     // Then
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
     const expectedData = [...skittles];
-    expectedData[2] = { value: 3, position: constants.POSITION.UPRIGHT };
+    expectedData[2] = { value: 3, position: POSITION.UPRIGHT };
     expect(onChangeSpy).toHaveBeenLastCalledWith(expectedData);
   });
 });

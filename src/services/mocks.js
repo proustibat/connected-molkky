@@ -1,16 +1,16 @@
-import constants from '@utils/constants';
+import { POSITION } from '@utils/constants';
 
 export const getRandomPosition = (scale = 100, noNull = false) => {
   const randomValue = Math.floor(Math.random() * Math.floor(scale));
   const conditions = [{
     predicate: (value) => value >= 3,
-    position: constants.POSITION.UPRIGHT,
+    position: POSITION.UPRIGHT,
   }, {
     predicate: (value) => value < 3 && value !== 0,
-    position: constants.POSITION.KNOCKED_OVER,
+    position: POSITION.KNOCKED_OVER,
   }, {
     predicate: () => true,
-    position: noNull ? constants.POSITION.UPRIGHT : null,
+    position: noNull ? POSITION.UPRIGHT : null,
   }];
   return conditions.find((condition) => condition.predicate(randomValue)).position;
 };
