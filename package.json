@@ -93,7 +93,7 @@
     "jest-enzyme": "7.1.2",
     "jest-junit": "9.0.0",
     "mock-socket": "9.0.2",
-    "nodemon": "1.19.3",
+    "nodemon": "1.19.4",
     "prop-types": "15.7.2",
     "rimraf": "3.0.0",
     "source-map-explorer": "2.1.0",
