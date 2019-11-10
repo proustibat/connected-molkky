@@ -38,7 +38,7 @@
     "cookie-parser": "1.4.4",
     "debug": "4.1.1",
     "express": "4.16.1",
-    "http-errors": "1.6.3",
+    "http-errors": "1.7.3",
     "lodash": "4.17.15",
     "materialize-css": "1.0.0",
     "morgan": "1.9.1",
