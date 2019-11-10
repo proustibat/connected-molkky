@@ -896,7 +896,7 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@packtracker/webpack-plugin@^2.2.0":
+"@packtracker/webpack-plugin@2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@packtracker/webpack-plugin/-/webpack-plugin-2.2.0.tgz#eee3e6aa23971208f33c7bd254ccf1b05df0b889"
   dependencies:
