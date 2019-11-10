@@ -27,14 +27,15 @@
 
 ## Prerequisites
 
-Be sure Node and npm are installed.
+Be sure [Node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/get-npm) are installed.
+We use [Yarn](https://yarnpkg.com/lang/en/) instead of npm but it doesn't matter.
 
 ## Install
 
 ```$xslt
 git clone git@github.com:proustibat/connected-molkky.git
 cd connected-molkky
-npm i
+yarn
 ```
 
 ## Configuration
@@ -50,12 +51,12 @@ BS_PORT=3000
 ## Development
 
 ```$xslt
-npm run dev
+yarn dev
 ```
 It runs server on port SERVER_PORT (8888) and watches files with nodemon
 
 ```$xslt
-npm run front
+yarn front
 ``` 
 It runs webpack to watch front files.
 Open [localhost:8888](http://localhost:8888) to start working.
@@ -63,15 +64,15 @@ Open [localhost:8888](http://localhost:8888) to start working.
 ## Testing and linting
 
 ```$xslt
-npm run test
-npm run lint -- --fix
+yarn test
+yarn lint --fix
 ```
 
 ## Production
 
 ```$xslt
-npm run build
-npm start
+yarn build
+yarn start
 ```
 
 It copy necessary files in dist and public folders, build server and client files.
