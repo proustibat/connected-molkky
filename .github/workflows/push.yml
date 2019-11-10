@@ -1,5 +1,3 @@
-name: PUSH
-
 on: push
 name: packtracker.io
 jobs:
