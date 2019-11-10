@@ -16,6 +16,7 @@ if (!process.env.CI) {
     NODE_ENV: process.env.NODE_ENV,
     SERVER_PORT: process.env.SERVER_PORT,
     BS_PORT: process.env.BS_PORT,
+    PT_PROJECT_TOKEN: process.env.PT_PROJECT_TOKEN,
   };
 }
 module.exports = config;

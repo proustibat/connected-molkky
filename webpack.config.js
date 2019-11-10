@@ -1,6 +1,7 @@
 const path = require('path');
 const Visualizer = require('webpack-visualizer-plugin');
-const { BS_PORT } = require('./src/config');
+const { BS_PORT, PT_PROJECT_TOKEN } = require('./src/config');
+const PacktrackerPlugin = require('@packtracker/webpack-plugin');
 
 module.exports = {
   entry: {
@@ -52,5 +53,9 @@ module.exports = {
   },
   plugins: [
     new Visualizer(),
+    new PacktrackerPlugin({
+      project_token: PT_PROJECT_TOKEN,
+      upload: process.env.CI === 'true',
+    }),
   ],
 };
