@@ -33,6 +33,9 @@ jobs:
       - run:
           name: Build
           command: yarn build
+      - store_artifacts:
+          name: "Store build stats"
+          path: public/javascript/stats.html
       - persist_to_workspace:
           root: ~/repo
           paths:
