@@ -99,7 +99,7 @@
     "source-map-explorer": "2.1.0",
     "sys": "0.0.1",
     "webpack": "4.41.2",
-    "webpack-cli": "3.3.9",
+    "webpack-cli": "3.3.10",
     "webpack-visualizer-plugin": "0.1.11"
   },
   "config": {
