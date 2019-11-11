@@ -1,7 +1,9 @@
 import CurrentGame from '@root/server/CurrentGame';
 import middleware from './middleware';
 
-const { checkConditionsToStartGame, checkGameStarted, checkTeam } = middleware;
+const {
+  checkConditionsToStartGame, checkGameStarted, checkTeam, checkPoints,
+} = middleware;
 
 describe('middlewares', () => {
   let res;
@@ -214,6 +216,55 @@ describe('middlewares', () => {
       expect(res.writeHead).toHaveBeenLastCalledWith(
         400,
         'Bad request: need the team name!',
+        { 'content-type': 'application/json' },
+      );
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('checkPoints', () => {
+    it('should return next if the body has points number', () => {
+      // Given
+      const req = { body: { points: 12 } };
+
+      // Then
+      checkPoints(req, res, next);
+
+      // When
+      expect(next).toHaveBeenCalledTimes(1);
+    });
+
+    it('should send an error if the points in body is not a number', () => {
+      // Given
+      const req = { body: { points: '12' } };
+
+      // Then
+      checkPoints(req, res, next);
+
+      // When
+      expect(next).toHaveBeenCalledTimes(0);
+      expect(res.writeHead).toHaveBeenCalledTimes(1);
+      expect(res.writeHead).toHaveBeenLastCalledWith(
+        400,
+        'Bad request: points should be a number!',
+        { 'content-type': 'application/json' },
+      );
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
+
+    it('should send an error if the body has no points', () => {
+      // Given
+      const req = { body: {} };
+
+      // Then
+      checkPoints(req, res, next);
+
+      // When
+      expect(next).toHaveBeenCalledTimes(0);
+      expect(res.writeHead).toHaveBeenCalledTimes(1);
+      expect(res.writeHead).toHaveBeenLastCalledWith(
+        400,
+        'Bad request: need points!',
         { 'content-type': 'application/json' },
       );
       expect(res.end).toHaveBeenCalledTimes(1);
