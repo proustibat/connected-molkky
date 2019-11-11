@@ -48,6 +48,7 @@ router.post('/', async (req, res) => {
           value: SKITTLES[mac],
         };
       });
+
       const io = req.app.get('socketio');
       io.emit('UPDATE', lastState);
     } else {
