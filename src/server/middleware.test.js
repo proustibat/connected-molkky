@@ -1,7 +1,7 @@
 import CurrentGame from '@root/server/CurrentGame';
 import middleware from './middleware';
 
-const { checkConditionsToStartGame } = middleware;
+const { checkConditionsToStartGame, checkGameStarted } = middleware;
 
 describe('middleware', () => {
   let res;
@@ -47,6 +47,7 @@ describe('middleware', () => {
       checkConditionsToStartGame(req, res, next);
 
       // Then
+      expect(next).toHaveBeenCalledTimes(0);
       expect(res.writeHead).toHaveBeenCalledTimes(1);
       expect(res.writeHead).toHaveBeenLastCalledWith(
         400,
@@ -64,6 +65,7 @@ describe('middleware', () => {
       checkConditionsToStartGame(req, res, next);
 
       // Then
+      expect(next).toHaveBeenCalledTimes(0);
       expect(res.writeHead).toHaveBeenCalledTimes(1);
       expect(res.writeHead).toHaveBeenLastCalledWith(
         400,
@@ -81,6 +83,7 @@ describe('middleware', () => {
       checkConditionsToStartGame(req, res, next);
 
       // Then
+      expect(next).toHaveBeenCalledTimes(0);
       expect(res.writeHead).toHaveBeenCalledTimes(1);
       expect(res.writeHead).toHaveBeenLastCalledWith(
         400,
@@ -98,11 +101,41 @@ describe('middleware', () => {
       checkConditionsToStartGame(req, res, next);
 
       // Then
+      expect(next).toHaveBeenCalledTimes(0);
       expect(res.writeHead).toHaveBeenCalledTimes(1);
       expect(res.writeHead).toHaveBeenLastCalledWith(
         400,
         'Bad request: need 2 teams!',
         { 'content-type': 'application/json' },
+      );
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('checkGameStarted', () => {
+    it('should return next if a game exists', () => {
+      // Given
+      // eslint-disable-next-line no-new
+      new CurrentGame({ teams: ['qwerty', 'asdfgh'] });
+
+      // When
+      checkGameStarted({}, res, next);
+
+      // Then
+      expect(next).toHaveBeenCalledTimes(1);
+    });
+
+    it('should send an error if no game exists', () => {
+      // When
+      checkGameStarted({}, res, next);
+
+      // Then
+      expect(next).toHaveBeenCalledTimes(0);
+      expect(res.writeHead).toHaveBeenCalledTimes(1);
+      expect(res.writeHead).toHaveBeenLastCalledWith(
+        400,
+        'No game has been created!',
+        { 'content-type': 'text/plain' },
       );
       expect(res.end).toHaveBeenCalledTimes(1);
     });
