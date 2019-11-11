@@ -1,9 +1,9 @@
 import CurrentGame from '@root/server/CurrentGame';
 import middleware from './middleware';
 
-const { checkConditionsToStartGame, checkGameStarted } = middleware;
+const { checkConditionsToStartGame, checkGameStarted, checkTeam } = middleware;
 
-describe('middleware', () => {
+describe('middlewares', () => {
   let res;
   let next;
 
@@ -136,6 +136,85 @@ describe('middleware', () => {
         400,
         'No game has been created!',
         { 'content-type': 'text/plain' },
+      );
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('checkTeam', () => {
+    const teams = ['qwerty', 'asdfgh'];
+    const playingTeam = teams[0];
+
+    beforeEach(() => {
+      // eslint-disable-next-line no-new
+      new CurrentGame({ teams, playingTeam });
+    });
+
+    afterEach(() => {
+      CurrentGame.instance = null;
+    });
+
+    it('should return next if the team in body is the right', () => {
+      // Given
+      const req = { body: { team: playingTeam } };
+
+      // When
+      checkTeam(req, res, next);
+
+      // Then
+      expect(next).toHaveBeenCalledTimes(1);
+    });
+
+    it('should send an error if the team defined in body is not the team that should play', () => {
+      // Given
+      const req = { body: { team: teams[1] } };
+
+      // When
+      checkTeam(req, res, next);
+
+      // Then
+      expect(next).toHaveBeenCalledTimes(0);
+      expect(res.writeHead).toHaveBeenCalledTimes(1);
+      expect(res.writeHead).toHaveBeenLastCalledWith(
+        400,
+        `Not the ${req.body.team}'s turn!`,
+        { 'content-type': 'application/json' },
+      );
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
+
+    it('should send an error if the team defined in body doesn\'t exist', () => {
+      // Given
+      const req = { body: { team: 'zxcvbnm' } };
+
+      // When
+      checkTeam(req, res, next);
+
+      // Then
+      expect(next).toHaveBeenCalledTimes(0);
+      expect(res.writeHead).toHaveBeenCalledTimes(1);
+      expect(res.writeHead).toHaveBeenLastCalledWith(
+        400,
+        'The team does not exist!',
+        { 'content-type': 'application/json' },
+      );
+      expect(res.end).toHaveBeenCalledTimes(1);
+    });
+
+    it('should send an error if there is no team in body', () => {
+      // Given
+      const req = { body: {} };
+
+      // When
+      checkTeam(req, res, next);
+
+      // Then
+      expect(next).toHaveBeenCalledTimes(0);
+      expect(res.writeHead).toHaveBeenCalledTimes(1);
+      expect(res.writeHead).toHaveBeenLastCalledWith(
+        400,
+        'Bad request: need the team name!',
+        { 'content-type': 'application/json' },
       );
       expect(res.end).toHaveBeenCalledTimes(1);
     });
