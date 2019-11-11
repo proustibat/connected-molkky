@@ -37,8 +37,8 @@ router.post('/reset', async (req, res) => {
   const currentGame = CurrentGame.instance;
   currentGame.reset();
   res.json({
-    scores: currentGame.scores,
-    currentTurn: currentGame.currentTurn,
+    scores: null,
+    currentTurn: null,
   }).end();
 });
 

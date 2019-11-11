@@ -5,14 +5,16 @@ import PropTypes from 'prop-types';
 import { resetGame } from '@root/front/services/api';
 import { useDataContext } from '@contexts/DataContext';
 import { useHistory } from 'react-router-dom';
+import { usePlayContext } from '@contexts/PlayContext';
 
 const ModalGameOver = ({
   winnerName, winnerIcon: SVGWinnerIcon, winnerScore,
   loserName, loserIcon: SVGLoserIcon, loserScore,
   onInit,
 }) => {
-  const { isLoading, setIsLoading } = useDataContext();
   const history = useHistory();
+  const { isLoading, setIsLoading } = useDataContext();
+  const { setCurrentTurn, setScores } = usePlayContext();
 
   const [modalInstance, setModalInstance] = useState(null);
 
@@ -21,7 +23,10 @@ const ModalGameOver = ({
     const result = await resetGame();
     setIsLoading(false);
     if (result) {
+      setCurrentTurn(result.currentTurn);
+      setScores(result.scores);
       modalInstance.close();
+      history.push('/molkky/game');
     }
   };
 
@@ -30,15 +35,10 @@ const ModalGameOver = ({
     onInit(instance);
   };
 
-  const onModalCloseEnd = () => {
-    history.push('/molkky/game');
-  };
-
   return (
     <Modal
       id="game-over-modal"
       onInit={onModalInit}
-      onCloseEnd={onModalCloseEnd}
       title="GAME OVER"
       styleTitle={{ justifyContent: 'center' }}
       footer={(
