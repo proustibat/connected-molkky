@@ -56,7 +56,7 @@ export default class CurrentGame {
     return CurrentGame.instance;
   }
 
-  addPoints({ team, points }) {
+  addPoints = ({ team, points }) => {
     this._scores[team].score = this._scores[team].score + points;
 
     if (this._scores[team].score > config.END_SCORE) {
@@ -72,9 +72,9 @@ export default class CurrentGame {
     } else {
       this._toggleTurn();
     }
-  }
+  };
 
-  missTurn() {
+  missTurn = () => {
     this._currentTurn.remain = this._currentTurn.remain - 1;
     if (this._currentTurn.remain === 0) {
       this._setWinner({
@@ -84,10 +84,12 @@ export default class CurrentGame {
       });
       this._setOver();
     }
-  }
+  };
 
   reset = () => {
     CurrentGame.instance = null;
+    this._scores = null;
+    this._currentTurn = null;
   };
 
   get scores() {
