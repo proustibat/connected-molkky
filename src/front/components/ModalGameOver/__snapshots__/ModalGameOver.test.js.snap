@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModalGameOver should render the component correctly 1`] = `
+<Modal
+  footer={
+    <Button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      size="btn-large"
+      style={
+        Object {
+          "margin": 0,
+        }
+      }
+    >
+      Play Again
+    </Button>
+  }
+  id="game-over-modal"
+  onCloseEnd={null}
+  onInit={[Function]}
+  styleTitle={
+    Object {
+      "justifyContent": "center",
+    }
+  }
+  title="GAME OVER"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": "calc(100% - 43px)",
+        "justifyContent": "space-evenly",
+        "margin": 0,
+        "padding": 0,
+      }
+    }
+  >
+    <p
+      className="flow-text"
+      style={
+        Object {
+          "margin": 0,
+          "textAlign": "center",
+        }
+      }
+    >
+      Boo-ya!
+      <br />
+      Team Cat
+       
+      wins!
+    </p>
+    <div
+      style={
+        Object {
+          "position": "relative",
+        }
+      }
+    >
+      <TrophySVG
+        height="48"
+        style={
+          Object {
+            "display": "block",
+            "fill": "#143746",
+            "height": "15rem",
+            "margin": "auto",
+            "width": "15rem",
+          }
+        }
+        viewBox="0 0 48 48"
+        width="48"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+      <CatSVG
+        style={
+          Object {
+            "left": "calc(50% - 2.25rem)",
+            "marginLeft": "0.6rem",
+            "marginRight": "0.6rem",
+            "position": "absolute",
+            "top": "5rem",
+            "width": "3.5rem",
+          }
+        }
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+      <p
+        style={
+          Object {
+            "color": "#e2e2e2",
+            "fontSize": "2rem",
+            "left": "calc(50% - 2rem)",
+            "position": "absolute",
+            "textAlign": "center",
+            "top": 0,
+            "width": "4rem",
+          }
+        }
+      >
+        50
+      </p>
+    </div>
+    <p
+      className="flow-text"
+      style={
+        Object {
+          "margin": 0,
+          "textAlign": "center",
+        }
+      }
+    >
+      Bwah-hah-hah!
+      <br />
+      <span
+        aria-label="thumb down"
+        role="img"
+      >
+        👎
+      </span>
+      <DogSVG
+        style={
+          Object {
+            "verticalAlign": "middle",
+            "width": "2rem",
+          }
+        }
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      />
+      <br />
+      Team Dog
+       
+      loses with
+       
+      35
+      !
+    </p>
+  </div>
+</Modal>
+`;
