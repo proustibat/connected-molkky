@@ -31,7 +31,7 @@ const StartScreen = () => {
     if (result) {
       setCurrentTurn(result.currentTurn);
       setScores(result.scores);
-      history.push('/molkky/game/play');
+      !restart && history.push('/molkky/game/play');
     }
   };
 
