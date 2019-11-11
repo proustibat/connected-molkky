@@ -2,8 +2,11 @@ import * as Api from '@root/front/services/api';
 import * as DataContextModule from '@contexts/DataContext';
 import * as PlayContextModule from '@contexts/PlayContext';
 import { serverResultAfterMiss, serverResultAfterScore } from '@fixtures/molkky';
+import CatSVG from '@root/front/svg/cat.svg';
 import CurrentTurn from '@components/CurrentTurn';
+import DogSVG from '@root/front/svg/dog.svg';
 import ModalEdit from '@components/ModalEdit';
+import ModalGameOver from '@components/ModalGameOver';
 import PlayScreen from './index';
 import React from 'react';
 import ScoresOverview from '@components/ScoresOverview';
@@ -59,6 +62,7 @@ describe('PlayScreen', () => {
     expect(component.find(ScoresOverview)).toHaveLength(1);
     expect(component.find(CurrentTurn)).toHaveLength(1);
     expect(component.find(ModalEdit)).toHaveLength(1);
+    expect(component.find(ModalGameOver)).toHaveLength(0);
   });
 
   it('should handle points validation', (done) => {
@@ -162,5 +166,24 @@ describe('PlayScreen', () => {
       expect(useDataContextSpy().setIsLoading).toHaveBeenLastCalledWith(false);
       done();
     });
+  });
+
+  it('should display the game over modal', () => {
+    // Given
+    usePlayContextSpy.mockRestore();
+    usePlayContextSpy = jest.spyOn(PlayContextModule, 'usePlayContext').mockReturnValue({
+      currentTurn: { wining: 'cat', over: true, losing: 'dog' },
+      setCurrentTurn: jest.fn(),
+      setScores: jest.fn(),
+      teams: { cat: { name: 'Team Cat', icon: CatSVG }, dog: { name: 'Team Dog', icon: DogSVG } },
+      scores: { cat: { score: 50, left: 0 }, dog: { score: 46, left: 4 } },
+    });
+
+    // When
+    const component = shallow(<PlayScreen />);
+
+    // Then
+    expect(component.find(ModalGameOver)).toHaveLength(1);
+    expect(component.find(ModalGameOver).props()).toMatchSnapshot('modal game over props');
   });
 });

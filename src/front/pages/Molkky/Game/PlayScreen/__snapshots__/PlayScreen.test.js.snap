@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayScreen should display the game over modal: modal game over props 1`] = `
+Object {
+  "loserIcon": [Function],
+  "loserName": "Team Dog",
+  "loserScore": 46,
+  "onInit": [Function],
+  "winnerIcon": [Function],
+  "winnerName": "Team Cat",
+  "winnerScore": 50,
+}
+`;
