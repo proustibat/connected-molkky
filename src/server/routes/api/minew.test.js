@@ -40,11 +40,8 @@ describe('Minew endpoints', () => {
     expect(superTest.res.statusMessage).toBe('OK');
     expect(mockSocket.emit).toHaveBeenCalledTimes(1);
     expect(mockSocket.emit).toHaveBeenLastCalledWith('UPDATE', {
-      AC233FA247EB: {
-        battery: 100, position: 'UPRIGHT', value: 1, z: 1,
-      },
-      AC233FA247F0: {
-        battery: 100, position: 'UPRIGHT', value: 2, z: 1.0078125,
+      AC233FA247F5: {
+        battery: 100, position: 'UPRIGHT', value: 3, z: -0.98828125,
       },
     });
   });
