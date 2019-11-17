@@ -24,4 +24,4 @@ export const SKITTLES = {
   AC233FA246FD: 12,
 };
 
-export const POSITION_LEVEL = 0.8;
+export const POSITION_LEVEL = -0.8;

@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
           ...lastState[mac],
           ...(battery && { battery }),
           ...(z && {
-            position: z >= POSITION_LEVEL ? 'UPRIGHT' : 'KNOCKED_OVER',
+            position: z <= POSITION_LEVEL ? 'UPRIGHT' : 'KNOCKED_OVER',
             z,
           }),
           value: SKITTLES[mac],
