@@ -5777,9 +5777,9 @@ mixin-object@^2.0.1:
   dependencies:
     minimist "0.0.8"
 
-mock-socket@9.0.2:
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-9.0.2.tgz#8197f7e830f2f9d4b3a687eb69dce160689c23e4"
+mock-socket@9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/mock-socket/-/mock-socket-9.0.3.tgz#4bc6d2aea33191e4fed5ec71f039e2bbeb95e414"
   dependencies:
     url-parse "^1.4.4"
 
