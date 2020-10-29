@@ -76,7 +76,7 @@
     "child_process": "1.0.2",
     "copyfiles": "2.1.1",
     "cross-env": "6.0.3",
-    "cz-conventional-changelog": "3.0.2",
+    "cz-conventional-changelog": "3.3.0",
     "dotenv": "8.2.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.15.1",
