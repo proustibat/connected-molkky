@@ -1,4 +1,4 @@
-FROM arm32v7/node:10.16.2
+FROM arm32v7/node:10.24.1
 
 # Create app directory
 WORKDIR /usr/src/connected-molkky
