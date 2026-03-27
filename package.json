@@ -33,7 +33,7 @@
     "@babel/polyfill": "7.7.0",
     "advlib": "0.1.4",
     "body-parser": "1.19.0",
-    "cookie-parser": "1.4.4",
+    "cookie-parser": "1.4.7",
     "debug": "4.1.1",
     "express": "4.17.1",
     "http-errors": "1.7.3",
