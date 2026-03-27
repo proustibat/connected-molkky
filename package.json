@@ -94,7 +94,7 @@
     "mock-socket": "9.0.2",
     "nodemon": "1.19.4",
     "prop-types": "15.7.2",
-    "rimraf": "3.0.0",
+    "rimraf": "3.0.2",
     "supertest": "4.0.2",
     "sys": "0.0.1",
     "webpack": "4.41.2",
