@@ -79,7 +79,7 @@
     "cz-conventional-changelog": "3.0.2",
     "dotenv": "8.2.0",
     "enzyme": "3.10.0",
-    "enzyme-adapter-react-16": "1.15.1",
+    "enzyme-adapter-react-16": "1.15.8",
     "enzyme-to-json": "3.4.3",
     "eslint": "6.6.0",
     "eslint-config-airbnb": "18.0.1",
