@@ -32,7 +32,7 @@
   "dependencies": {
     "@babel/polyfill": "7.7.0",
     "advlib": "0.1.4",
-    "body-parser": "1.19.0",
+    "body-parser": "1.20.6",
     "cookie-parser": "1.4.4",
     "debug": "4.1.1",
     "express": "4.17.1",
